@@ -44,31 +44,31 @@ public class SpawnManager : MonoBehaviour
         {
             _fruitsCount = Random.Range(2, 4);
 
-            _time = 4;
+            _time = 3;
         }
         else if (_gameScore < 2000)
         {
             _fruitsCount = Random.Range(2, 5);
 
-            _time = 3.8f;
+            _time = 2.8f;
         }
         else if (_gameScore < 3000)
         {
             _fruitsCount = Random.Range(3, 6);
 
-            _time = 3.2f;
+            _time = 2.2f;
         }
         else if (_gameScore < 4000)
         {
             _fruitsCount = Random.Range(4, 8);
 
-            _time = 3f;
+            _time = 2f;
         }
         else if (_gameScore > 5000)
         {
             _fruitsCount = Random.Range(5, _fruits.Length);
 
-            _time = 2.9f;
+            _time = 1.9f;
         }
     }
     private (Vector2, Vector2, int) GetTrajectory()
@@ -111,11 +111,4 @@ public class SpawnManager : MonoBehaviour
 
         yield break;
     }
-    
-
-
-    
-    
-    
-    
 }
