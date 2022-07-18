@@ -15,5 +15,5 @@ MonoBehaviour:
   zoneName: RightDown
   pointOne: {fileID: 4634656138966343831, guid: 5c03c1b83b95d884fb53c397eeda994f, type: 3}
   pointTwo: {fileID: 3448162237147216287, guid: 51126662c4bc321408cd85e4986f276a, type: 3}
-  FinishZone: {fileID: 11400000, guid: 89b116bd37d803241b5741a197eb4ed8, type: 2}
-  heightLimitation: 0
+  FinishZone: {fileID: 11400000, guid: 45e2cdac73af734478ce96954a3687f1, type: 2}
+  heightLimitation: 5

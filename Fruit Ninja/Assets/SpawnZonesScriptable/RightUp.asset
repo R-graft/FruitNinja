@@ -16,4 +16,4 @@ MonoBehaviour:
   pointOne: {fileID: 643925078962245999, guid: d2f4a030d7f266445b6a7a032cb53a9b, type: 3}
   pointTwo: {fileID: 938721604489984146, guid: ead25a1ea0bc45641ab8730c1710fe44, type: 3}
   FinishZone: {fileID: 11400000, guid: 45e2cdac73af734478ce96954a3687f1, type: 2}
-  heightLimitation: 0
+  heightLimitation: 2

@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - blot container
+  - yellow
   layers:
   - Default
   - TransparentFX
@@ -40,4 +42,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: blot
+    uniqueID: 916086185
+    locked: 0
+  - name: shadow
+    uniqueID: 2554202049
+    locked: 0
+  - name: half
+    uniqueID: 2284514573
+    locked: 0
+  - name: fruit
+    uniqueID: 1135103645
+    locked: 0
+  - name: splash
+    uniqueID: 3924748475
+    locked: 0
+  - name: UI
+    uniqueID: 3624606881
     locked: 0
