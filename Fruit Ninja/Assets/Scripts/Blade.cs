@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,23 +6,22 @@ public class Blade : MonoBehaviour
     [SerializeField]
     private GameObject _trailPrefab;
 
+    [SerializeField]
+    private CollisionManager _collisionManager;
+
     private Camera _camera;
 
     private GameObject _currentTrail;
 
-    private float _minSlashDistance = 0.2f;
+    private Vector2 _previousPosition;
 
-    private Vector2 _endPoint;
-
-    public static Vector2 StartPoint { get; private set; }
-
-    public static Queue<Vector2> Positions { get; private set; } 
+    public float _minSlashDistance = 0.002f;
 
     void Start()
     {
-        Positions = new Queue<Vector2>();
-
         _camera = Camera.main;
+
+        _currentTrail = Instantiate(_trailPrefab, transform);
     }
 
     void Update()
@@ -33,39 +31,39 @@ public class Blade : MonoBehaviour
             StartCut();
         }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            StopCut();
-            
-        }
         if (Input.GetMouseButton(0))
         {
             Cutting();
         }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            StopCut();
+        }
     }
+
     private void StartCut()
     {
-        Positions.Clear();
+        _previousPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
 
-        StartPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
-
-        _currentTrail = Instantiate(_trailPrefab, transform);
+        _currentTrail.SetActive(true);
     }
     private void StopCut()
     {
-        _endPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
-
-        Destroy(_currentTrail);
-
-        if (Vector2.Distance(StartPoint, _endPoint) > _minSlashDistance)
-        {
-            GameEvents.slash.Invoke();
-        }
+        _currentTrail.SetActive(false);
     }
     private void Cutting()
     {
         transform.position = _camera.ScreenToWorldPoint(Input.mousePosition);
 
-        Positions.Enqueue(transform.position);
+        Vector2 _currentPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+
+        float speedCutting = (_currentPosition -_previousPosition).magnitude * Time.deltaTime;
+
+        if (speedCutting > _minSlashDistance)
+        {
+           _collisionManager.CheckSlash(_currentPosition);
+        }
+        _previousPosition = _currentPosition;
     }
 }

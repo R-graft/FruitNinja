@@ -5,113 +5,62 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] _fruits;
+    private string[] _blockTags;
 
     [SerializeField]
-    private SpawnZone[] _zones;
+    private ZoneSettings _zoneSettings;
 
-    private int _gameScore;
+    [SerializeField]
+    private ObjectPool _objectPooler;
 
-    private int _fruitsCount = 0;
+    [Range(3,8)]
+    public int _difficultLevel;
 
-    private float _time;
+    private int _blocksCount = 0;
+
+    private float _spawnTime;
+
+    private int _maxDifficultLevel = 9;
 
     void Start()
     {
-        StartCoroutine(StartFruitPack());
+        _spawnTime = _difficultLevel;
+
+        StartCoroutine(GenerateBlockPack());
     }
-    public IEnumerator StartFruitPack()
+    public IEnumerator GenerateBlockPack()
     {
         while (true)
         {
-            yield return new WaitForSeconds(_time);
+            yield return new WaitForSeconds(_spawnTime);
 
             GetFruitCount();
 
-            for (int i = 0; i < _fruitsCount; i++)
+            for (int i = 0; i < _blocksCount; i++)
             {
                 yield return new WaitForSeconds(0.5f);
 
-                (Vector2, Vector2, int) fruitPositions = GetTrajectory();
+                string blockName = "ice";// _blockTags[Random.Range(0, _blockTags.Length)];
 
-                GameObject newFruit = Instantiate(_fruits[Random.Range(0, _fruits.Length)], fruitPositions.Item1, Quaternion.identity);
+                Vector2 currentStartPoint = _zoneSettings.GetStartPoint();
 
-                StartCoroutine(FruitFlying(newFruit, fruitPositions.Item1, fruitPositions.Item2, fruitPositions.Item3, _time));
+                GameObject currentBlock = _objectPooler.GrabFromPool(blockName, currentStartPoint);
             }
         }
     }
     private void GetFruitCount()
     {
-        if (_gameScore < 1000)
-        {
-            _fruitsCount = Random.Range(2, 4);
+        float time = Time.time * Time.deltaTime;
 
-            _time = 3;
-        }
-        else if (_gameScore < 2000)
-        {
-            _fruitsCount = Random.Range(2, 5);
+        _difficultLevel += (int)time;
 
-            _time = 2.8f;
-        }
-        else if (_gameScore < 3000)
-        {
-            _fruitsCount = Random.Range(3, 6);
+        _spawnTime = _maxDifficultLevel - _difficultLevel - time > 1 ? _difficultLevel - time : 1;
+      
 
-            _time = 2.2f;
-        }
-        else if (_gameScore < 4000)
-        {
-            _fruitsCount = Random.Range(4, 8);
+        int minBlocks = (_difficultLevel - 2) ;
 
-            _time = 2f;
-        }
-        else if (_gameScore > 5000)
-        {
-            _fruitsCount = Random.Range(5, _fruits.Length);
+        int maxBlocks = (_difficultLevel + 2);
 
-            _time = 1.9f;
-        }
-    }
-    private (Vector2, Vector2, int) GetTrajectory()
-    {
-        SpawnZone currentZone = _zones[Random.Range(0, _zones.Length)];
-
-        Vector2 start;
-
-        start.x = Random.Range(currentZone.pointOne.position.x, currentZone.pointTwo.transform.position.x);
-
-        start.y = Random.Range(currentZone.pointOne.position.y, currentZone.pointTwo.transform.position.y);
-
-        Vector2 finish;
-
-        finish.x = Random.Range(currentZone.FinishZone.pointOne.position.x, currentZone.FinishZone.pointOne.transform.position.x);
-
-        finish.y = Random.Range(currentZone.FinishZone.pointOne.position.y, currentZone.FinishZone.pointOne.transform.position.y);
-
-        return (start, finish, currentZone.heightLimitation);
-    }
-    IEnumerator FruitFlying(GameObject fruit, Vector2 pointStart, Vector2 pointFinish,float fluyingHeight, float fluingTime)
-    { 
-        float temp = 0;
-
-        float currentTime = fluingTime;
-
-        while (currentTime > 0)
-        {
-            yield return new WaitForFixedUpdate();
-
-            temp += Time.deltaTime;
-
-            temp = temp % fluingTime;
-
-            fruit.transform.position = MathParabola.Parabola(pointStart, pointFinish, fluyingHeight, temp / fluingTime);
-
-            currentTime -= Time.fixedDeltaTime;
-        }
-
-        Destroy(fruit);
-
-        yield break;
+        _blocksCount = Random.Range(minBlocks, maxBlocks);
     }
 }
