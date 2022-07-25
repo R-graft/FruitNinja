@@ -883,33 +883,43 @@ MonoBehaviour:
   - tag: coconut
     prefab: {fileID: 2431743121657026658, guid: 263a320dfec20bd458aa91c332b28ef4, type: 3}
     poolsize: 12
+    spawnPercent: 15
   - tag: garlic
     prefab: {fileID: 6086200201506562265, guid: d0ae545bd0f97674fb8bfd8e3109f765, type: 3}
     poolsize: 12
+    spawnPercent: 15
   - tag: lemon
     prefab: {fileID: 7003936564012003907, guid: e0c7736ee78001c4c9032003d858df7b, type: 3}
     poolsize: 12
+    spawnPercent: 15
   - tag: mango
     prefab: {fileID: 6086200201506562265, guid: d0ae545bd0f97674fb8bfd8e3109f765, type: 3}
     poolsize: 12
+    spawnPercent: 15
   - tag: pear
     prefab: {fileID: 8041984486032358126, guid: 7af8177eb177cab46b126452d7b3fe6c, type: 3}
     poolsize: 12
+    spawnPercent: 15
   - tag: plum
     prefab: {fileID: 8344816783351598727, guid: 33c1b776dc7d8f3488fecf9707de50ef, type: 3}
     poolsize: 12
+    spawnPercent: 15
   - tag: pomergrenade
     prefab: {fileID: 3023748806498514791, guid: 673e714d6df5b1f4babe2936b8216a5b, type: 3}
     poolsize: 12
+    spawnPercent: 15
   - tag: watermelon
     prefab: {fileID: 2521843657057772524, guid: e83a0b6fa11292f49872eb50d5e8172e, type: 3}
     poolsize: 12
+    spawnPercent: 15
   - tag: bomb
     prefab: {fileID: 7333394360775507710, guid: c647ae7bc099d4f4f96e9dcd06b991a2, type: 3}
-    poolsize: 12
+    poolsize: 5
+    spawnPercent: 7
   - tag: ice
     prefab: {fileID: 7333394360775507710, guid: 50cebacafe2cbba4aa0d6ccaaf149e9d, type: 3}
-    poolsize: 12
+    poolsize: 2
+    spawnPercent: 2
 --- !u!114 &883031142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,20 +932,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10f6350a99d05c48922f164ad340301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blockTags:
-  - coconut
-  - garlic
-  - lemon
-  - mango
-  - pear
-  - plum
-  - pomergrenade
-  - watermelon
-  - bomb
-  - ice
+  _difficultLevel: 8
   _zoneSettings: {fileID: 883031143}
   _objectPooler: {fileID: 883031141}
-  _difficultLevel: 8
 --- !u!114 &883031143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1627,7 +1626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7584243781060869466, guid: 7227489a6e827e847aa093269b565acf, type: 3}
       propertyPath: percentValue
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7584243781060869466, guid: 7227489a6e827e847aa093269b565acf, type: 3}
       propertyPath: horizontalEnd
@@ -1712,7 +1711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7584243781060869466, guid: 7227489a6e827e847aa093269b565acf, type: 3}
       propertyPath: percentValue
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7584243781060869467, guid: 7227489a6e827e847aa093269b565acf, type: 3}
       propertyPath: m_RootOrder
@@ -2647,7 +2646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7584243781060869466, guid: 7227489a6e827e847aa093269b565acf, type: 3}
       propertyPath: percentValue
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7584243781060869467, guid: 7227489a6e827e847aa093269b565acf, type: 3}
       propertyPath: m_RootOrder

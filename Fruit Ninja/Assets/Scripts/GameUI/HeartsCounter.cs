@@ -21,13 +21,13 @@ public class HeartsCounter : MonoBehaviour
     }
     private void DeleteHeart()
     {
-        if (_heartPanel.transform.childCount == 0)
+        if (_heartPanel.transform.childCount > 0)
         {
-            GameEvents.gameOver.Invoke();
+            Destroy(_heartPanel.transform.GetChild(0).gameObject);
         }
         else
         {
-            Destroy(_heartPanel.transform.GetChild(0).gameObject);
+            GameEvents.gameOver.Invoke();
         }
     }
     private void AddHeart()

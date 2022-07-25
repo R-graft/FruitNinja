@@ -14,10 +14,11 @@ public class ObjectPool : MonoBehaviour
         public GameObject prefab;
 
         public int poolsize;
+
+        public int spawnPercent;
     }
 
-    [SerializeField]
-    private Pool[] pools;
+    public Pool[] pools;
 
     private Dictionary<string, Queue<GameObject>> poolsDictionary;
 

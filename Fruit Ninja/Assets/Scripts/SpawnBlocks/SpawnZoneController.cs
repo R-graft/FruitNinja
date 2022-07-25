@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZoneSettings : MonoBehaviour
+public class SpawnZoneController : MonoBehaviour
 {
     [SerializeField]
-    private ZoneSpawn[] _spawnZones;
+    private SpawnZone[] _spawnZones;
 
     private List<float> _zonesPercents;
 
@@ -28,10 +28,7 @@ public class ZoneSettings : MonoBehaviour
         {
             total += value;
         }
-        if (total == 0)
-        {
-            return -1;
-        }
+
         float randomValue = Random.value * total;
 
         for (int i = 0; i < _zonesPercents.Count; i++)
@@ -52,14 +49,7 @@ public class ZoneSettings : MonoBehaviour
     {
         int numberOfZone = GetZoneNumber();
 
-        if (numberOfZone == -1)
-        {
-            Debug.Log("Nothing to slash");
-
-            return new Vector2(30, 30);
-        }
-
-        ZoneSpawn currentZone = _spawnZones[numberOfZone];
+        SpawnZone currentZone = _spawnZones[numberOfZone];
 
         float currentPosX = Random.Range(currentZone.SpawnPointStart.transform.position.x, currentZone.SpawnPointEnd.transform.position.x);
 

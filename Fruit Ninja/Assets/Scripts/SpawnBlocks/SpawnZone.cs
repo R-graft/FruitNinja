@@ -1,5 +1,5 @@
 using UnityEngine;
-public class ZoneSpawn : MonoBehaviour
+public class SpawnZone : MonoBehaviour
 {
     public GameObject SpawnPointStart; //{ get; private set; }
 

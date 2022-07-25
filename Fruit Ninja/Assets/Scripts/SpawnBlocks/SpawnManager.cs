@@ -1,19 +1,19 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField]
-    private string[] _blockTags;
+    [Range(3,8)]
+    public int _difficultLevel;
 
     [SerializeField]
-    private ZoneSettings _zoneSettings;
+    private SpawnZoneController _zoneSettings;
 
     [SerializeField]
     private ObjectPool _objectPooler;
 
-    [Range(3,8)]
-    public int _difficultLevel;
+    private List<float> _percentList;
 
     private int _blocksCount;
 
@@ -26,12 +26,17 @@ public class SpawnManager : MonoBehaviour
         _blocksCount = 0;
 
         _maxDifficultLevel = 9;
+
+        InitializeSpawnObjectsPercents();
+
+        GameEvents.gameOver.AddListener(StopAllCoroutines);
     }
     void Start()
     {
         _spawnTime = _difficultLevel;
 
         StartCoroutine(GenerateBlockPack());
+
     }
     public IEnumerator GenerateBlockPack()
     {
@@ -45,7 +50,7 @@ public class SpawnManager : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.5f);
 
-                string blockName = _blockTags[Random.Range(0, _blockTags.Length)];
+                string blockName = _objectPooler.pools[GetBlockTag()].tag;
 
                 Vector2 currentStartPoint = _zoneSettings.GetStartPoint();
 
@@ -66,5 +71,39 @@ public class SpawnManager : MonoBehaviour
         int maxBlocks = (_difficultLevel + 2);
 
         _blocksCount = Random.Range(minBlocks, maxBlocks);
+    }
+
+    private int GetBlockTag()
+    {
+        float total = 0;
+
+        foreach (var value in _percentList)
+        {
+            total += value;
+        }
+
+        float randomValue = Random.value * total;
+
+        for (int i = 0; i < _percentList.Count; i++)
+        {
+            if (randomValue < _percentList[i])
+            {
+                return i;
+            }
+            else
+            {
+                randomValue -= _percentList[i];
+            }
+        }
+        return _percentList.Count - 1;
+    }
+    private void InitializeSpawnObjectsPercents()
+    {
+        _percentList = new List<float>();
+
+        foreach (var obj in _objectPooler.pools)
+        {
+            _percentList.Add(obj.spawnPercent);
+        }
     }
 }
