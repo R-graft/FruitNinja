@@ -3,9 +3,9 @@ public interface IBlock
 {
     public void CheckSlash(Vector2 bladePoint);
 
-    public void BombBlow (Vector3 bombPosition);
+    public void BombSlash (Vector3 bombPosition);
 
-    public void IceBlockSlashed();
+    public void SetIceSpeed(string speedMode);
     public void BlockSlashed();
-    public void MoveBlock();
+    public void BlockMove();
 }

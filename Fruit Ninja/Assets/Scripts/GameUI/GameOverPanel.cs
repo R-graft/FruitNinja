@@ -26,10 +26,14 @@ public class GameOverPanel : MonoBehaviour
         _gameScoreText.text = _scoreCounter._currentScore.ToString();
 
         _bestScoreText.text = _scoreCounter._bestCurrentScore.ToString();
+
+        PlayerPrefs.SetInt("bestScore", _scoreCounter._bestCurrentScore);
     }
 
     private void ActivePanel()
     {
         _gameOverPanel.SetActive(true);
+
+        SetScore();
     }
 }

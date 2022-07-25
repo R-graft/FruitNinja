@@ -6,19 +6,27 @@ public class BlockRotateAndScale : MonoBehaviour
     [SerializeField]
     private GameObject _blockShadow;
 
+    private SpriteRenderer _spriteRenderer;
+
     private float _directionRotate;
 
-    private float _endPosition = -10;
+    private float _endPosition;
 
     private float _scaleStep;
 
+    private void Awake()
+    {
+        _endPosition = -5.5f;
+
+        SpriteRenderer spriteRenderer = _blockShadow.GetComponent<SpriteRenderer>();
+    }
     public void StartRotateAndSale()
     {
         _directionRotate = Random.Range(-4f, 4f);
 
-        _scaleStep = Random.Range(-0.001f, 0.001f);
+        _scaleStep = Random.Range(-0.05f, 0.05f) ;
 
-        if (gameObject.active)
+        if (gameObject.activeSelf)
         {
             StartCoroutine(ObjectRotate(gameObject));
 
@@ -50,7 +58,7 @@ public class BlockRotateAndScale : MonoBehaviour
         {
             yield return new WaitForFixedUpdate();
 
-            _obj.transform.localScale += new Vector3(_scaleStep, _scaleStep);
+            _obj.transform.localScale += new Vector3(_scaleStep , _scaleStep) * Time.fixedDeltaTime;
         }
         yield break;
     }

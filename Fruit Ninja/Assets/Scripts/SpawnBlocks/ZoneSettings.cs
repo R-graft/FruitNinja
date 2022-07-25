@@ -16,6 +16,7 @@ public class ZoneSettings : MonoBehaviour
         {
            _zonesPercents.Add(item.percentValue); 
         }
+
         transform.position = GetStartPoint();
     }
 
@@ -60,9 +61,9 @@ public class ZoneSettings : MonoBehaviour
 
         ZoneSpawn currentZone = _spawnZones[numberOfZone];
 
-        float currentPosX = Random.Range(currentZone.SpawnPointStart.x, currentZone.SpawnPointEnd.x);
+        float currentPosX = Random.Range(currentZone.SpawnPointStart.transform.position.x, currentZone.SpawnPointEnd.transform.position.x);
 
-        float currentPosY = Random.Range(currentZone.SpawnPointStart.y, currentZone.SpawnPointEnd.y);
+        float currentPosY = Random.Range(currentZone.SpawnPointStart.transform.position.y, currentZone.SpawnPointEnd.transform.position.y);
 
         return new Vector2(currentPosX,currentPosY);
     }

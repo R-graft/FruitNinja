@@ -7,14 +7,26 @@ public class FlyingSimulation : MonoBehaviour
 
     private float directionY;
 
-    private float speed;
+    private  float _forceX;
 
-    private float iceSpeed = 1;
+    private  float _forceY;
 
     private float gravity;
 
-    private float _fallPosition = -5.5f;
+    private float _fallPosition;
 
+    private float _gravityStep;
+
+    private void Awake()
+    {
+        _forceY = 1.6f;
+
+        _forceX = 0.5f;
+
+        _fallPosition = -5.5f;
+
+        _gravityStep = 0.05f;
+    }
     public void MoveDirection()
     {
         StartCoroutine(FlyingTrajectory());
@@ -23,21 +35,22 @@ public class FlyingSimulation : MonoBehaviour
     {
         StartCoroutine(BombGravitation(bombPosition));
     }
-    public void ActivateIceSpeed()
+    public void ActivateIceSpeed(string speedMode)
     {
-        StartCoroutine(IceMove());
-    }
-    private IEnumerator IceMove()
-    {
-        iceSpeed = 5;
-
-        yield return new WaitForSeconds(5);
+        if (speedMode == "ice")
         {
-            iceSpeed = 1;
+            _forceY = 0.5f;
 
-            yield break;
+            _forceX = 0.2f;
+        }
+        else if (speedMode == "normal")
+        {
+            _forceY = 1.6f;
+
+            _forceX = 0.5f;
         }
     }
+
     private IEnumerator BombGravitation(Vector3 bombPosition)
     {
         Vector3 direction = transform.position - bombPosition;
@@ -62,17 +75,17 @@ public class FlyingSimulation : MonoBehaviour
 
         directionY = -transform.position.y;
 
-        speed = Random.Range(0.5f, 0.6f);
+        _forceX += Random.Range(0.1f, 0.3f);
 
         gravity = 0;
 
         while (transform.position.y > _fallPosition)
-        {
+        { 
             yield return new WaitForFixedUpdate();
 
-            transform.position += new Vector3((directionX) * speed, (directionY + gravity), 0) * Time.deltaTime ;
+            transform.position += new Vector3((directionX) * _forceX, (directionY + gravity) * _forceY, 0) * Time.deltaTime;
 
-            gravity -= 0.03f;
+            gravity -= _gravityStep;
         }
 
         gameObject.SetActive(false);

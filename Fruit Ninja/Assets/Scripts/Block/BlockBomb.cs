@@ -37,7 +37,7 @@ public class BlockBomb : MonoBehaviour, IBlock
     }
     private void OnEnable()
     {
-        MoveBlock();
+        BlockMove();
 
         isSlashed = false;
     }
@@ -54,7 +54,7 @@ public class BlockBomb : MonoBehaviour, IBlock
 
         GameEvents.bombSlashing.Invoke();
     }
-    public void MoveBlock()
+    public void BlockMove()
     {
         isSlashed = false;
 
@@ -69,15 +69,15 @@ public class BlockBomb : MonoBehaviour, IBlock
         _flyingSimulation.MoveDirection();
     }
 
-    public void BombBlow(Vector3 bombPos)
+    public void BombSlash(Vector3 bombPos)
     {
         if (gameObject.activeSelf)
         {
             _flyingSimulation.BombBlow(bombPos);
         }
     }
-    public void IceBlockSlashed()
+    public void SetIceSpeed(string speedMode)
     {
-        _flyingSimulation.ActivateIceSpeed();
+        _flyingSimulation.ActivateIceSpeed(speedMode);
     }
 }

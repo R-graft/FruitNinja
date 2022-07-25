@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -16,12 +15,18 @@ public class SpawnManager : MonoBehaviour
     [Range(3,8)]
     public int _difficultLevel;
 
-    private int _blocksCount = 0;
+    private int _blocksCount;
 
     private float _spawnTime;
 
-    private int _maxDifficultLevel = 9;
+    private int _maxDifficultLevel;
 
+    private void Awake()
+    {
+        _blocksCount = 0;
+
+        _maxDifficultLevel = 9;
+    }
     void Start()
     {
         _spawnTime = _difficultLevel;
@@ -40,11 +45,11 @@ public class SpawnManager : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.5f);
 
-                string blockName = "ice";// _blockTags[Random.Range(0, _blockTags.Length)];
+                string blockName = _blockTags[Random.Range(0, _blockTags.Length)];
 
                 Vector2 currentStartPoint = _zoneSettings.GetStartPoint();
 
-                GameObject currentBlock = _objectPooler.GrabFromPool(blockName, currentStartPoint);
+                _objectPooler.GrabFromPool(blockName, currentStartPoint);
             }
         }
     }
@@ -55,7 +60,6 @@ public class SpawnManager : MonoBehaviour
         _difficultLevel += (int)time;
 
         _spawnTime = _maxDifficultLevel - _difficultLevel - time > 1 ? _difficultLevel - time : 1;
-      
 
         int minBlocks = (_difficultLevel - 2) ;
 

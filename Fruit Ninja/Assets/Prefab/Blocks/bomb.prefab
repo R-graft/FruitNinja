@@ -4975,7 +4975,7 @@ GameObject:
   - component: {fileID: 7333394360419228274}
   - component: {fileID: 7333394360419228277}
   m_Layer: 0
-  m_Name: bombShadow
+  m_Name: blockShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5058,7 +5058,7 @@ GameObject:
   - component: {fileID: 7333394360549175489}
   - component: {fileID: 2991118011600922174}
   m_Layer: 0
-  m_Name: bomb
+  m_Name: block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5524,7 +5524,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 50
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6273,7 +6273,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 30
+      scalar: 50
       minScalar: 1
       maxCurve:
         serializedVersion: 2

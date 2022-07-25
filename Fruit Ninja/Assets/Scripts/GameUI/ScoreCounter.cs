@@ -12,20 +12,19 @@ public class ScoreCounter : MonoBehaviour
 
     public int _bestCurrentScore { get; private set; }
 
-    void Start()
+    void Awake()
     {
         _startScore = 0;
 
         _scoreRevard = 50;
 
-        StartGame();
+        _bestCurrentScore = PlayerPrefs.GetInt("bestScore");
 
         GameEvents.fruitSlashed.AddListener(SetScore);
     }
-    private void StartGame()
-    {
-        _bestCurrentScore = PlayerPrefs.GetInt("best score");
 
+    private void Start()
+    {
         _currentScore = _startScore;
     }
 

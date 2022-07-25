@@ -4,7 +4,7 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField]
-    private CollisionManager _collisionManager;
+    private SlashController _collisionManager;
 
     [System.Serializable]
     public class Pool
