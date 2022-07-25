@@ -249,6 +249,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4502578364836052690}
     m_Modifications:
+    - target: {fileID: 132076233962361419, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132076233962361419, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: moveWithCustomTransform
+      value: 
+      objectReference: {fileID: 4502578364836052690}
+    - target: {fileID: 132076233962361419, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 132076233962361419, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.gravityModifier.minScalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502137479180020380, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502137479180020380, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: moveWithCustomTransform
+      value: 
+      objectReference: {fileID: 4502578364836052690}
+    - target: {fileID: 1502137479180020380, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502137479180020380, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.gravityModifier.minScalar
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2611073913975879206, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.15566039
@@ -320,6 +352,38 @@ PrefabInstance:
     - target: {fileID: 4471954096676388458, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
       propertyPath: m_Name
       value: Halves
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898215765455632909, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898215765455632909, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: moveWithCustomTransform
+      value: 
+      objectReference: {fileID: 4502578364836052690}
+    - target: {fileID: 5898215765455632909, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898215765455632909, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.gravityModifier.minScalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343809594253745794, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343809594253745794, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: moveWithCustomTransform
+      value: 
+      objectReference: {fileID: 4502578364836052690}
+    - target: {fileID: 6343809594253745794, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343809594253745794, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.gravityModifier.minScalar
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6579795748517881806, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
       propertyPath: m_Materials.Array.data[0]

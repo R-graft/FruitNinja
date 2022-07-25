@@ -33,7 +33,7 @@ public class SpawnManager : MonoBehaviour
     }
     void Start()
     {
-        _spawnTime = _difficultLevel;
+        _spawnTime = 1;
 
         StartCoroutine(GenerateBlockPack());
 
@@ -48,7 +48,7 @@ public class SpawnManager : MonoBehaviour
 
             for (int i = 0; i < _blocksCount; i++)
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
 
                 string blockName = _objectPooler.pools[GetBlockTag()].tag;
 
@@ -58,6 +58,7 @@ public class SpawnManager : MonoBehaviour
             }
         }
     }
+    
     private void GetFruitCount()
     {
         float time = Time.time * Time.deltaTime;

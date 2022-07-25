@@ -1,11 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ComboCounter : MonoBehaviour
 {
     [SerializeField]
+    private TextMeshProUGUI _comboValue;
+
+    [SerializeField]
     private GameObject _comboPanel;
+
     private int _blocksCounter;
 
     private void Awake()
@@ -25,6 +29,8 @@ public class ComboCounter : MonoBehaviour
 
             if (_blocksCounter > 2)
             {
+                _comboValue.text = _blocksCounter.ToString();
+
                 _comboPanel.SetActive(true);
 
                 yield return new WaitForSeconds(1);

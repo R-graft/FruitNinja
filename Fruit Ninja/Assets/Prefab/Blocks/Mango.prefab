@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 853468696732056180}
   - component: {fileID: 3765418455485203831}
   m_Layer: 0
-  m_Name: mango
+  m_Name: Mango
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,6 +249,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5257313255950188007}
     m_Modifications:
+    - target: {fileID: 132076233962361419, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.startRotation.scalar
+      value: 0.7853981
+      objectReference: {fileID: 0}
     - target: {fileID: 2611073913975879206, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.023584902
@@ -320,6 +324,18 @@ PrefabInstance:
     - target: {fileID: 4471954096676388458, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
       propertyPath: m_Name
       value: Halves
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471954096676388458, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898215765455632909, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898215765455632909, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.startRotation.scalar
+      value: 0.7853981
       objectReference: {fileID: 0}
     - target: {fileID: 6579795748517881806, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
       propertyPath: m_Materials.Array.data[0]

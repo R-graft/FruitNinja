@@ -19,17 +19,27 @@ public class FlyingSimulation : MonoBehaviour
 
     private void Awake()
     {
-        _forceY = 1.6f;
+        _forceY = 2.5f;
 
-        _forceX = 0.5f;
+        _forceX = 0.3f;
 
         _fallPosition = -5.5f;
 
-        _gravityStep = 0.05f;
+        _gravityStep = 0.08f;
+    }
+    private void FixedUpdate()
+    {
+        if (transform.position.y < _fallPosition)
+        {
+            gameObject.SetActive(false);
+        }
+        transform.position += new Vector3((directionX) * _forceX, (directionY + gravity) * _forceY, 0) * Time.deltaTime;
+
+        gravity -= _gravityStep;
     }
     public void MoveDirection()
     {
-        StartCoroutine(FlyingTrajectory());
+        FlyingTrajectory();
     }
     public void BombBlow(Vector3 bombPosition)
     {
@@ -39,15 +49,19 @@ public class FlyingSimulation : MonoBehaviour
     {
         if (speedMode == "ice")
         {
-            _forceY = 0.5f;
+            _forceY = 1f;
 
             _forceX = 0.2f;
+
+            _gravityStep = 0.04f;
         }
         else if (speedMode == "normal")
         {
-            _forceY = 1.6f;
+            _forceY = 2.5f;
 
-            _forceX = 0.5f;
+            _forceX = 0.3f;
+
+            _gravityStep = 0.08f;
         }
     }
 
@@ -55,7 +69,7 @@ public class FlyingSimulation : MonoBehaviour
     {
         Vector3 direction = transform.position - bombPosition;
 
-        float sideForce = 3;
+        float sideForce = 3f;
 
         float distance = direction.magnitude;
 
@@ -67,7 +81,7 @@ public class FlyingSimulation : MonoBehaviour
         }
         yield break;
     }
-    private IEnumerator FlyingTrajectory()
+    private void FlyingTrajectory()
     {
         gameObject.SetActive(true);
 
@@ -78,18 +92,5 @@ public class FlyingSimulation : MonoBehaviour
         _forceX += Random.Range(0.1f, 0.3f);
 
         gravity = 0;
-
-        while (transform.position.y > _fallPosition)
-        { 
-            yield return new WaitForFixedUpdate();
-
-            transform.position += new Vector3((directionX) * _forceX, (directionY + gravity) * _forceY, 0) * Time.deltaTime;
-
-            gravity -= _gravityStep;
-        }
-
-        gameObject.SetActive(false);
-
-        yield break;
     }
 }

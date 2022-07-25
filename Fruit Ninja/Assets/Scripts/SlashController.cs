@@ -8,6 +8,8 @@ public class SlashController : MonoBehaviour
 
     private Vector3 _currentPosition;
 
+    float iceTime;
+
     void Start()
     {
         GameEvents.bombSlashing.AddListener(BombSlash);
@@ -34,12 +36,18 @@ public class SlashController : MonoBehaviour
     }
     private IEnumerator SetBlockSpeed()
     {
+        iceTime += 5;
+
         foreach (IBlock iblock in _iBlocks)
         {
             iblock.SetIceSpeed("ice");
         }
-        yield return new WaitForSeconds(5);
+        while (iceTime > 0)
+        {
+            yield return new WaitForFixedUpdate();
 
+            iceTime -= Time.fixedDeltaTime;
+        }
         foreach (IBlock iblock in _iBlocks)
         {
             iblock.SetIceSpeed("normal");

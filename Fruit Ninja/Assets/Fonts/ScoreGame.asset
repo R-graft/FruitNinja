@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: StalinistOne-Regular SDF Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: UNDERLAY_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -37,8 +37,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Scale: {x: 1.68, y: 0.19}
+        m_Offset: {x: 1.08, y: -0.15}
     m_Floats:
     - _Ambient: 0.5
     - _Bevel: 0.5
@@ -51,7 +51,7 @@ Material:
     - _ColorMask: 15
     - _CullMode: 0
     - _Diffuse: 0.5
-    - _FaceDilate: -0.12
+    - _FaceDilate: 0
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.05
@@ -63,14 +63,14 @@ Material:
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
     - _OutlineSoftness: 0
-    - _OutlineUVSpeedX: 0
-    - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.24
+    - _OutlineUVSpeedX: 0.24
+    - _OutlineUVSpeedY: -0.3
+    - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
-    - _ScaleRatioB: 0.77708334
-    - _ScaleRatioC: 0.77708334
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -113,11 +113,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: StalinistOne-Regular SDF
+  m_Name: ScoreGame
   m_EditorClassIdentifier: 
-  hashCode: 1331884033
+  hashCode: 661857350
   material: {fileID: -7505104715880204830}
-  materialHashCode: 163274241
+  materialHashCode: -275415386
   m_Version: 1.1.0
   m_SourceFontFileGUID: 6ef1e0b7edc1eea498a6b2aee02db4c0
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 6ef1e0b7edc1eea498a6b2aee02db4c0, type: 3}

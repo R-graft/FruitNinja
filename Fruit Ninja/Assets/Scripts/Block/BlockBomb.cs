@@ -25,7 +25,7 @@ public class BlockBomb : MonoBehaviour, IBlock
 
     public void CheckSlash(Vector2 _bladePos)
     {
-        if (gameObject.activeSelf)
+        if (gameObject.activeSelf && !isSlashed)
         {
             if (Vector2.Distance(transform.position, _bladePos) < _slashDistance)
             {

@@ -325,6 +325,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5898215765455632909, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6579795748517881806, guid: 23293de40621e9a40837d1ecb63123a0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
