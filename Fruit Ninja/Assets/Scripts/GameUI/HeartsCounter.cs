@@ -25,7 +25,12 @@ public class HeartsCounter : MonoBehaviour
         {
             Destroy(_heartPanel.transform.GetChild(0).gameObject);
         }
-        else
+
+        CheckGameOver();
+    }
+    private void CheckGameOver()
+    {
+        if (_heartPanel.transform.childCount <= 1)
         {
             GameEvents.gameOver.Invoke();
         }

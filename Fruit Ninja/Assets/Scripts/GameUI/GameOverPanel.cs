@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-
 public class GameOverPanel : MonoBehaviour
 {
     [SerializeField]
@@ -21,19 +20,21 @@ public class GameOverPanel : MonoBehaviour
         GameEvents.gameOver.AddListener(ActivePanel);
     }
 
-    private void SetScore()
+    private void SetGameOverScore()
     {
-        _gameScoreText.text = _scoreCounter._currentScore.ToString();
+        _gameScoreText.text = _scoreCounter.currentScore.ToString();
 
-        _bestScoreText.text = _scoreCounter._bestCurrentScore.ToString();
+        _bestScoreText.text = _scoreCounter.bestScore.ToString();
 
-        PlayerPrefs.SetInt("bestScore", _scoreCounter._bestCurrentScore);
+        PlayerPrefs.SetInt("bestScore", _scoreCounter.bestScore);
     }
 
     private void ActivePanel()
     {
+        SetGameOverScore();
+
         _gameOverPanel.SetActive(true);
 
-        SetScore();
+        Invoke("SetGameOverScore", 1);
     }
 }

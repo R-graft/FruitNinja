@@ -948,7 +948,7 @@ MonoBehaviour:
   - tag: bomb
     prefab: {fileID: 7333394360775507710, guid: c647ae7bc099d4f4f96e9dcd06b991a2, type: 3}
     poolsize: 5
-    spawnPercent: 7
+    spawnPercent: 5
   - tag: ice
     prefab: {fileID: 7333394360775507710, guid: 50cebacafe2cbba4aa0d6ccaaf149e9d, type: 3}
     poolsize: 10
@@ -965,7 +965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10f6350a99d05c48922f164ad340301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _difficultLevel: 3
+  _difficultLevel: 4
   _zoneSettings: {fileID: 883031143}
   _objectPooler: {fileID: 883031141}
 --- !u!114 &883031143
