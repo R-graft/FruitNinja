@@ -978,11 +978,11 @@ MonoBehaviour:
   - tag: coconut
     prefab: {fileID: 2431743121657026658, guid: 263a320dfec20bd458aa91c332b28ef4, type: 3}
     poolsize: 12
-    spawnPercent: 15
+    spawnPercent: 0
   - tag: garlic
     prefab: {fileID: 6086200201506562265, guid: d0ae545bd0f97674fb8bfd8e3109f765, type: 3}
     poolsize: 12
-    spawnPercent: 15
+    spawnPercent: 0
   - tag: lemon
     prefab: {fileID: 7003936564012003907, guid: e0c7736ee78001c4c9032003d858df7b, type: 3}
     poolsize: 12
@@ -990,29 +990,33 @@ MonoBehaviour:
   - tag: mango
     prefab: {fileID: 6086200201506562265, guid: d0ae545bd0f97674fb8bfd8e3109f765, type: 3}
     poolsize: 12
-    spawnPercent: 15
+    spawnPercent: 0
   - tag: pear
     prefab: {fileID: 8041984486032358126, guid: 7af8177eb177cab46b126452d7b3fe6c, type: 3}
     poolsize: 12
-    spawnPercent: 15
+    spawnPercent: 0
   - tag: plum
     prefab: {fileID: 8344816783351598727, guid: 33c1b776dc7d8f3488fecf9707de50ef, type: 3}
     poolsize: 12
-    spawnPercent: 15
+    spawnPercent: 0
   - tag: pomergrenade
     prefab: {fileID: 3023748806498514791, guid: 673e714d6df5b1f4babe2936b8216a5b, type: 3}
     poolsize: 12
-    spawnPercent: 15
+    spawnPercent: 0
   - tag: watermelon
     prefab: {fileID: 2521843657057772524, guid: e83a0b6fa11292f49872eb50d5e8172e, type: 3}
     poolsize: 12
-    spawnPercent: 15
+    spawnPercent: 0
   - tag: bomb
     prefab: {fileID: 7333394360775507710, guid: c647ae7bc099d4f4f96e9dcd06b991a2, type: 3}
     poolsize: 5
-    spawnPercent: 5
+    spawnPercent: 0
   - tag: ice
     prefab: {fileID: 7333394360775507710, guid: 50cebacafe2cbba4aa0d6ccaaf149e9d, type: 3}
+    poolsize: 10
+    spawnPercent: 0
+  - tag: heart
+    prefab: {fileID: 3948143861325744225, guid: c6025f9f75d7f744ba82b4ccaadb5e51, type: 3}
     poolsize: 10
     spawnPercent: 15
 --- !u!114 &883031142
