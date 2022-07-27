@@ -21,8 +21,6 @@ public class BlockIce : MonoBehaviour, IBlock
 
     private bool isSlashed = false;
 
-    public int aaa = 1;
-
     private void OnEnable()
     {
         BlockMove();
