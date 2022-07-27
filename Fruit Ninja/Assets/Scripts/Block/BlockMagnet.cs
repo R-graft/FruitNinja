@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockIce : MonoBehaviour, IBlock
+public class BlockMagnet : MonoBehaviour, IBlock
 {
     [SerializeField]
     private FlyingSimulation _flyingSimulation;
@@ -50,7 +52,7 @@ public class BlockIce : MonoBehaviour, IBlock
 
         isSlashed = true;
 
-        GameEvents.iceBlockSlashed.Invoke();
+        GameEvents.magnetBlockSlashed.Invoke();
     }
 
     public void BlockMove()
@@ -90,4 +92,3 @@ public class BlockIce : MonoBehaviour, IBlock
         }
     }
 }
-

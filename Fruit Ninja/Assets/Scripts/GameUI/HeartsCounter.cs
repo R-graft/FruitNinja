@@ -18,6 +18,8 @@ public class HeartsCounter : MonoBehaviour
         GameEvents.fruitLost.AddListener(DeleteHeart);
 
         GameEvents.bombSlashing.AddListener(DeleteHeart);
+
+        GameEvents.heartBlockSlashed.AddListener(AddHeart);
     }
     private void DeleteHeart()
     {

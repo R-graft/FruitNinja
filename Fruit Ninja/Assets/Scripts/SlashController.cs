@@ -8,13 +8,21 @@ public class SlashController : MonoBehaviour
 
     private Vector3 _currentPosition;
 
-    float iceTime;
+    private Vector3 _magnetPos;
+
+    private float iceTime;
+
+    private float magnetTime;
 
     void Start()
     {
         GameEvents.bombSlashing.AddListener(BombSlash);
 
         GameEvents.iceBlockSlashed.AddListener(SlashIceBlock);
+
+        GameEvents.magnetBlockSlashed.AddListener(SlashMagnetBlock);
+
+        GameEvents.BascetBlockSlashed.AddListener(SetBasketPosition);
     }
     public void AddIblock(IBlock iblock)
     {
@@ -23,18 +31,45 @@ public class SlashController : MonoBehaviour
 
     public void CheckSlash(Vector2 bladePosition)
     {
+        _currentPosition = bladePosition;
+
         foreach (IBlock iblock in _iBlocks)
         {
             iblock.CheckSlash(bladePosition);
         }
-        _currentPosition = bladePosition;
     }
 
-    public void SlashIceBlock()
+    private void SlashIceBlock()
     {
-        StartCoroutine(SetBlockSpeed());
+        StartCoroutine(IceSpeed());
     }
-    private IEnumerator SetBlockSpeed()
+
+    private void SlashMagnetBlock()
+    {
+        _magnetPos = _currentPosition;
+
+        StartCoroutine(SetMagnetMove(_magnetPos));
+    }
+    private IEnumerator SetMagnetMove(Vector2 magnetPos)
+    {
+        magnetTime += 5;
+
+        foreach (IBlock iblock in _iBlocks)
+        {
+            iblock.MoveMagnet(magnetPos, true);
+        }
+        while (magnetTime > 0)
+        {
+            yield return new WaitForFixedUpdate();
+
+            magnetTime -= Time.fixedDeltaTime;
+        }
+        foreach (IBlock iblock in _iBlocks)
+        {
+            iblock.MoveMagnet(magnetPos, false);
+        }
+    }
+    private IEnumerator IceSpeed()
     {
         iceTime += 5;
 
@@ -53,11 +88,15 @@ public class SlashController : MonoBehaviour
             iblock.SetIceSpeed("normal");
         }
     }
-    public void BombSlash()
+    private void BombSlash()
     {
         foreach (IBlock iblock in _iBlocks)
         {
             iblock.BombSlash(_currentPosition);
         }
+    }
+    private void SetBasketPosition()
+    {
+        SpawnManager.basketPosition = _currentPosition;
     }
 }

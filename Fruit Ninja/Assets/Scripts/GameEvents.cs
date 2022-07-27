@@ -12,4 +12,10 @@ public class GameEvents : MonoBehaviour
     public static UnityEvent gameOver = new UnityEvent();
 
     public static UnityEvent iceBlockSlashed = new UnityEvent();
+
+    public static UnityEvent heartBlockSlashed = new UnityEvent();
+
+    public static UnityEvent magnetBlockSlashed = new UnityEvent();
+
+    public static UnityEvent BascetBlockSlashed = new UnityEvent();
 }

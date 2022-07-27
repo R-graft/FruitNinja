@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BlockIce : MonoBehaviour, IBlock
+public class BlockHeart : MonoBehaviour, IBlock
 {
     [SerializeField]
     private FlyingSimulation _flyingSimulation;
@@ -23,6 +23,8 @@ public class BlockIce : MonoBehaviour, IBlock
 
     private void OnEnable()
     {
+        _flyingSimulation.HeartSpeed();
+
         BlockMove();
 
         isSlashed = false;
@@ -50,7 +52,7 @@ public class BlockIce : MonoBehaviour, IBlock
 
         isSlashed = true;
 
-        GameEvents.iceBlockSlashed.Invoke();
+        GameEvents.heartBlockSlashed.Invoke();
     }
 
     public void BlockMove()
@@ -90,4 +92,3 @@ public class BlockIce : MonoBehaviour, IBlock
         }
     }
 }
-
