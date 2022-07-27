@@ -19,7 +19,7 @@ public class FlyingSimulation : MonoBehaviour
 
     private void Awake()
     {
-        _forceY = 2.5f;
+        _forceY = 3f;
 
         _forceX = 0.3f;
 
@@ -27,7 +27,7 @@ public class FlyingSimulation : MonoBehaviour
 
         _gravityStep = 0.08f;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (transform.position.y < _fallPosition)
         {
@@ -57,7 +57,7 @@ public class FlyingSimulation : MonoBehaviour
         }
         else if (speedMode == "normal")
         {
-            _forceY = 2.5f;
+            _forceY = 3f;
 
             _forceX = 0.3f;
 
