@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BlockIce : MonoBehaviour, IBlock
+public class BlockBascet : MonoBehaviour, IBlock
 {
     [SerializeField]
     private FlyingSimulation _flyingSimulation;
@@ -14,9 +14,6 @@ public class BlockIce : MonoBehaviour, IBlock
     [SerializeField]
     private GameObject _blockShadow;
 
-    [SerializeField]
-    private GameObject _halves;
-
     private float _slashDistance = 1f;
 
     private bool isSlashed = false;
@@ -27,7 +24,6 @@ public class BlockIce : MonoBehaviour, IBlock
 
         isSlashed = false;
     }
-
     public void CheckSlash(Vector2 _bladePos)
     {
         if (gameObject.activeSelf && !isSlashed)
@@ -46,11 +42,9 @@ public class BlockIce : MonoBehaviour, IBlock
 
         _blockShadow.SetActive(false);
 
-        _halves.SetActive(true);
-
         isSlashed = true;
 
-        GameEvents.iceBlockSlashed.Invoke();
+        GameEvents.BascetBlockSlashed.Invoke();
     }
 
     public void BlockMove()
@@ -58,8 +52,6 @@ public class BlockIce : MonoBehaviour, IBlock
         _block.SetActive(true);
 
         _blockShadow.SetActive(true);
-
-        _halves.SetActive(false);
 
         _rotateAndScale.StartRotateAndSale();
 
@@ -90,4 +82,3 @@ public class BlockIce : MonoBehaviour, IBlock
         }
     }
 }
-

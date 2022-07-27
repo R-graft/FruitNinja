@@ -17,6 +17,10 @@ public class FlyingSimulation : MonoBehaviour
 
     private float _gravityStep;
 
+    public bool magnetMove;
+
+    public Vector2 magnetPos;
+
     private void Awake()
     {
         _forceY = 3f;
@@ -27,15 +31,24 @@ public class FlyingSimulation : MonoBehaviour
 
         _gravityStep = 0.08f;
     }
+
     private void Update()
     {
-        if (transform.position.y < _fallPosition)
+        if (!magnetMove)
         {
-            gameObject.SetActive(false);
-        }
-        transform.position += new Vector3((directionX) * _forceX, (directionY + gravity) * _forceY, 0) * Time.deltaTime;
+            if (transform.position.y < _fallPosition)
+            {
+                gameObject.SetActive(false);
+            }
+            transform.position += new Vector3((directionX) * _forceX, (directionY + gravity) * _forceY, 0) * Time.deltaTime;
 
-        gravity -= _gravityStep;
+            gravity -= _gravityStep;
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, magnetPos, 0.15f);
+        }
+       
     }
     public void MoveDirection()
     {
@@ -64,23 +77,6 @@ public class FlyingSimulation : MonoBehaviour
             _gravityStep = 0.08f;
         }
     }
-
-    private IEnumerator BombGravitation(Vector3 bombPosition)
-    {
-        Vector3 direction = transform.position - bombPosition;
-
-        float sideForce = 3f;
-
-        float distance = direction.magnitude;
-
-        while (gameObject.activeSelf)
-        {
-            yield return new WaitForFixedUpdate();
-
-            transform.position += direction/distance * sideForce * Time.fixedDeltaTime;
-        }
-        yield break;
-    }
     private void FlyingTrajectory()
     {
         gameObject.SetActive(true);
@@ -100,5 +96,22 @@ public class FlyingSimulation : MonoBehaviour
         _forceX = 0.6f;
 
         _gravityStep = 0.12f;
+    }
+    
+    private IEnumerator BombGravitation(Vector3 bombPosition)
+    {
+        Vector3 direction = transform.position - bombPosition;
+
+        float sideForce = 3f;
+
+        float distance = direction.magnitude;
+
+        while (gameObject.activeSelf)
+        {
+            yield return new WaitForFixedUpdate();
+
+            transform.position += direction/distance * sideForce * Time.fixedDeltaTime;
+        }
+        yield break;
     }
 }

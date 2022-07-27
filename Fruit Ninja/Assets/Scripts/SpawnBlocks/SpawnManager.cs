@@ -21,8 +21,11 @@ public class SpawnManager : MonoBehaviour
 
     private int _maxDifficultLevel;
 
+    public static Vector2 basketPosition;
+
     private void Awake()
     {
+        PlayerPrefs.DeleteKey("bestScore");
         _blocksCount = 0;
 
         _maxDifficultLevel = 9;
@@ -30,6 +33,8 @@ public class SpawnManager : MonoBehaviour
         InitializeSpawnObjectsPercents();
 
         GameEvents.gameOver.AddListener(StopAllCoroutines);
+
+        GameEvents.BascetBlockSlashed.AddListener(BasketBlocksSpawn);
     }
     void Start()
     {
@@ -65,7 +70,7 @@ public class SpawnManager : MonoBehaviour
 
         _difficultLevel += (int)time;
 
-        _spawnTime = _maxDifficultLevel - _difficultLevel - time > 1 ? _difficultLevel - time : 1;
+        _spawnTime = _maxDifficultLevel - _difficultLevel - time > 1 ? _maxDifficultLevel - _difficultLevel - time : 1;
 
         int minBlocks = (_difficultLevel - 2) ;
 
@@ -105,6 +110,17 @@ public class SpawnManager : MonoBehaviour
         foreach (var obj in _objectPooler.pools)
         {
             _percentList.Add(obj.spawnPercent);
+        }
+    }
+    private void BasketBlocksSpawn()
+    {
+        int basketFruitsCount = Random.Range(3, 5);
+
+        for (int i = 0; i < basketFruitsCount; i++)
+        {
+            string blockName = _objectPooler.pools[GetBlockTag()].tag;
+
+            _objectPooler.GrabFromPool(blockName, basketPosition);
         }
     }
 }

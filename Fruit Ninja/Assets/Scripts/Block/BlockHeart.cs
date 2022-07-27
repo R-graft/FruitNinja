@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BlockHeart : MonoBehaviour, IBlock
@@ -79,5 +77,18 @@ public class BlockHeart : MonoBehaviour, IBlock
     public void SetIceSpeed(string speedMode)
     {
         _flyingSimulation.ActivateIceSpeed(speedMode);
-    } 
+    }
+    public void MoveMagnet(Vector2 magnetPos, bool isMove)
+    {
+        if (isMove)
+        {
+            _flyingSimulation.magnetPos = magnetPos;
+
+            _flyingSimulation.magnetMove = true;
+        }
+        else
+        {
+            _flyingSimulation.magnetMove = false;
+        }
+    }
 }

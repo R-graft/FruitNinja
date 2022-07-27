@@ -35,6 +35,6 @@ public class GameOverPanel : MonoBehaviour
 
         _gameOverPanel.SetActive(true);
 
-        Invoke("SetGameOverScore", 1);
+        Invoke("SetGameOverScore", 2);
     }
 }
