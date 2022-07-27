@@ -21,9 +21,11 @@ public class BlockIce : MonoBehaviour, IBlock
 
     private bool isSlashed = false;
 
+    public int aaa = 1;
+
     private void OnEnable()
     {
-        MoveBlock();
+        BlockMove();
 
         isSlashed = false;
     }
@@ -35,8 +37,6 @@ public class BlockIce : MonoBehaviour, IBlock
             if (Vector2.Distance(transform.position, _bladePos) < _slashDistance)
             {
                 BlockSlashed();
-
-                GameEvents.fruitSlashed.Invoke();
 
                 isSlashed = true;
             }
@@ -55,7 +55,7 @@ public class BlockIce : MonoBehaviour, IBlock
         GameEvents.iceBlockSlashed.Invoke();
     }
 
-    public void MoveBlock()
+    public void BlockMove()
     {
         _block.SetActive(true);
 
@@ -67,16 +67,16 @@ public class BlockIce : MonoBehaviour, IBlock
 
         _flyingSimulation.MoveDirection();
     }
-    public void BombBlow(Vector3 bombPos)
+    public void BombSlash(Vector3 bombPos)
     {
         if (gameObject.activeSelf)
         {
             _flyingSimulation.BombBlow(bombPos);
         }
     }
-    public void IceBlockSlashed()
+    public void SetIceSpeed(string speedMode)
     {
-        _flyingSimulation.ActivateIceSpeed();
+        _flyingSimulation.ActivateIceSpeed(speedMode);
     }
 }
 

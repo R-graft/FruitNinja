@@ -14,9 +14,9 @@ public class GameScoreUI : MonoBehaviour
 
     private void CheckScore()
     {
-        _currentScoreText.text = _scoreCounter._currentScore.ToString();
+        _currentScoreText.text = _scoreCounter.currentScore.ToString();
 
-        _bestScoreText.text = _scoreCounter._bestCurrentScore.ToString();
+        _bestScoreText.text = _scoreCounter.bestScore.ToString();
     }
 
     void FixedUpdate()

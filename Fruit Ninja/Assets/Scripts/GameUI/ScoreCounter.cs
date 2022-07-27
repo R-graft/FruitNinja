@@ -8,25 +8,24 @@ public class ScoreCounter : MonoBehaviour
 
     private int _scoreRevard;
 
-    public int _currentScore { get; private set; }
+    public int currentScore { get; private set; }
 
-    public int _bestCurrentScore { get; private set; }
+    public int bestScore { get; private set; }
 
-    void Start()
+    void Awake()
     {
         _startScore = 0;
 
         _scoreRevard = 50;
 
-        StartGame();
+        bestScore = PlayerPrefs.GetInt("bestScore");
 
         GameEvents.fruitSlashed.AddListener(SetScore);
     }
-    private void StartGame()
-    {
-        _bestCurrentScore = PlayerPrefs.GetInt("best score");
 
-        _currentScore = _startScore;
+    private void Start()
+    {
+        currentScore = _startScore;
     }
 
     private void SetScore()
@@ -40,11 +39,11 @@ public class ScoreCounter : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
 
-            _currentScore++;
+            currentScore++;
 
-            if (_currentScore > _bestCurrentScore)
+            if (currentScore > bestScore)
             {
-                _bestCurrentScore = _currentScore;
+                bestScore = currentScore;
             }
         }
         yield break;

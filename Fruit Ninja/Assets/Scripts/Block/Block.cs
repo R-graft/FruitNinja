@@ -23,13 +23,13 @@ public class Block : MonoBehaviour, IBlock
 
     private void OnEnable()
     {
-        MoveBlock();
+        BlockMove();
 
         isSlashed = false;
     }
     private void OnDisable()
     {
-        if (_block.activeSelf && transform.position.y < 0)
+        if (_block.activeSelf && transform.position.y < -5.5f)
         {
             GameEvents.fruitLost.Invoke();
         }
@@ -42,11 +42,8 @@ public class Block : MonoBehaviour, IBlock
             {
                 BlockSlashed();
 
-                GameEvents.fruitSlashed.Invoke();
-
                 isSlashed = true;
             }
-            
         }
     }
     public void BlockSlashed()
@@ -58,9 +55,11 @@ public class Block : MonoBehaviour, IBlock
         _halves.SetActive(true);
 
         isSlashed = true;
+
+        GameEvents.fruitSlashed.Invoke();
     }
     
-    public void MoveBlock()
+    public void BlockMove()
     {
         _block.SetActive(true);
 
@@ -72,16 +71,15 @@ public class Block : MonoBehaviour, IBlock
 
         _flyingSimulation.MoveDirection();
     }
-    public void BombBlow(Vector3 bombPos)
+    public void BombSlash(Vector3 bombPos)
     {
         if (gameObject.activeSelf)
         {
             _flyingSimulation.BombBlow(bombPos);
         }
     }
-
-    public void IceBlockSlashed()
+    public void SetIceSpeed(string speedMode)
     {
-        _flyingSimulation.ActivateIceSpeed();
+        _flyingSimulation.ActivateIceSpeed(speedMode);
     }
 }

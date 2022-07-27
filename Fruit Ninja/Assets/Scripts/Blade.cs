@@ -7,7 +7,7 @@ public class Blade : MonoBehaviour
     private GameObject _trailPrefab;
 
     [SerializeField]
-    private CollisionManager _collisionManager;
+    private SlashController _collisionManager;
 
     private Camera _camera;
 

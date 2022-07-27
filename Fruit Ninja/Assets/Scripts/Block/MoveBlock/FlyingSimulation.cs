@@ -7,42 +7,69 @@ public class FlyingSimulation : MonoBehaviour
 
     private float directionY;
 
-    private float speed;
+    private  float _forceX;
 
-    private float iceSpeed = 1;
+    private  float _forceY;
 
     private float gravity;
 
-    private float _fallPosition = -5.5f;
+    private float _fallPosition;
 
+    private float _gravityStep;
+
+    private void Awake()
+    {
+        _forceY = 2.5f;
+
+        _forceX = 0.3f;
+
+        _fallPosition = -5.5f;
+
+        _gravityStep = 0.08f;
+    }
+    private void FixedUpdate()
+    {
+        if (transform.position.y < _fallPosition)
+        {
+            gameObject.SetActive(false);
+        }
+        transform.position += new Vector3((directionX) * _forceX, (directionY + gravity) * _forceY, 0) * Time.deltaTime;
+
+        gravity -= _gravityStep;
+    }
     public void MoveDirection()
     {
-        StartCoroutine(FlyingTrajectory());
+        FlyingTrajectory();
     }
     public void BombBlow(Vector3 bombPosition)
     {
         StartCoroutine(BombGravitation(bombPosition));
     }
-    public void ActivateIceSpeed()
+    public void ActivateIceSpeed(string speedMode)
     {
-        StartCoroutine(IceMove());
-    }
-    private IEnumerator IceMove()
-    {
-        iceSpeed = 5;
-
-        yield return new WaitForSeconds(5);
+        if (speedMode == "ice")
         {
-            iceSpeed = 1;
+            _forceY = 1f;
 
-            yield break;
+            _forceX = 0.2f;
+
+            _gravityStep = 0.04f;
+        }
+        else if (speedMode == "normal")
+        {
+            _forceY = 2.5f;
+
+            _forceX = 0.3f;
+
+            _gravityStep = 0.08f;
         }
     }
+
     private IEnumerator BombGravitation(Vector3 bombPosition)
     {
         Vector3 direction = transform.position - bombPosition;
 
-        float sideForce = 3;
+        float sideForce = 3f;
 
         float distance = direction.magnitude;
 
@@ -54,7 +81,7 @@ public class FlyingSimulation : MonoBehaviour
         }
         yield break;
     }
-    private IEnumerator FlyingTrajectory()
+    private void FlyingTrajectory()
     {
         gameObject.SetActive(true);
 
@@ -62,21 +89,8 @@ public class FlyingSimulation : MonoBehaviour
 
         directionY = -transform.position.y;
 
-        speed = Random.Range(0.5f, 0.6f);
+        _forceX += Random.Range(0.1f, 0.3f);
 
         gravity = 0;
-
-        while (transform.position.y > _fallPosition)
-        {
-            yield return new WaitForFixedUpdate();
-
-            transform.position += new Vector3((directionX) * speed, (directionY + gravity), 0) * Time.deltaTime ;
-
-            gravity -= 0.03f;
-        }
-
-        gameObject.SetActive(false);
-
-        yield break;
     }
 }
