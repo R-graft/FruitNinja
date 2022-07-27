@@ -4877,7 +4877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3948143860268322067
 Transform:
   m_ObjectHideFlags: 0
@@ -5082,7 +5082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3948143861325744227}
   - component: {fileID: 7687258551523851435}
-  - component: {fileID: 740609684518777979}
+  - component: {fileID: 3910216567290718995}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -5119,7 +5119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89df1ca7468e7643b9aa8b16b2248c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &740609684518777979
+--- !u!114 &3910216567290718995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5128,7 +5128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3948143861325744225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32d0e2d156dc8154fb7a870fc28b1c1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d554bb8b45916147a5566bb706745fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _flyingSimulation: {fileID: 7687258551523851435}
@@ -5136,7 +5136,6 @@ MonoBehaviour:
   _block: {fileID: 3948143861283898975}
   _blockShadow: {fileID: 3948143860599860459}
   _halves: {fileID: 3948143860268322064}
-  aaa: 1
 --- !u!1 &6140648709214282554
 GameObject:
   m_ObjectHideFlags: 0

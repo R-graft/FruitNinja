@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1206492671218159556
 Transform:
   m_ObjectHideFlags: 0
@@ -178,7 +178,6 @@ MonoBehaviour:
   _block: {fileID: 1206492672366969992}
   _blockShadow: {fileID: 1206492671423376956}
   _halves: {fileID: 1206492671218159559}
-  aaa: 1
 --- !u!1 &1206492672366969992
 GameObject:
   m_ObjectHideFlags: 0

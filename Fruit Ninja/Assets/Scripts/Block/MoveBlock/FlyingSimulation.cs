@@ -93,4 +93,12 @@ public class FlyingSimulation : MonoBehaviour
 
         gravity = 0;
     }
+    public void HeartSpeed()
+    {
+        _forceY = 5f;
+
+        _forceX = 0.6f;
+
+        _gravityStep = 0.12f;
+    }
 }
