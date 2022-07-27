@@ -409,7 +409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5133038}
   m_AnchorMax: {x: 1, y: 0.5133038}
-  m_AnchoredPosition: {x: -94.77, y: -4.165001}
+  m_AnchoredPosition: {x: -94.76999, y: -4.165001}
   m_SizeDelta: {x: 189.54, y: 625.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &564233227
@@ -708,6 +708,7 @@ GameObject:
   - component: {fileID: 1659926279}
   - component: {fileID: 1659926278}
   - component: {fileID: 1659926281}
+  - component: {fileID: 1659926282}
   m_Layer: 5
   m_Name: '[Button]Start'
   m_TagString: Untagged
@@ -753,7 +754,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -840,6 +841,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27effe457b37aa440be4429beb90e6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1659926282
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659926276}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08f6da1ed5f6ba94db304c28cb65c8d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1756615412
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,6 +913,7 @@ GameObject:
   - component: {fileID: 1871826504}
   - component: {fileID: 1871826503}
   - component: {fileID: 1871826506}
+  - component: {fileID: 1871826507}
   m_Layer: 5
   m_Name: '[Button]Exit'
   m_TagString: Untagged
@@ -938,7 +959,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1025,6 +1046,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4ff2f800c7b1e469cf7af3735f3de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1871826507
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871826501}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08f6da1ed5f6ba94db304c28cb65c8d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1941199818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,7 +1425,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.4188337}
   m_AnchorMax: {x: 0, y: 0.5897776}
-  m_AnchoredPosition: {x: 110.48, y: -1.2932014}
+  m_AnchoredPosition: {x: 110.48001, y: -1.2932014}
   m_SizeDelta: {x: 220.95, y: 573.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2074398160
