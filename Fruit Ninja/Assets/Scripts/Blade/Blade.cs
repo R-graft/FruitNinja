@@ -17,6 +17,11 @@ public class Blade : MonoBehaviour
 
     public float _minSlashDistance = 0.002f;
 
+    void Awake()
+    {
+        GameEvents.gameOver.AddListener(DestroyTrail);
+    }
+
     void Start()
     {
         _camera = Camera.main;
@@ -46,11 +51,17 @@ public class Blade : MonoBehaviour
     {
         _previousPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
 
-        _currentTrail.SetActive(true);
+        if (_currentTrail != null)
+        {
+            _currentTrail.SetActive(true);
+        }
     }
     private void StopCut()
     {
-        _currentTrail.SetActive(false);
+        if (_currentTrail != null)
+        {
+            _currentTrail.SetActive(false);
+        }
     }
     private void Cutting()
     {
@@ -65,5 +76,9 @@ public class Blade : MonoBehaviour
            _collisionManager.CheckSlash(_currentPosition);
         }
         _previousPosition = _currentPosition;
+    }
+    private void DestroyTrail()
+    {
+        Destroy(_currentTrail);
     }
 }

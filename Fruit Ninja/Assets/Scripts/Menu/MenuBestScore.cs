@@ -5,7 +5,7 @@ public class MenuBestScore : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI _bestScore;
-    void Start()
+    void Awake()
     {
         _bestScore.text = PlayerPrefs.GetInt("bestScore").ToString();
     }

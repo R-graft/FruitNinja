@@ -6,6 +6,9 @@ public class ObjectPool : MonoBehaviour
     [SerializeField]
     private SlashController _collisionManager;
 
+    [SerializeField]
+    private GameObject _blockContainer;
+
     [System.Serializable]
     public class Pool
     {
@@ -32,7 +35,7 @@ public class ObjectPool : MonoBehaviour
 
             for (int i = 0; i < pool.poolsize; i++)
             {
-                GameObject newPoolObject = Instantiate(pool.prefab);
+                GameObject newPoolObject = Instantiate(pool.prefab, _blockContainer.transform);
 
                 _collisionManager.AddIblock(newPoolObject.GetComponent<IBlock>());
 

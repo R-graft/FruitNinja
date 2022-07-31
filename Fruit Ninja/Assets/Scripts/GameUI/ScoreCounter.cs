@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-
 public class ScoreCounter : MonoBehaviour
 {
     private int _startScore;
