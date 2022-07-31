@@ -499,6 +499,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &560071965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 560071966}
+  m_Layer: 0
+  m_Name: BlockContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &560071966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560071965}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.51696706, y: -1.2656276, z: -134.3212}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &620578417
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _heartPanel: {fileID: 1543222086}
   _heartPrefab: {fileID: 3002595260232766438, guid: 28586be4e98200242b9b3fbb3a67c91a, type: 3}
-  _heartCount: 15
+  _heartCount: 3
 --- !u!114 &620578421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,7 +815,7 @@ Animator:
   m_GameObject: {fileID: 737136221}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 08f6da1ed5f6ba94db304c28cb65c8d2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 733cf7f6b0aecd44bb02d688cb85d7c4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -974,59 +1004,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionManager: {fileID: 1662972202}
+  _blockContainer: {fileID: 560071965}
   pools:
   - tag: coconut
     prefab: {fileID: 2431743121657026658, guid: 263a320dfec20bd458aa91c332b28ef4, type: 3}
     poolsize: 12
-    spawnPercent: 20
+    spawnPercent: 15
   - tag: garlic
     prefab: {fileID: 6086200201506562265, guid: d0ae545bd0f97674fb8bfd8e3109f765, type: 3}
     poolsize: 12
-    spawnPercent: 20
+    spawnPercent: 15
   - tag: lemon
     prefab: {fileID: 7003936564012003907, guid: e0c7736ee78001c4c9032003d858df7b, type: 3}
     poolsize: 12
-    spawnPercent: 20
+    spawnPercent: 15
   - tag: mango
     prefab: {fileID: 6086200201506562265, guid: d0ae545bd0f97674fb8bfd8e3109f765, type: 3}
     poolsize: 12
-    spawnPercent: 20
+    spawnPercent: 15
   - tag: pear
     prefab: {fileID: 8041984486032358126, guid: 7af8177eb177cab46b126452d7b3fe6c, type: 3}
     poolsize: 12
-    spawnPercent: 20
+    spawnPercent: 15
   - tag: plum
     prefab: {fileID: 8344816783351598727, guid: 33c1b776dc7d8f3488fecf9707de50ef, type: 3}
     poolsize: 12
-    spawnPercent: 20
+    spawnPercent: 15
   - tag: pomergrenade
     prefab: {fileID: 3023748806498514791, guid: 673e714d6df5b1f4babe2936b8216a5b, type: 3}
     poolsize: 12
-    spawnPercent: 20
+    spawnPercent: 15
   - tag: watermelon
     prefab: {fileID: 2521843657057772524, guid: e83a0b6fa11292f49872eb50d5e8172e, type: 3}
     poolsize: 12
-    spawnPercent: 20
+    spawnPercent: 15
   - tag: bomb
     prefab: {fileID: 7333394360775507710, guid: c647ae7bc099d4f4f96e9dcd06b991a2, type: 3}
     poolsize: 5
-    spawnPercent: 5
+    spawnPercent: 7
   - tag: ice
     prefab: {fileID: 7333394360775507710, guid: 50cebacafe2cbba4aa0d6ccaaf149e9d, type: 3}
     poolsize: 10
-    spawnPercent: 5
+    spawnPercent: 2
   - tag: heart
     prefab: {fileID: 3948143861325744225, guid: c6025f9f75d7f744ba82b4ccaadb5e51, type: 3}
     poolsize: 10
-    spawnPercent: 5
+    spawnPercent: 2
   - tag: magnet
     prefab: {fileID: 1206492672308087478, guid: e6595e681576c364d920f2d7796af2de, type: 3}
     poolsize: 10
-    spawnPercent: 5
-  - tag: basket
-    prefab: {fileID: 1265930153507877225, guid: ef4fb1d4b57313c4d80c42ae7d7ec0f0, type: 3}
-    poolsize: 10
-    spawnPercent: 0
+    spawnPercent: 2
 --- !u!114 &883031142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,7 +1066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10f6350a99d05c48922f164ad340301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _difficultLevel: 5
+  _difficultLevel: 4
   _zoneSettings: {fileID: 883031143}
   _objectPooler: {fileID: 883031141}
 --- !u!114 &883031143
@@ -1257,6 +1284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1110553047}
+  - component: {fileID: 1110553048}
   m_Layer: 5
   m_Name: '[Panel]Combo'
   m_TagString: Untagged
@@ -1285,6 +1313,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1110553048
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110553046}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2aa2150cc55f7404281159c56da774cb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1123128396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,7 +2167,7 @@ Animator:
   m_GameObject: {fileID: 1350322971}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 08f6da1ed5f6ba94db304c28cb65c8d2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 733cf7f6b0aecd44bb02d688cb85d7c4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3060,6 +3107,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1885287645}
   - component: {fileID: 1885287644}
+  - component: {fileID: 1885287646}
+  - component: {fileID: 1885287647}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -3081,7 +3130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trailPrefab: {fileID: 7578370914109890886, guid: 04bb15fdfca849b488d0c847283dcfad, type: 3}
   _collisionManager: {fileID: 1662972202}
-  _minSlashDistance: 0.001
+  _minSlashDistance: 0.01
 --- !u!4 &1885287645
 Transform:
   m_ObjectHideFlags: 0
@@ -3096,6 +3145,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1885287646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885287643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a70406fe2a14f9f4fb90dfbea9810275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionManager: {fileID: 1662972202}
+  _trailPrefab: {fileID: 7578370914109890886, guid: 04bb15fdfca849b488d0c847283dcfad, type: 3}
+  _trailOnePrefab: {fileID: 7578370914109890886, guid: 04bb15fdfca849b488d0c847283dcfad, type: 3}
+--- !u!114 &1885287647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885287643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fae5f8af4180334991ea72217daec93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blade: {fileID: 1885287644}
+  _bladeTouches: {fileID: 1885287646}
 --- !u!1 &1894461899
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,7 +3406,7 @@ Animator:
   m_GameObject: {fileID: 2080029365}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 733cf7f6b0aecd44bb02d688cb85d7c4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9af964d3df6a90840bf20008e9829419, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3372,8 +3450,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.69, y: 0.000059128}
-  m_SizeDelta: {x: 862.3, y: 600}
+  m_AnchoredPosition: {x: -0.69, y: -3.56}
+  m_SizeDelta: {x: 862.3, y: 687.78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2089622163
 MonoBehaviour:

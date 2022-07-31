@@ -21,7 +21,7 @@ public class FlyingSimulation : MonoBehaviour
 
     public Vector2 magnetPos;
 
-    private void Awake()
+    private void OnEnable()
     {
         _forceY = 3f;
 
@@ -40,6 +40,7 @@ public class FlyingSimulation : MonoBehaviour
             {
                 gameObject.SetActive(false);
             }
+
             transform.position += new Vector3((directionX) * _forceX, (directionY + gravity) * _forceY, 0) * Time.deltaTime;
 
             gravity -= _gravityStep;
@@ -47,6 +48,10 @@ public class FlyingSimulation : MonoBehaviour
         else
         {
             transform.position = Vector2.MoveTowards(transform.position, magnetPos, 0.15f);
+
+            _forceY = 0.5f;
+
+            _gravityStep = 0.2f;
         }
        
     }
@@ -91,11 +96,11 @@ public class FlyingSimulation : MonoBehaviour
     }
     public void HeartSpeed()
     {
-        _forceY = 5f;
+        _forceY = _forceY + 1;
 
-        _forceX = 0.6f;
+        _forceX = _forceX + 0.1f;
 
-        _gravityStep = 0.12f;
+        _gravityStep = _gravityStep + 0.02f;
     }
     
     private IEnumerator BombGravitation(Vector3 bombPosition)

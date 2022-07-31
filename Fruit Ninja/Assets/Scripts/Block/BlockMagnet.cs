@@ -80,15 +80,5 @@ public class BlockMagnet : MonoBehaviour, IBlock
     }
     public void MoveMagnet(Vector2 magnetPos, bool isMove)
     {
-        if (isMove)
-        {
-            _flyingSimulation.magnetPos = magnetPos;
-
-            _flyingSimulation.magnetMove = true;
-        }
-        else
-        {
-            _flyingSimulation.magnetMove = false;
-        }
     }
 }

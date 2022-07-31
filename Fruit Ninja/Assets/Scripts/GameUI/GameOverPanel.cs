@@ -13,7 +13,8 @@ public class GameOverPanel : MonoBehaviour
 
     [SerializeField]
     private ScoreCounter _scoreCounter;
-    void Start()
+
+    void Awake()
     {
         _gameOverPanel.SetActive(false);
 
@@ -31,10 +32,8 @@ public class GameOverPanel : MonoBehaviour
 
     private void ActivePanel()
     {
-        SetGameOverScore();
-
         _gameOverPanel.SetActive(true);
 
-        Invoke("SetGameOverScore", 2);
+        Invoke("SetGameOverScore", 1.5f);
     }
 }

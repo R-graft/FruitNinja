@@ -33,7 +33,7 @@ public class ComboCounter : MonoBehaviour
 
                 _comboPanel.SetActive(true);
 
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(2);
 
                 _comboPanel.SetActive(false);
             }
