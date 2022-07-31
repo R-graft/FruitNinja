@@ -44,13 +44,13 @@ public class SpawnManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(_spawnTime);
+            yield return new WaitForSecondsRealtime(_spawnTime);
 
             GetFruitCount();
 
             for (int i = 0; i < _blocksCount; i++)
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSecondsRealtime(0.2f);
 
                 string blockName = _objectPooler.pools[GetBlockTag()].tag;
 
