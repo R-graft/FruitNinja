@@ -29,29 +29,29 @@ namespace winterStage
     
         private void Update()
         {
-            StateMashine.CurrentState.Update();
+            //StateMashine.CurrentState.Update();
         }
 
         private void FixedUpdate()
         {
-            StateMashine.CurrentState.FixedUpdate();
+            //StateMashine.CurrentState.FixedUpdate();
         }
 
         public virtual void PoolOnGet(Block block)
         {
-            Init();
+            //Init();
 
-            block.gameObject.SetActive(true);
+            //block.gameObject.SetActive(true);
         }
 
         public virtual void PoolOnCreate(Block block)
         {
-            block.gameObject.SetActive(false);
+            //block.gameObject.SetActive(false);
         }
 
         public virtual void PoolOnDisable(Block block)
         {
-            block.gameObject.SetActive(false);
+            //block.gameObject.SetActive(false);
         }
     }
 

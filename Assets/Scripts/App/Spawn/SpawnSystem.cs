@@ -7,11 +7,10 @@ namespace winterStage
 {
     public class SpawnSystem : MonoBehaviour
     {
-        [SerializeField]
-        private SpawnZoneController _zones;
+        [SerializeField] private GameObject testBlock;
+        [SerializeField] private SpawnZoneController _zones;
 
-        [SerializeField]
-        private BlocksController _blocks;
+        [SerializeField] private BlocksController _blocks;
 
         private Dictionary<string, float> _percentsList;
 
@@ -24,11 +23,12 @@ namespace winterStage
 
         private int _countMultiplier;
 
-        private int _spawnTimeScale = 1;
+        private float _packTimeScale = 5f;
+        private float _spawnTimeScale = 0.5f;
 
         private void Start()
         {
-            SetPercents();
+            SetBlocksPercents();
 
             StartCoroutine(SpawnBlocks());
         }
@@ -42,14 +42,18 @@ namespace winterStage
                 {
                     yield return new WaitForSeconds(_spawnTimeScale);
 
-                    var currentBock = _currentPack.Dequeue();
+                    var newBock = _currentPack.Dequeue();
 
-                    SetSpawnPosition(currentBock);
+                    var newPos = GetSpawnPosition();
+
+                    newBock.transform.position = newPos;
                 }
+
+                yield return new WaitForSeconds(_packTimeScale);
             }
         }
 
-        private void SetSpawnPosition(Block block)
+        private Vector2 GetSpawnPosition()
         {
             var currentZone = _zones.GetCurrentZone();
 
@@ -57,7 +61,7 @@ namespace winterStage
 
             var positionY = Random.Range(currentZone.one.y, currentZone.two.y);
 
-            block.transform.position = new Vector2(positionX, positionY);
+            return new Vector2(positionX, positionY);
         }
         private void GetCurrentPack()
         { 
@@ -92,7 +96,7 @@ namespace winterStage
             return _percentsList.Keys.Last();
         }
 
-        private void SetPercents()
+        private void SetBlocksPercents()
         {
             _percentsList = new Dictionary<string, float>();
 
@@ -100,7 +104,7 @@ namespace winterStage
             {
                 if (!_percentsList.ContainsKey(type.blockType.blockTag))
                 {
-                    _percentsList.Add(type.blockType.blockTag, type.spawnPercent);
+                    _percentsList.Add(type.tag, type.spawnPercent);
                 }
             }
         }
