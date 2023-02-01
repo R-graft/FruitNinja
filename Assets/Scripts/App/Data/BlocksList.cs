@@ -11,6 +11,8 @@ namespace winterStage
     [System.Serializable]
     public class BlockType
     {
+        public string tag;
+
         public Block blockType;
 
         public int poolCount;

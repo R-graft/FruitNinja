@@ -9,11 +9,26 @@ namespace winterStage
 
         private CreateSystem _creator;
 
-        private List<Block> _activeBlocks;
+        private HashSet<Block> _activeBlocks = new HashSet<Block>();
 
+        private List<Block> _allBlocks = new List<Block>();
+
+        private void Awake()
+        {
+            _creator = new CreateSystem();
+
+            _creator.CreateBlocks(blocksList, this);
+        }
         public Block GetBlock(string tag)
         {
-            return _creator.Pools[tag].Get();
+            Block getted = _creator.Pools[tag].Get();
+
+            return getted;
+        }
+
+        public void AddBlock(Block block)
+        {
+            _allBlocks.Add(block);
         }
     }
 }

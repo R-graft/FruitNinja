@@ -9,7 +9,7 @@ namespace winterStage
 
         public Dictionary<string, AbstractFactory<Block>> Factories { get; private set; }
 
-        public void SpawnBlocks(BlocksList _blocksList, BlocksController controller)
+        public void CreateBlocks(BlocksList _blocksList, BlocksController controller)
         {
             Pools = new Dictionary<string, ObjectPool<Block>>();
 
@@ -19,7 +19,7 @@ namespace winterStage
             {
                 AbstractFactory<Block> factory = new FactoryBlock<Block>(type.blockType, controller);
 
-                Factories.Add(type.blockType.blockTag, factory);
+                Factories.Add(type.tag, factory);
 
                 ObjectPool<Block> pool = new ObjectPool<Block>(() => PoolOnCreateNewBlock(type.blockType), type.blockType.PoolOnCreate, type.blockType.PoolOnGet, type.blockType.PoolOnDisable);
 
@@ -28,9 +28,11 @@ namespace winterStage
                     var newObject = factory.CreateObject();
 
                     pool.Add(newObject);
+
+                    controller.AddBlock(newObject);
                 }
 
-                Pools.Add(type.blockType.blockTag, pool);
+                Pools.Add(type.tag, pool);
             }
         }
         public Block PoolOnCreateNewBlock(Block block)
