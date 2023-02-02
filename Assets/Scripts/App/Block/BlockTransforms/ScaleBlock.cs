@@ -9,14 +9,10 @@ namespace winterStage
         private float _startScaleValue;
         private float _endScaleValue;
 
-        private const float MinStartScale = 1f;
-        private const float MaxStartScale = 2.5f;
+        private const float MinScale = 0.7f;
+        private const float MaxScale = 1.3f;
 
-        private const float ScaleTime = 3;
-
-        private float _currentTime;
-
-        private Vector3 ScaleStep = new Vector3(0.005f, 0.005f);
+        private Vector3 _scaleStep = new Vector3(0.2f, 0.2f);
 
         public ScaleBlock(Transform transform)
         {
@@ -25,25 +21,22 @@ namespace winterStage
 
         public void RescaleBlock()
         {
-            if (_currentTime > 0)
+            if (_blockTransform.localScale.x > MaxScale || _blockTransform.localScale.x < MinScale)
             {
-                _blockTransform.localScale += ScaleStep;
-
-                _currentTime -= Time.fixedDeltaTime;
+                return;
             }
+                _blockTransform.localScale += _scaleStep * Time.deltaTime;
         }
 
         public void GetScaleValue()
         {
-            _startScaleValue = Random.Range(MinStartScale, MaxStartScale);
+            _startScaleValue = Random.Range(MinScale, MaxScale);
 
-            _endScaleValue = Random.Range(MinStartScale, MaxStartScale);
+            _endScaleValue = Random.Range(MinScale, MaxScale);
 
-            ScaleStep = _startScaleValue < _endScaleValue ? ScaleStep : -ScaleStep;
+            _scaleStep = _startScaleValue < _endScaleValue ? _scaleStep : -_scaleStep;
 
             _blockTransform.localScale = new Vector3(_startScaleValue, _startScaleValue, 0);
-
-            _currentTime = ScaleTime;
         }
     }
 }

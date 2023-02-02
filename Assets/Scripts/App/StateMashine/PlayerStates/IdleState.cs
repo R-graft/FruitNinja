@@ -1,3 +1,3 @@
-public class IdleState : State
+public class IdleState
 {
 }

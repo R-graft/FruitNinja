@@ -7,14 +7,13 @@ namespace winterStage
 {
     public class SpawnSystem : MonoBehaviour
     {
-        [SerializeField] private GameObject testBlock;
         [SerializeField] private SpawnZoneController _zones;
 
         [SerializeField] private BlocksController _blocks;
 
         private Dictionary<string, float> _percentsList;
 
-        private Queue<Block> _currentPack = new Queue<Block>();
+        private Queue<string> _currentPack = new Queue<string>();
 
         private int _packCount;
 
@@ -23,8 +22,8 @@ namespace winterStage
 
         private int _countMultiplier;
 
-        private float _packTimeScale = 5f;
-        private float _spawnTimeScale = 0.5f;
+        private float _packTimeScale = 3f;
+        private float _spawnTimeScale = 0.3f;
 
         private void Start()
         {
@@ -46,7 +45,7 @@ namespace winterStage
 
                     var newPos = GetSpawnPosition();
 
-                    newBock.transform.position = newPos;
+                    _blocks.ActivateBlock(newBock, newPos);
                 }
 
                 yield return new WaitForSeconds(_packTimeScale);
@@ -71,7 +70,7 @@ namespace winterStage
             {
                 string currentTag = GetCurrentBlockTag();
 
-                _currentPack.Enqueue(_blocks.GetBlock(currentTag));
+                _currentPack.Enqueue(currentTag);
             }
         }
 
@@ -102,10 +101,7 @@ namespace winterStage
 
             foreach (var type in _blocks.blocksList.blocksTypes)
             {
-                if (!_percentsList.ContainsKey(type.blockType.blockTag))
-                {
-                    _percentsList.Add(type.tag, type.spawnPercent);
-                }
+                _percentsList.Add(type.tag, type.spawnPercent);
             }
         }
     }

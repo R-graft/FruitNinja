@@ -17,11 +17,11 @@ namespace winterStage
 
             foreach (var type in _blocksList.blocksTypes)
             {
-                AbstractFactory<Block> factory = new FactoryBlock<Block>(type.blockType, controller);
+                AbstractFactory<Block> factory = new FactoryBlock<Block>(type.blockType, controller.transform);
 
                 Factories.Add(type.tag, factory);
 
-                ObjectPool<Block> pool = new ObjectPool<Block>(() => PoolOnCreateNewBlock(type.blockType), type.blockType.PoolOnCreate, type.blockType.PoolOnGet, type.blockType.PoolOnDisable);
+                ObjectPool<Block> pool = new ObjectPool<Block>(() => PoolOnCreateNewBlock(type.blockType), controller.PoolOnCreate, controller.PoolOnGet, controller.PoolOnDisable);
 
                 for (int i = 0; i < type.poolCount; i++)
                 {
@@ -30,6 +30,8 @@ namespace winterStage
                     pool.Add(newObject);
 
                     controller.AddBlock(newObject);
+
+                    newObject.tag = type.tag;
                 }
 
                 Pools.Add(type.tag, pool);

@@ -11,8 +11,8 @@ namespace winterStage
 
         private float _forceModificator;
 
-        private const float MaxForceMultiplier = 1.15f;
-        private const float MinForceMultiplier = 0.8f;
+        private const float MaxForceMultiplier = 2;
+        private const float MinForceMultiplier = 1.5f;
 
         private float _gravityValue;
         private const float _gravityStep = 0.05f;
@@ -24,7 +24,7 @@ namespace winterStage
 
         public void ParabolaMove()
         {
-            _blockTransform.position += new Vector3((_launchForceX), _launchForceY + _gravityValue) * Time.fixedDeltaTime;
+            _blockTransform.position += new Vector3((_launchForceX), _launchForceY + _gravityValue) * Time.deltaTime;
 
             _gravityValue -= _gravityStep;
         }
@@ -33,15 +33,14 @@ namespace winterStage
         {
             _forceModificator = Random.Range(MinForceMultiplier, MaxForceMultiplier);
 
-            _launchForceX = -_blockTransform.position.x * _forceModificator / _forceModificator;
+            _launchForceX = -_blockTransform.position.x;
 
-            _launchForceY = -_blockTransform.position.y * _forceModificator * _forceModificator;
+            _launchForceY = -_blockTransform.position.y * 2;
         }
 
-        private void MoveToTarget(Vector3 target)
+        public void MoveToTarget(Vector3 target)
         {
             _blockTransform.position += target * Time.deltaTime;
         }
-      
     }
 }
