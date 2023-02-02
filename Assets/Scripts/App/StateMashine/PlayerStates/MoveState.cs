@@ -10,15 +10,20 @@ namespace winterStage
 
         private ScaleBlock _scaler;
 
+        private FallChecker _faller;
+
         public MoveState(Block block)
         {
             _block = block;
             _mover = block.mover;
             _rotator = block.rotator;
             _scaler= block.scaler;
+            _faller= block.faller;
         }
         public override void Enter()
         {
+            _faller.GetFallValue();
+
             _mover.GetParabolaMoveDirections();
 
             _rotator.GetRandomRotateValue();
@@ -28,6 +33,8 @@ namespace winterStage
 
         public override void Update()
         {
+            _faller.CheckFall();
+
             _mover.ParabolaMove();
 
             _rotator.Rotate(_block._sprite.transform);

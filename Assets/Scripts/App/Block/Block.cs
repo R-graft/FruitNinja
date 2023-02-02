@@ -14,16 +14,16 @@ namespace winterStage
         public MoveBlock mover;
         public RotateBlock rotator;
         public ScaleBlock scaler;
+        public FallChecker faller;
 
         public StateMashine StateMashine { get; set; }
 
         public void Init()
         {
             mover ??= new MoveBlock(transform);
-
             rotator ??= new RotateBlock();
-
             scaler ??= new ScaleBlock(transform);
+            faller ??= new FallChecker(this);
 
             StateMashine ??= new StateMashine();
 
