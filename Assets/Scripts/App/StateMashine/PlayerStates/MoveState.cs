@@ -2,32 +2,37 @@ namespace winterStage
 {
     public class MoveState : State
     {
-        public MoveBlock _mover;
+        private Block _block;
 
-        public RotateBlock _rotator;
+        private MoveBlock _mover;
 
-        public ScaleBlock _scaler;
+        private RotateBlock _rotator;
 
-        public MoveState(MoveBlock mover, RotateBlock rotator, ScaleBlock scaler)
+        private ScaleBlock _scaler;
+
+        public MoveState(Block block)
         {
-            _mover = mover;
-            _rotator = rotator;
-            _scaler= scaler;
+            _block = block;
+            _mover = block.mover;
+            _rotator = block.rotator;
+            _scaler= block.scaler;
         }
         public override void Enter()
         {
             _mover.GetParabolaMoveDirections();
 
-            _rotator.GetRotateValue();
+            _rotator.GetRandomRotateValue();
 
             _scaler.GetScaleValue();
         }
 
-        public override void FixedUpdate()
+        public override void Update()
         {
             _mover.ParabolaMove();
 
-            _rotator.Rotate();
+            _rotator.Rotate(_block._sprite.transform);
+
+            _rotator.Rotate(_block._shadow.transform);
 
             _scaler.RescaleBlock();
         }

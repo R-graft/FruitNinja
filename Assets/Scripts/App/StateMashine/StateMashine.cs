@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class StateMashine : MonoBehaviour
+namespace winterStage
 {
-    public State CurrentState { get; private set; }
-
-    public void Init(State startState)
+    public class StateMashine : MonoBehaviour
     {
-        CurrentState = startState;
-        startState.Enter();
-    }
+        public State CurrentState { get; private set; }
 
-    public void SetState(State newState)
-    {
-        CurrentState.Exit();
-        CurrentState = newState;
-        CurrentState.Enter();
+        public void Init(State state)
+        {
+            CurrentState = state;
+            CurrentState.Enter();
+        }
+
+        public void SetState(State newState)
+        {
+            CurrentState.Exit();
+            CurrentState = newState;
+            CurrentState.Enter();
+        }
     }
 }

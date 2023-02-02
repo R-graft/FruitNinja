@@ -6,9 +6,5 @@ namespace winterStage
         {
 
         }
-        public override void FixedUpdate()
-        {
-
-        }
     }
 }

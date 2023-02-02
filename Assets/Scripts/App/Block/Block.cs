@@ -1,57 +1,45 @@
+using System.Collections;
 using UnityEngine;
 
 namespace winterStage
 {
     public abstract class Block : MonoBehaviour, IPoolable
     {
-        public string blockTag;
+        public GameObject _sprite;
 
-        [SerializeField] private SpriteRenderer _renderer;
+        public GameObject _shadow;
 
-        public MoveBlock _mover;
-        public RotateBlock _rotator;
-        public ScaleBlock _scaler;
+        public string tag;
+
+        public MoveBlock mover;
+        public RotateBlock rotator;
+        public ScaleBlock scaler;
 
         public StateMashine StateMashine { get; set; }
 
-        private void Init()
+        public void Init()
         {
-            _mover ??= new MoveBlock(transform);
+            mover ??= new MoveBlock(transform);
 
-            _rotator ??= new RotateBlock(transform);
+            rotator ??= new RotateBlock();
 
-            _scaler ??= new ScaleBlock(transform);
+            scaler ??= new ScaleBlock(transform);
 
             StateMashine ??= new StateMashine();
 
-            StateMashine.Init(new MoveState(_mover, _rotator, _scaler));
-        }
-    
-        private void Update()
-        {
-            //StateMashine.CurrentState.Update();
+            StateMashine.Init(new MoveState(this));
+
+            StartCoroutine(Updater());
         }
 
-        private void FixedUpdate()
+        private IEnumerator Updater()
         {
-            //StateMashine.CurrentState.FixedUpdate();
-        }
+            while (true)
+            {
+                StateMashine.CurrentState.Update();
 
-        public virtual void PoolOnGet(Block block)
-        {
-            //Init();
-
-            //block.gameObject.SetActive(true);
-        }
-
-        public virtual void PoolOnCreate(Block block)
-        {
-            //block.gameObject.SetActive(false);
-        }
-
-        public virtual void PoolOnDisable(Block block)
-        {
-            //block.gameObject.SetActive(false);
+                yield return null;
+            }
         }
     }
 
