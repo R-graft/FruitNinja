@@ -36,6 +36,8 @@ namespace winterStage
             _launchForceX = -_blockTransform.position.x;
 
             _launchForceY = -_blockTransform.position.y * 2;
+
+            _gravityValue = 0;
         }
 
         public void MoveToTarget(Vector3 target)

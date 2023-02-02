@@ -15,21 +15,21 @@ MonoBehaviour:
   blocksTypes:
   - tag: bomb
     blockType: {fileID: -7053919198606818122, guid: 22978116276cbda4a8e99532d092c32c, type: 3}
-    poolCount: 10
+    poolCount: 3
     spawnPercent: 25
   - tag: heart
     blockType: {fileID: 1229917084413974890, guid: 0e05aa4f79448c048a89a948a82201ea, type: 3}
-    poolCount: 10
+    poolCount: 3
     spawnPercent: 25
   - tag: ice
     blockType: {fileID: -4008088751805469886, guid: 9c74edadbdc6eeb47b4c19d6c65a5788, type: 3}
-    poolCount: 10
+    poolCount: 3
     spawnPercent: 25
   - tag: magnete
     blockType: {fileID: -6717245276311069183, guid: 22d04a601dde9bb40a93583d3ce879fc, type: 3}
-    poolCount: 10
+    poolCount: 3
     spawnPercent: 25
   - tag: simple
     blockType: {fileID: -9010625321111369316, guid: a3e037730123da248808b42dd2e269d7, type: 3}
-    poolCount: 10
+    poolCount: 3
     spawnPercent: 25

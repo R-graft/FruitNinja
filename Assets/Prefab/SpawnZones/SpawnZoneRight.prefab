@@ -46,4 +46,4 @@ MonoBehaviour:
   zoneTag: right
   pointOne: {x: 9.885057, y: 6}
   pointTwo: {x: 9.885057, y: -5.5}
-  spawnPecent: 0
+  spawnPecent: 30
