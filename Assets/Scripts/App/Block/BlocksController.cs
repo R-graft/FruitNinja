@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ namespace winterStage
 
         private Block _currentBlock;
 
+        public static Action<Block> OnBlockFall;
+
         private void Awake()
         {
             _creator = new CreateSystem();
@@ -30,14 +33,14 @@ namespace winterStage
 
             _currentBlock.Init();
 
-            _currentBlock.StateMashine.SetState(new MoveState(_currentBlock));
-
             _activeBlocks.Add(_currentBlock);
         }
 
-        public void DeactivateBlock()
+        public void DeactivateBlock(Block block)
         {
+            _creator.Pools[block.tag].Disable(block);
 
+            block.StateMashine.SetState(new DisableState(block.transform));
         }
         public void AddBlock(Block block)
         {
@@ -57,6 +60,16 @@ namespace winterStage
         public void PoolOnDisable(Block block)
         {
             block.gameObject.SetActive(false);
+        }
+
+        private void OnEnable()
+        {
+            OnBlockFall += DeactivateBlock;
+        }
+
+        private void OnDisable()
+        {
+            OnBlockFall -= DeactivateBlock;
         }
     }
 }
