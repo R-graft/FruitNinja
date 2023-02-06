@@ -1,14 +1,12 @@
-using UnityEngine;
-
 namespace winterStage
 {
-    public class StateMashine : MonoBehaviour
+    public class StateMashine
     {
         public State CurrentState { get; private set; }
 
-        public void Init(State state)
+        public void Init(State StartState)
         {
-            CurrentState = state;
+            CurrentState = StartState;
             CurrentState.Enter();
         }
 

@@ -1,45 +1,36 @@
-using System.Collections;
 using UnityEngine;
 
 namespace winterStage
 {
     public abstract class Block : MonoBehaviour, IPoolable
     {
-        public GameObject _sprite;
+        public Transform halvesParent;
 
-        public GameObject _shadow;
+        public Transform _leftSide;
+        public Transform _rightSide;
 
         public string tag;
 
         public MoveBlock mover;
         public RotateBlock rotator;
         public ScaleBlock scaler;
-        public FallChecker faller;
+
+        public Vector3 currentDirection;
 
         public StateMashine StateMashine { get; set; }
 
         public void Init()
         {
-            mover ??= new MoveBlock(transform);
-            rotator ??= new RotateBlock();
-            scaler ??= new ScaleBlock(transform);
-            faller ??= new FallChecker(this);
+            mover = new MoveBlock();
+            rotator = new RotateBlock();
+            scaler = new ScaleBlock();
 
-            StateMashine ??= new StateMashine();
-
-            StateMashine.Init(new MoveState(this));
-
-            StartCoroutine(Updater());
+            StateMashine = new StateMashine();
         }
 
-        private IEnumerator Updater()
+        private void Update()
         {
-            while (true)
-            {
-                StateMashine.CurrentState.Update();
-
-                yield return null;
-            }
+            StateMashine.CurrentState.Update();
         }
     }
 

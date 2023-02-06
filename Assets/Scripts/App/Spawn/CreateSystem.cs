@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace winterStage
 {
-    public class CreateSystem : MonoBehaviour
+    public class CreateSystem
     {
         public Dictionary<string, ObjectPool<Block>> Pools { get; private set; }
 

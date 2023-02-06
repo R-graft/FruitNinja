@@ -30,12 +30,12 @@ namespace winterStage
 
         public void Rotate(Transform transform)
         {
-            transform.Rotate(Vector3.forward  * _rotateDirection * _rotateForce * Time.deltaTime);
+            transform.Rotate(Vector3.forward * _rotateDirection * _rotateForce * Time.deltaTime);
         }
 
-        public void StopRotate()
+        public void SetAcces(bool assesValue)
         {
-            SetRotateValue(0, 0);
+            
         }
     }
 }

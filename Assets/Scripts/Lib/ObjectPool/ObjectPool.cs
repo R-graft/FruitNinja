@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ObjectPool<T> where T : IPoolable
 {
     private Queue<T> _objectsQueue;
 
-    private Action<T> OnGet;
+    private Action<T, Vector2> OnGet;
 
     private Action<T> OnCreate;
 
@@ -13,7 +14,7 @@ public class ObjectPool<T> where T : IPoolable
 
     private Action<T> OnDisableObject;
 
-    public ObjectPool(Func<T> onGetNewObject, Action<T> onCreate, Action<T> onGet, Action<T> OnDisable)
+    public ObjectPool(Func<T> onGetNewObject, Action<T> onCreate, Action<T,Vector2> onGet, Action<T> OnDisable)
     {
         _objectsQueue = new Queue<T>();
 
@@ -39,7 +40,7 @@ public class ObjectPool<T> where T : IPoolable
 
         OnCreate(addedObject);
     }
-    public T Get()
+    public T Get(Vector2 pos)
     {
         if (_objectsQueue.Count == 0)
         {
@@ -48,7 +49,7 @@ public class ObjectPool<T> where T : IPoolable
 
         T spawnObject = _objectsQueue.Dequeue();
 
-        OnGet(spawnObject);
+        OnGet(spawnObject, pos);
 
         return spawnObject;
     }

@@ -17,6 +17,6 @@ namespace winterStage
             _transform.localRotation = Quaternion.identity;
 
             _transform.position = Vector3.zero;
-        } 
+        }
     }
 }
