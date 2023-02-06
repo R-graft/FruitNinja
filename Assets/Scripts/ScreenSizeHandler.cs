@@ -4,27 +4,18 @@ namespace winterStage
 {
     public class ScreenSizeHandler : MonoBehaviour
     {
-        private Camera m_Camera;
+        [SerializeField]private Camera m_Camera;
 
-        public static ScreenSizeHandler Instance;
+        [HideInInspector] public static float screenHeight;
+        [HideInInspector] public static float screenWidth;
 
-        [HideInInspector] public float screenHeight;
-        [HideInInspector] public float screenWidth;
+        [HideInInspector] public static float leftScreenEdge;
+        [HideInInspector] public static float rightScreenEdge;
+        [HideInInspector] public static float upScreenEdge;
+        [HideInInspector] public static float downScreenEdge;
 
-        [HideInInspector] public float leftScreenEdge;
-        [HideInInspector] public float rightScreenEdge;
-        [HideInInspector] public float upScreenEdge;
-        [HideInInspector] public float downScreenEdge;
-
-        private void Awake()
-        {
-            Instance = new ScreenSizeHandler();
-            Instance.Init();
-        }
         public void Init()
         {
-            m_Camera = Camera.main;
-
             Vector2 screenWorldSize = m_Camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
 
             screenHeight = screenWorldSize.y;
@@ -36,5 +27,6 @@ namespace winterStage
             upScreenEdge = screenHeight;
             downScreenEdge = -screenHeight;
         }
+
     }
 }

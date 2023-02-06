@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,18 +20,18 @@ namespace winterStage
 
         private float _deadPoint;
 
+        private const float DeadZoneOffset = 3;
         private const float CheckFallTime = 2f;
 
-        private void Awake()
+        public void Init()
         {
             _creator = new CreateSystem();
 
             _creator.CreateBlocks(blocksList, this);
 
-            _deadPoint = ScreenSizeHandler.Instance.downScreenEdge - 2;
+            _deadPoint = ScreenSizeHandler.downScreenEdge - DeadZoneOffset;
             print(_deadPoint);
             StartCoroutine(CheckFall());
-
         }
         public Block GetBlock(string tag, Vector2 position)
         {
@@ -126,12 +125,12 @@ namespace winterStage
 
         private void OnEnable()
         {
-            Blade.OnBladeCuting += CheckSlash;
+            BladeHandler.OnBladeCuting += CheckSlash;
         }
 
         private void OnDisable()
         {
-            Blade.OnBladeCuting -= CheckSlash;
+            BladeHandler.OnBladeCuting -= CheckSlash;
         }
     }
 }

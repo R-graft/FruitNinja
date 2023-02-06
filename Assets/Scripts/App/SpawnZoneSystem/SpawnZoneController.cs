@@ -15,18 +15,11 @@ namespace winterStage
 
         private ScreenSizeHandler _screenSize;
 
-        private void Awake()
-        {
-            Init();
-        }
-
-        private void Init()
+        public void Init()
         {
             _zonePoints = new Dictionary<string, (Vector2, Vector2)>();
 
             _percentsList = new Dictionary<string, float>();
-
-            _screenSize = ScreenSizeHandler.Instance;
 
             foreach (var zone in _spawnZones)
             {
@@ -34,8 +27,8 @@ namespace winterStage
 
                 _percentsList.Add(zone.zoneTag, zone.spawnPecent);
                 
-                zone.pointOne = new Vector2(zone.pointOneScreenPercent.x * _screenSize.screenWidth, zone.pointOneScreenPercent.y * _screenSize.screenHeight);
-                zone.pointTwo = new Vector2(zone.pointTwoScreenPercent.x * _screenSize.screenWidth, zone.pointTwoScreenPercent.y * _screenSize.screenHeight);
+                zone.pointOne = new Vector2(zone.pointOneScreenPercent.x * ScreenSizeHandler.screenWidth, zone.pointOneScreenPercent.y * ScreenSizeHandler.screenHeight);
+                zone.pointTwo = new Vector2(zone.pointTwoScreenPercent.x * ScreenSizeHandler.screenWidth, zone.pointTwoScreenPercent.y * ScreenSizeHandler.screenHeight);
             }
         }
 
@@ -76,8 +69,8 @@ namespace winterStage
             {
                 Gizmos.color = Color.red;
 
-                zone.pointOneScreenPercent = new Vector2(zone.PointOneX / _screenSize.screenWidth, zone.PointOneY / _screenSize.screenHeight);
-                zone.pointTwoScreenPercent = new Vector2(zone.PointTwoX / _screenSize.screenWidth, zone.PointTwoY / _screenSize.screenHeight);
+                zone.pointOneScreenPercent = new Vector2(zone.PointOneX / ScreenSizeHandler.screenWidth, zone.PointOneY / ScreenSizeHandler.screenHeight);
+                zone.pointTwoScreenPercent = new Vector2(zone.PointTwoX / ScreenSizeHandler.screenWidth, zone.PointTwoY / ScreenSizeHandler.screenHeight);
 
                 zone.pointOne = new Vector2(zone.PointOneX, zone.PointOneY);
                 zone.pointTwo = new Vector2(zone.PointTwoX, zone.PointTwoY);
@@ -106,8 +99,8 @@ namespace winterStage
         [HideInInspector] public Vector2 pointOne;
         [HideInInspector] public Vector2 pointTwo;
 
-         public Vector2 pointOneScreenPercent;
-        public Vector2 pointTwoScreenPercent;
+        [HideInInspector] public Vector2 pointOneScreenPercent;
+        [HideInInspector] public Vector2 pointTwoScreenPercent;
 
         public Vector2 screenPercent;
 

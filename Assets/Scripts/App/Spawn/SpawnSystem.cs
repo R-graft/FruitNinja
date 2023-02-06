@@ -27,7 +27,7 @@ namespace winterStage
         private float _packTimeScale = 3f;
         private float _spawnTimeScale = 0.3f;
 
-        private void Start()
+        public void Init()
         {
             _directionHandler = new DirectionHandler();
 

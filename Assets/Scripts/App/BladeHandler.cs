@@ -3,15 +3,14 @@ using UnityEngine;
 
 namespace winterStage
 {
-    public class Blade : MonoBehaviour
+    public class BladeHandler : MonoBehaviour
     {
-        public SpriteRenderer renderer;
-        [SerializeField]
-        private GameObject _trailPrefab;
+        [SerializeField] private GameObject _trailPrefab;
+
+        [SerializeField]private Camera _camera;
+        //public SpriteRenderer renderer;
 
         private GameObject _currentTrail;
-
-        private Camera _camera;
 
         private Vector2 _previousPosition;
 
@@ -21,15 +20,9 @@ namespace winterStage
 
         public static Action<Vector2> OnBladeCuting;
 
-        private void Awake()
-        {
-            Init();
-        }
         public void Init()
         {
-            _camera = Camera.main;
-
-            _currentTrail ??= Instantiate(_trailPrefab, transform);
+            _currentTrail = Instantiate(_trailPrefab, transform);
 
             EnableBlade();
         }
