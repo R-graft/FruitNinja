@@ -4,8 +4,6 @@ namespace winterStage
 {
     public class ScaleBlock
     {
-        private Transform _blockTransform;
-
         private float _startScaleValue;
         private float _endScaleValue;
 
@@ -14,21 +12,17 @@ namespace winterStage
 
         private Vector3 _scaleStep = new Vector3(0.2f, 0.2f);
 
-        public ScaleBlock(Transform transform)
-        {
-            _blockTransform = transform;
-        }
 
-        public void RescaleBlock()
+        public void RescaleBlock(Transform transform)
         {
-            if (_blockTransform.localScale.x > MaxScale || _blockTransform.localScale.x < MinScale)
+            if (transform.localScale.x > MaxScale || transform.localScale.x < MinScale)
             {
                 return;
             }
-                _blockTransform.localScale += _scaleStep * Time.deltaTime;
+                transform.localScale += _scaleStep * Time.deltaTime;
         }
 
-        public void GetScaleValue()
+        public void GetScaleValue(Transform transform)
         {
             _startScaleValue = Random.Range(MinScale, MaxScale);
 
@@ -36,7 +30,7 @@ namespace winterStage
 
             _scaleStep = _startScaleValue < _endScaleValue ? _scaleStep : -_scaleStep;
 
-            _blockTransform.localScale = new Vector3(_startScaleValue, _startScaleValue, 0);
+            transform.localScale = new Vector3(_startScaleValue, _startScaleValue, 0);
         }
     }
 }

@@ -9,11 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 217e4cf570f2c7748871a4cfee9ed0dc, type: 3}
-  m_Name: BlocksList
+  m_Script: {fileID: 11500000, guid: 259383ecd663df04bb1c13f936ea0d8d, type: 3}
+  m_Name: ZoneList
   m_EditorClassIdentifier: 
-  blocksTypes:
-  - tag: ice
-    blockType: {fileID: -9124026841316769850, guid: 11eea94aa466482479407d7cc6bf0d7c, type: 3}
-    poolCount: 50
-    spawnPercent: 100
+  zones:
+    zoneTag: 
+    PointOneX: -10.9
+    PointTwoX: 0
+    PointOneY: 0
+    PointTwoY: 0
+    pointOne: {x: 0, y: 0}
+    pointTwo: {x: 0, y: 0}
+    spawnPecent: 0

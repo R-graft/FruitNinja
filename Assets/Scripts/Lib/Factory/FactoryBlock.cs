@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace winterStage
@@ -16,7 +17,11 @@ namespace winterStage
 
         public override T CreateObject()
         {
-            var creatingBlock = Instantiate(_creatingObject, _creatingTransform);
+            var creatingBlock = Object.Instantiate(_creatingObject, _creatingTransform);
+
+            creatingBlock.Init();
+
+            creatingBlock.StateMashine.Init(new DisableState(creatingBlock.transform));
 
             return creatingBlock;
         }

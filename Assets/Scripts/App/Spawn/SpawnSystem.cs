@@ -11,9 +11,11 @@ namespace winterStage
 
         [SerializeField] private BlocksController _blocks;
 
+        private DirectionHandler _directionHandler;
+
         private Dictionary<string, float> _percentsList;
 
-        private Queue<string> _currentPack = new Queue<string>();
+        private Queue<Block> _currentPack = new Queue<Block>();
 
         private int _packCount;
 
@@ -27,6 +29,8 @@ namespace winterStage
 
         private void Start()
         {
+            _directionHandler = new DirectionHandler();
+
             SetBlocksPercents();
 
             StartCoroutine(SpawnBlocks());
@@ -43,9 +47,9 @@ namespace winterStage
 
                     var newBock = _currentPack.Dequeue();
 
-                    var newPos = GetSpawnPosition();
+                    var newDirection = _directionHandler.GetParabolaMoveDirection(newBock.transform.position);
 
-                    _blocks.ActivateBlock(newBock, newPos);
+                    newBock.StateMashine.SetState(new ActiveState(newBock, newDirection));
                 }
 
                 yield return new WaitForSeconds(_packTimeScale);
@@ -70,7 +74,11 @@ namespace winterStage
             {
                 string currentTag = GetCurrentBlockTag();
 
-                _currentPack.Enqueue(currentTag);
+                var newPos = GetSpawnPosition();
+
+                var block = _blocks.GetBlock(currentTag, newPos);
+
+                _currentPack.Enqueue(block);
             }
         }
 

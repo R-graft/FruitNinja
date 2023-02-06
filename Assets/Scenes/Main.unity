@@ -123,6 +123,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &332052570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 332052572}
+  - component: {fileID: 332052571}
+  m_Layer: 0
+  m_Name: ScreenSizeHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &332052571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332052570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38eb61b28050c3c47808be3720d98b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenHeight: 0
+  screenWidth: 0
+  leftScreenEdge: 0
+  rightScreenEdge: 0
+  upScreenEdge: 0
+  downScreenEdge: 0
+--- !u!4 &332052572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332052570}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.258004, y: 0.74575436, z: -15.997067}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &426868445
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d717ceefde690949b1ba0794a1578bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderer: {fileID: 0}
   _trailPrefab: {fileID: 7578370914109890886, guid: 5ce3179d3c5fc284eb761d78fd6e4c9a, type: 3}
   _minSlashDistance: 0.002
 --- !u!4 &426868447
@@ -251,6 +301,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1122683135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1122683136}
+  m_Layer: 0
+  m_Name: SlashEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1122683136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122683135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1274812406
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,9 +361,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnZones:
-  - {fileID: 5267033391796805536, guid: 38a95a63240c8ac4d9aaa1b41961bac4, type: 3}
-  - {fileID: -5695907914666968022, guid: 5c28ae96f88fedb40b4685c2e97aebde, type: 3}
-  - {fileID: 6973231206780661756, guid: 5f6cdff7a3b11284a82cb44ff968de50, type: 3}
+  - zoneTag: left
+    PointOneX: -12
+    PointOneY: 0
+    PointTwoX: -12
+    PointTwoY: -7
+    pointOne: {x: -12, y: 0}
+    pointTwo: {x: -12, y: -7}
+    pointOneScreenPercent: {x: -0.7287066, y: 0}
+    pointTwoScreenPercent: {x: -0.7287066, y: -0.8435055}
+    screenPercent: {x: 0, y: 0}
+    spawnPecent: 0
+  - zoneTag: right
+    PointOneX: 12
+    PointOneY: 0
+    PointTwoX: 12
+    PointTwoY: -7
+    pointOne: {x: 12, y: 0}
+    pointTwo: {x: 12, y: -7}
+    pointOneScreenPercent: {x: 0.7287066, y: 0}
+    pointTwoScreenPercent: {x: 0.7287066, y: -0.8435055}
+    screenPercent: {x: 0, y: 0}
+    spawnPecent: 0
+  - zoneTag: down
+    PointOneX: -12
+    PointOneY: -7
+    PointTwoX: 12
+    PointTwoY: -7
+    pointOne: {x: -12, y: -7}
+    pointTwo: {x: 12, y: -7}
+    pointOneScreenPercent: {x: -0.7287066, y: -0.8435055}
+    pointTwoScreenPercent: {x: 0.7287066, y: -0.8435055}
+    screenPercent: {x: 0, y: 0}
+    spawnPecent: 30
 --- !u!4 &1274812408
 Transform:
   m_ObjectHideFlags: 0

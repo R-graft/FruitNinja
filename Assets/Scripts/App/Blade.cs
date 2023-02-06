@@ -5,6 +5,7 @@ namespace winterStage
 {
     public class Blade : MonoBehaviour
     {
+        public SpriteRenderer renderer;
         [SerializeField]
         private GameObject _trailPrefab;
 

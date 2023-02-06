@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: halfShadow
+    uniqueID: 3834944343
+    locked: 0
+  - name: half
+    uniqueID: 879595355
+    locked: 0
+  - name: fruit
+    uniqueID: 1737229307
+    locked: 0
