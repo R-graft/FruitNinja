@@ -6,7 +6,7 @@ public class ObjectPool<T> where T : IPoolable
 {
     private Queue<T> _objectsQueue;
 
-    private Action<T, Vector2> OnGet;
+    private Action<T, Vector3> OnGet;
 
     private Action<T> OnCreate;
 
@@ -14,7 +14,7 @@ public class ObjectPool<T> where T : IPoolable
 
     private Action<T> OnDisableObject;
 
-    public ObjectPool(Func<T> onGetNewObject, Action<T> onCreate, Action<T,Vector2> onGet, Action<T> OnDisable)
+    public ObjectPool(Func<T> onGetNewObject, Action<T> onCreate, Action<T,Vector3> onGet, Action<T> OnDisable)
     {
         _objectsQueue = new Queue<T>();
 

@@ -1,17 +1,18 @@
+using DG.Tweening;
 using UnityEngine;
 
-public class LoadPanel : MonoBehaviour//, IAnimatedElement
+namespace winterStage
 {
-    [SerializeField]
-    private GameObject _loadIcon;
-
-    private void OnEnable()
+    public class LoadPanel : MonoBehaviour
     {
-        InAnimation();
-    }
-    public void InAnimation() { } //=> _loadIcon.transform.DORotate(new Vector3(0, 0, -720), 1, RotateMode.WorldAxisAdd).SetLoops(-1).SetLink(gameObject);  
+        [SerializeField]
+        private GameObject _loadIcon;
 
-    public void OutAnimation()
-    {
+        private void OnEnable()
+        {
+            InAnimation();
+        }
+        public void InAnimation() => _loadIcon.transform.DORotate(new Vector3(0, 0, -720), 1, RotateMode.WorldAxisAdd).SetLoops(-1).SetLink(gameObject);  
+
     }
 }

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217e4cf570f2c7748871a4cfee9ed0dc, type: 3}
+  m_Name: BlocksData
+  m_EditorClassIdentifier: 
+  blocksModels:
+  - tag: coconut
+    blockType: {fileID: -9124026841316769850, guid: 11eea94aa466482479407d7cc6bf0d7c, type: 3}
+    poolCount: 3
+    spawnPercent: 25
+    sprite: {fileID: 21300000, guid: f6e91af4376384848bf8d7346deb22c3, type: 3}
+    slashView: {fileID: 1606476502360890107, guid: 22b155dea637bae4d96eeda2d7c19e10, type: 3}
+  - tag: lemon
+    blockType: {fileID: -9124026841316769850, guid: 11eea94aa466482479407d7cc6bf0d7c, type: 3}
+    poolCount: 3
+    spawnPercent: 25
+    sprite: {fileID: 21300000, guid: 16cdb5f50d7c6044cb1d7db0812225c7, type: 3}
+    slashView: {fileID: 4606295031993059165, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
+  - tag: bomb
+    blockType: {fileID: -2948584482492310084, guid: 103667b9dc5910b4aaf8d0440c77acee, type: 3}
+    poolCount: 3
+    spawnPercent: 25
+    sprite: {fileID: 21300000, guid: 017c6c719494b6546b06577b3b12faef, type: 3}
+    slashView: {fileID: 4343790745215671004, guid: 661a17bbbe94dc24aaaea04e9ebabd87, type: 3}

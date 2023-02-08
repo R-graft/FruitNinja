@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Converters;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,66 +7,102 @@ namespace winterStage
 {
     public class BlocksController : MonoBehaviour
     {
-        public  BlocksList blocksList;
+        [SerializeField] private ScreenSizeHandler screenSize;
+
+        public BlocksData blocksData;
 
         private CreateSystem _creator;
 
-        private HashSet<Block> _activeBlocks = new HashSet<Block>();
+        public HashSet<Block> ActiveBlocks { get; private set; }
 
-        private HashSet<Block> _slashedBlocks = new HashSet<Block>();
+        public HashSet<Block> SlashedBlocks { get; private set; }
 
         private List<Block> _allBlocks = new List<Block>();
+
+        private ProgressController _progress;
 
         private const float SlashRadius = 1;
 
         private float _deadPoint;
 
         private const float DeadZoneOffset = 3;
-        private const float CheckFallTime = 2f;
+        private const float CheckFallTime = 0.5f;
 
         public void Init()
         {
+            if (!ProgressController.Instance)
+            {
+                Debug.Log("ProgressController not exist");
+            }
+            else
+            {
+                _progress = ProgressController.Instance;
+            }
+
             _creator = new CreateSystem();
 
-            _creator.CreateBlocks(blocksList, this);
+            _creator.CreateBlocks(blocksData, this);
 
-            _deadPoint = ScreenSizeHandler.downScreenEdge - DeadZoneOffset;
-            print(_deadPoint);
+            _deadPoint = screenSize.downScreenEdge - DeadZoneOffset;
+
             StartCoroutine(CheckFall());
         }
-        public Block GetBlock(string tag, Vector2 position)
+
+        public void Restart()
         {
-            var currentBlock = _creator.Pools[tag].Get(position);
+            ActiveBlocks = new HashSet<Block>();
 
-            _activeBlocks.Add(currentBlock);
+            SlashedBlocks = new HashSet<Block>();
 
-            return currentBlock;
+            _allBlocks = new List<Block> ();
         }
 
-        public void DeactivateBlock(Block block)
+        public bool StopSystem()
         {
-            _creator.Pools[block.tag].Disable(block);
-
-            block.StateMashine.SetState(new DisableState(block.transform));
+            return true;
         }
         public void AddBlock(Block block)
         {
             _allBlocks.Add(block);
         }
 
-        private void CheckSlash(Vector2 bladePos)
+        public Block GetBlock(string tag, Vector2 position)
         {
-            foreach (var block in _activeBlocks)
+            var currentBlock = _creator.Pools[tag].Get(position);
+
+            ActiveBlocks.Add(currentBlock);
+
+            return currentBlock;
+        }
+
+        public void DeactivateBlock(Block block, HashSet<Block> chekingSet)
+        {
+            chekingSet.Remove(block);
+
+            _creator.Pools[block.blockTag].Disable(block);
+
+            block.StateMashine.SetState(new DisableState(block));
+        }
+
+
+        private void CheckSlash(Vector3 bladePos)
+        {
+            foreach (var block in ActiveBlocks)
             {
-                var currentDistance = (bladePos - (Vector2)block.transform.position).sqrMagnitude;
+                var currentDistance = (bladePos - block.transform.position).sqrMagnitude;
 
                 if (currentDistance <= SlashRadius)
                 {
                     block.StateMashine.SetState(new CrushState(block));
 
-                    _activeBlocks.Remove(block);
+                    ActiveBlocks.Remove(block);
 
-                    _slashedBlocks.Add(block);
+                    SlashedBlocks.Add(block);
+
+                    if (_progress)
+                    {
+                        _progress.AddScore(50);
+                    }
 
                     CheckSlash(bladePos);
 
@@ -74,23 +111,24 @@ namespace winterStage
             }
         }
 
-        private void GetFallBlocks()
+        private void CheckFallBlocks(HashSet<Block> chekingSet)
         {
-            if (_activeBlocks.Count > 0)
+            if (chekingSet.Count > 0)
             {
-                foreach (var block in _activeBlocks)
+                foreach (var block in chekingSet)
                 {
                     if (block.transform.position.y < _deadPoint)
                     {
-                        DeactivateBlock(block);
-                    }
-                }
+                        if (block.StateMashine.CurrentState.GetType() == typeof(ActiveState))
+                        {
+                            HeartCounter.OnFallFruit?.Invoke();
+                        }
 
-                foreach (var block in _slashedBlocks)
-                {
-                    if (block.transform.position.y < _deadPoint)
-                    {
-                        DeactivateBlock(block);
+                        DeactivateBlock(block, chekingSet);
+
+                        CheckFallBlocks(chekingSet);
+
+                        break;
                     }
                 }
             }
@@ -101,11 +139,13 @@ namespace winterStage
             {
                 yield return new WaitForSeconds(CheckFallTime);
 
-                GetFallBlocks();
+                CheckFallBlocks(ActiveBlocks);
+
+                CheckFallBlocks(SlashedBlocks);
             }
         }
 #region(poolFunctions)
-        public void PoolOnGet(Block block, Vector2 newPosition)
+        public void PoolOnGet(Block block, Vector3 newPosition)
         {
             block.transform.position = newPosition;
 

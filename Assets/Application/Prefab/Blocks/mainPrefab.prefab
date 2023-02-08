@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -460022953
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ffa1b17720479674bab911b7e35982bf, type: 3}
   m_Color: {r: 0.028301895, g: 0.028301895, b: 0.028301895, a: 0.3529412}
@@ -93,7 +93,7 @@ SortingGroup:
   m_GameObject: {fileID: 515252728863834789}
   m_Enabled: 1
   m_SortingLayerID: -460022953
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!331 &515252728863834791
 SpriteMask:
@@ -216,7 +216,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -460022953
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ffa1b17720479674bab911b7e35982bf, type: 3}
   m_Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0.3529412}
@@ -238,7 +238,7 @@ SortingGroup:
   m_GameObject: {fileID: 515252729520723941}
   m_Enabled: 1
   m_SortingLayerID: -460022953
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!331 &515252729520723943
 SpriteMask:
@@ -361,7 +361,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 879595355
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ffa1b17720479674bab911b7e35982bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -383,7 +383,7 @@ SortingGroup:
   m_GameObject: {fileID: 515252730409773145}
   m_Enabled: 1
   m_SortingLayerID: 879595355
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!331 &515252730409773147
 SpriteMask:
@@ -506,7 +506,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 879595355
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ffa1b17720479674bab911b7e35982bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -528,7 +528,7 @@ SortingGroup:
   m_GameObject: {fileID: 515252730412141126}
   m_Enabled: 1
   m_SortingLayerID: 879595355
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!331 &515252730412141144
 SpriteMask:
@@ -603,7 +603,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515252730447690639}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

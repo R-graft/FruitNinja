@@ -8,17 +8,16 @@ namespace winterStage
         [SerializeField] private GameObject _trailPrefab;
 
         [SerializeField]private Camera _camera;
-        //public SpriteRenderer renderer;
 
         private GameObject _currentTrail;
 
         private Vector2 _previousPosition;
 
-        public float _minSlashDistance = 0.002f;
+        public const float MinSlashDistance = 0.002f;
 
         private bool _inputIsActive;
 
-        public static Action<Vector2> OnBladeCuting;
+        public static Action<Vector3> OnBladeCuting;
 
         public void Init()
         {
@@ -72,13 +71,13 @@ namespace winterStage
         }
         private void Cutting()
         {
-            transform.position = (Vector2)_camera.ScreenToWorldPoint(Input.mousePosition);
-
             Vector2 _currentPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+
+            transform.position = _currentPosition;
 
             float speedCutting = (_currentPosition - _previousPosition).magnitude * Time.deltaTime;
 
-            if (speedCutting > _minSlashDistance)
+            if (speedCutting > MinSlashDistance)
             {
                 OnBladeCuting?.Invoke(_currentPosition);
             }
