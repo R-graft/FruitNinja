@@ -38,8 +38,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackCanvas
+    uniqueID: 1227908589
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Blot
+    uniqueID: 1605963109
     locked: 0
   - name: halfShadow
     uniqueID: 3834944343
@@ -49,4 +55,13 @@ TagManager:
     locked: 0
   - name: fruit
     uniqueID: 1737229307
+    locked: 0
+  - name: Splash
+    uniqueID: 1351150265
+    locked: 0
+  - name: Trail
+    uniqueID: 187990279
+    locked: 0
+  - name: InteractCanvas
+    uniqueID: 3728040165
     locked: 0

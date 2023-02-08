@@ -6,10 +6,22 @@ namespace winterStage
     {
         private Vector3 _direction;
 
-        private float _force = 0.4f;
+        private const float _force = 0.6f;
 
         private readonly Vector3 _gravityStep = new Vector2(0, 0.1f);
 
+        public void SetStartDirection(Vector2 direction)
+        {
+            if (direction.y <= 0)
+            {
+                _direction = new Vector2(direction.x, -direction.y);
+            }
+
+            else
+            {
+                _direction = direction;
+            }
+        }
         public void SetDirection(Vector2 direction)
         {
             _direction = direction;

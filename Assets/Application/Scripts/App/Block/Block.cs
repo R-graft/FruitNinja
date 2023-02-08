@@ -4,18 +4,28 @@ namespace winterStage
 {
     public abstract class Block : MonoBehaviour, IPoolable
     {
+        public string blockTag;
+
+        public SpriteRenderer[] _partsSprites;
+
+        public SlashView _slashView;
+
         public Transform halvesParent;
 
         public Transform _leftSide;
         public Transform _rightSide;
-
-        public string tag;
+        public Transform _leftHalf;
+        public Transform _rightHalf;
+        public Transform _leftShadow;
+        public Transform _rightShadow;
 
         public MoveBlock mover;
         public RotateBlock rotator;
         public ScaleBlock scaler;
 
-        public Vector3 currentDirection;
+        [HideInInspector]public Vector3 currentDirection;
+        [HideInInspector] public Vector3 currentScale;
+        [HideInInspector] public float currentRotation;
 
         public StateMashine StateMashine { get; set; }
 

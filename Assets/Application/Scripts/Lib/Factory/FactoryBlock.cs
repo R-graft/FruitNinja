@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace winterStage
@@ -15,13 +14,22 @@ namespace winterStage
             _creatingTransform = transform;
         }
 
-        public override T CreateObject()
+        public T CreateBlock(BlockModel type)
         {
             var creatingBlock = Object.Instantiate(_creatingObject, _creatingTransform);
 
+            creatingBlock.blockTag = type.tag;
+
+            creatingBlock._slashView = Object.Instantiate(type.slashView, creatingBlock.transform);
+
+            foreach (var renderer in creatingBlock._partsSprites)
+            {
+                renderer.sprite = type.sprite;
+            }
+
             creatingBlock.Init();
 
-            creatingBlock.StateMashine.Init(new DisableState(creatingBlock.transform));
+            creatingBlock.StateMashine.Init(new DisableState(creatingBlock));
 
             return creatingBlock;
         }

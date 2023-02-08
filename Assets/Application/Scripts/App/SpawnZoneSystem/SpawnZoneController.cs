@@ -6,14 +6,14 @@ namespace winterStage
 {
     public class SpawnZoneController : MonoBehaviour
     {
+        [SerializeField] ScreenSizeHandler ScreenSize;
+
         [SerializeField]
         private List<Zone> _spawnZones;
 
         private Dictionary<string, float> _percentsList;
 
         private Dictionary<string, (Vector2, Vector2)> _zonePoints;
-
-        private ScreenSizeHandler _screenSize;
 
         public void Init()
         {
@@ -26,9 +26,9 @@ namespace winterStage
                 _zonePoints.Add(zone.zoneTag, (zone.pointOne, zone.pointTwo));
 
                 _percentsList.Add(zone.zoneTag, zone.spawnPecent);
-                
-                zone.pointOne = new Vector2(zone.pointOneScreenPercent.x * ScreenSizeHandler.screenWidth, zone.pointOneScreenPercent.y * ScreenSizeHandler.screenHeight);
-                zone.pointTwo = new Vector2(zone.pointTwoScreenPercent.x * ScreenSizeHandler.screenWidth, zone.pointTwoScreenPercent.y * ScreenSizeHandler.screenHeight);
+
+                zone.pointOne = new Vector2(zone.pointOneScreenPercent.x * ScreenSize.screenWidth, zone.pointOneScreenPercent.y * ScreenSize.screenHeight);
+                zone.pointTwo = new Vector2(zone.pointTwoScreenPercent.x * ScreenSize.screenWidth, zone.pointTwoScreenPercent.y * ScreenSize.screenHeight);
             }
         }
 
@@ -59,21 +59,21 @@ namespace winterStage
             return _zonePoints[_percentsList.Keys.Last()];
         }
 #if UNITY_EDITOR
+        
         private void OnDrawGizmosSelected()
         {
-            _screenSize = new ScreenSizeHandler();
 
-            _screenSize.Init();
-
+            ScreenSize.Init();
+           
             foreach (var zone in _spawnZones)
             {
                 Gizmos.color = Color.red;
 
-                zone.pointOneScreenPercent = new Vector2(zone.PointOneX / ScreenSizeHandler.screenWidth, zone.PointOneY / ScreenSizeHandler.screenHeight);
-                zone.pointTwoScreenPercent = new Vector2(zone.PointTwoX / ScreenSizeHandler.screenWidth, zone.PointTwoY / ScreenSizeHandler.screenHeight);
+                zone.pointOne = new Vector2(zone.pointOneX, zone.pointOneY);
+                zone.pointTwo = new Vector2(zone.pointTwoX, zone.pointTwoY);
 
-                zone.pointOne = new Vector2(zone.PointOneX, zone.PointOneY);
-                zone.pointTwo = new Vector2(zone.PointTwoX, zone.PointTwoY);
+                zone.pointOneScreenPercent = new Vector2(ScreenSize.screenWidth / zone.pointOneX, ScreenSize.screenHeight / zone.pointOneY);
+                zone.pointOneScreenPercent = new Vector2(ScreenSize.screenWidth / zone.pointTwoX, ScreenSize.screenHeight / zone.pointTwoY);
 
                 Gizmos.DrawSphere(zone.pointOne, 0.2f);
                 Gizmos.DrawSphere(zone.pointTwo, 0.2f);
@@ -83,28 +83,29 @@ namespace winterStage
                 Gizmos.DrawLine(zone.pointOne, zone.pointTwo);
             }
         }
-    }
+    
 #endif
 
-    [System.Serializable]
-    public class Zone
-    {
-        public string zoneTag;
+        [System.Serializable]
+        public class Zone
+        {
+            public string zoneTag;
 
-        [Range(-15, 15)] public float PointOneX;
-        [Range(-15, 15)] public float PointOneY;
-        [Range(-15, 15)] public float PointTwoX;
-        [Range(-15, 15)] public float PointTwoY;
+            [Range(-15, 15)] public float pointOneX;
+            [Range(-15, 15)] public float pointOneY;
+            [Range(-15, 15)] public float pointTwoX;
+            [Range(-15, 15)] public float pointTwoY;
 
-        [HideInInspector] public Vector2 pointOne;
-        [HideInInspector] public Vector2 pointTwo;
+            [HideInInspector] public Vector2 pointOne;
+            [HideInInspector] public Vector2 pointTwo;
 
-        [HideInInspector] public Vector2 pointOneScreenPercent;
-        [HideInInspector] public Vector2 pointTwoScreenPercent;
+            [HideInInspector] public Vector2 pointOneScreenPercent;
+            [HideInInspector] public Vector2 pointTwoScreenPercent;
 
-        public Vector2 screenPercent;
+            public Vector2 screenPercent;
 
-        public float spawnPecent;
+            public float spawnPecent;
+        }
     }
 }
 

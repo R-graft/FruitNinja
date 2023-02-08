@@ -7,33 +7,54 @@ namespace winterStage
 {
     public class SpawnSystem : MonoBehaviour
     {
+        [Header("Configuration")]
+
+        [Range(1, 5)] public int minBlockInPack;
+        [Range(3, 12)] public int maxBlockInPack;
+
+        [Range(1, 5)] public float packTimeScale;
+        [Range(0.1f, 2)] public float spawnTimeScale;
+
+        [SerializeField] private bool isComplicateable;
+
+        [Header("Fields")]
+
         [SerializeField] private SpawnZoneController _zones;
-
         [SerializeField] private BlocksController _blocks;
-
-        private DirectionHandler _directionHandler;
+        [SerializeField] private TransformHandler _transformer;
 
         private Dictionary<string, float> _percentsList;
 
         private Queue<Block> _currentPack = new Queue<Block>();
 
-        private int _packCount;
+        private int _minBlocks;
+        private int _maxBlocks;
+        private float _packTime;
+        private float _spawnTime;
 
-        private const int _minPackCount = 2;
-        private const int _maxPackCount = 5;
-
-        private int _countMultiplier;
-
-        private float _packTimeScale = 3f;
-        private float _spawnTimeScale = 0.3f;
+        private const float ComplicateTimeScale = 10;
 
         public void Init()
         {
-            _directionHandler = new DirectionHandler();
-
             SetBlocksPercents();
+        }
+        public void StartSystem()
+        {
+            _minBlocks = minBlockInPack;
+            _maxBlocks = maxBlockInPack;
+            _packTime= packTimeScale;
+            _spawnTime= spawnTimeScale;
 
             StartCoroutine(SpawnBlocks());
+
+            if (isComplicateable)
+            {
+                StartCoroutine(IncrementComlicate());
+            }
+        }
+        public void StopSystem()
+        {
+            StopAllCoroutines();
         }
         private IEnumerator SpawnBlocks()
         {
@@ -43,16 +64,20 @@ namespace winterStage
 
                 while (_currentPack.Count > 0)
                 {
-                    yield return new WaitForSeconds(_spawnTimeScale);
+                    yield return new WaitForSeconds(_spawnTime);
 
                     var newBock = _currentPack.Dequeue();
 
-                    var newDirection = _directionHandler.GetParabolaMoveDirection(newBock.transform.position);
+                    var newDirection = _transformer.GetParabolaMoveDirection(newBock.transform.position);
 
-                    newBock.StateMashine.SetState(new ActiveState(newBock, newDirection));
+                    var newRotateValue = _transformer.GetRandomRotateValue();
+
+                    var newScaleValue = _transformer.GetRandomScaleValue();
+
+                    newBock.StateMashine.SetState(new ActiveState(newBock, newDirection, newRotateValue, newScaleValue));
                 }
 
-                yield return new WaitForSeconds(_packTimeScale);
+                yield return new WaitForSeconds(_packTime);
             }
         }
 
@@ -68,9 +93,9 @@ namespace winterStage
         }
         private void GetCurrentPack()
         { 
-            _packCount = Random.Range(_minPackCount, _maxPackCount) + _countMultiplier;
+            var packCount = Random.Range(_minBlocks, _maxBlocks);
 
-            for (int i = 0; i < _packCount; i++)
+            for (int i = 0; i < packCount; i++)
             {
                 string currentTag = GetCurrentBlockTag();
 
@@ -107,9 +132,30 @@ namespace winterStage
         {
             _percentsList = new Dictionary<string, float>();
 
-            foreach (var type in _blocks.blocksList.blocksTypes)
+            foreach (var type in _blocks.blocksData.blocksModels)
             {
                 _percentsList.Add(type.tag, type.spawnPercent);
+            }
+        }
+
+        private IEnumerator IncrementComlicate()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(ComplicateTimeScale);
+
+                _minBlocks++;
+                _maxBlocks++;
+
+                if (_packTime > 0)
+                {
+                    _packTime -= 0.3f;
+                }
+
+                if (_spawnTime > 0)
+                {
+                    _spawnTime -= 0.1f;
+                }
             }
         }
     }
