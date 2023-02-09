@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -9,7 +8,8 @@ namespace winterStage
     {
         [SerializeField] private TextMeshProUGUI _bestScoreView;
         [SerializeField] private TextMeshProUGUI _currentScoreView;
-        [SerializeField] private Transform _gameOverPanel;
+
+        [SerializeField] private LosePopUp _lose;
 
         private int _bestScoreValue;
 
@@ -18,39 +18,41 @@ namespace winterStage
         private const float _scoreTimescale = 0.01f;
         public void Init()
         {
-            if (!ProgressController.Instance)
+            if (ProgressController.Instance != null)
+            {
+                _bestScoreValue = ProgressController.Instance.BestScore;
+
+                ProgressController.Instance.SetGameUI(this);
+            }
+            else
             {
                 Debug.Log("ProgressController not exist");
-                return;
             }
 
-            _bestScoreValue = ProgressController.Instance.BestScore;
+            _lose.Init();
 
             _bestScoreView.text = _bestScoreValue.ToString();
-
-            ProgressController.Instance.SetGameUI(this);
-        }
-        public void Restart()
-        {
-            _gameOverPanel.gameObject.SetActive(false);
-
-            _gameOverPanel.localScale = Vector3.right;
-            
-            _currentScoreValue = 0;
-
-            _currentScoreView.text = _currentScoreValue.ToString();
         }
 
         public void SetGameOver()
         {
-            _gameOverPanel.gameObject.SetActive(true);
-
-            DOTween.Sequence().Append(_gameOverPanel.DOScaleY(1.2f, 0.2f)).Append(_gameOverPanel.DOMoveY(1, 0.2f));
+            _lose.GameOver();
         }
+
+        public void Restart()
+        {
+            _currentScoreValue = 0;
+
+            _currentScoreView.text = _currentScoreValue.ToString();
+
+            _lose.Restart();
+        }
+
         public void SetNewScore(int newScore)
         {
             StartCoroutine(IncrementScore(newScore));
         }
+
         public IEnumerator IncrementScore(int scoreValue)
         {
             while (scoreValue != 0)

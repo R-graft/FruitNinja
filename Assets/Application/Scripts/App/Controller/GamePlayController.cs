@@ -14,7 +14,11 @@ namespace winterStage
         [SerializeField] private BladeHandler _bladeHandler;
         [SerializeField] private HeartCounter _heartCounter;
 
+        public static Action OnStopGame;
+
         public static Action OnGameOver;
+
+        public static Action OnRestart;
 
         private void Awake()
         {
@@ -22,12 +26,12 @@ namespace winterStage
         }
         private void InitComponents()
         {
+            _UI.Init();
             _screenSizeHandler.Init();
             _blocksController.Init();
             _spawnZoneController.Init();
             _spawnSystem.Init();
             _bladeHandler.Init();
-            _UI.Init();
 
             RestartGame();
         }
@@ -45,33 +49,32 @@ namespace winterStage
             _heartCounter.Init();
         }
 
-        private void SetGameOverState()
+        private void StopGame()
         {
             _spawnSystem.StopSystem();
 
             _bladeHandler.DisableBlade();
 
-            StartCoroutine(CheckEndFruits());
+            _blocksController._stopGame = true;
         }
 
-        private IEnumerator CheckEndFruits()
+        private void GameOver()
         {
-            while (_blocksController.ActiveBlocks.Count > 0 || _blocksController.SlashedBlocks.Count > 0)
-            {
-                yield return null;
-            }
             _UI.SetGameOver();
-
-            yield break;
         }
+
         private void OnEnable()
         {
-            OnGameOver += SetGameOverState;
+            OnStopGame += StopGame;
+            OnRestart += RestartGame;
+            OnGameOver += GameOver;
         }
 
         private void OnDisable()
         {
-            OnGameOver -= SetGameOverState;
+            OnStopGame -= StopGame;
+            OnRestart -= RestartGame;
+            OnGameOver -= GameOver;
         }
     }
 }

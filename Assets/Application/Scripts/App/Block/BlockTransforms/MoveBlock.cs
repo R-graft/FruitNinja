@@ -6,15 +6,13 @@ namespace winterStage
     {
         private Vector3 _direction;
 
-        private const float _force = 0.6f;
-
-        private readonly Vector3 _gravityStep = new Vector2(0, 0.1f);
+        private const float GravityStep = 0.08f;
 
         public void SetStartDirection(Vector2 direction)
         {
-            if (direction.y <= 0)
+            if (direction.y <= 2)
             {
-                _direction = new Vector2(direction.x, -direction.y);
+                _direction = new Vector2(direction.x, -direction.y/2);
             }
 
             else
@@ -34,12 +32,12 @@ namespace winterStage
 
         public void ParabolaMove(Transform transform)
         {
-            transform.position += _direction * _force * Time.deltaTime;
+            transform.position += _direction * Time.deltaTime;
 
-            _direction -= _gravityStep;
+            _direction = new Vector2(_direction.x, _direction.y -= GravityStep);
         }
 
-        public void MoveToDirection(Vector3 target, Transform transform)
+        public void MoveToTarget(Vector3 target, Transform transform)
         {
             transform.localPosition += target * Time.deltaTime;
         }

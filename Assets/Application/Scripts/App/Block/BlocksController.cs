@@ -26,18 +26,19 @@ namespace winterStage
         private float _deadPoint;
 
         private const float DeadZoneOffset = 3;
+
         private const float CheckFallTime = 0.5f;
+
+        [HideInInspector] public bool _stopGame;
 
         public void Init()
         {
             if (!ProgressController.Instance)
-            {
                 Debug.Log("ProgressController not exist");
-            }
+
             else
-            {
                 _progress = ProgressController.Instance;
-            }
+
 
             _creator = new CreateSystem();
 
@@ -55,22 +56,25 @@ namespace winterStage
             SlashedBlocks = new HashSet<Block>();
 
             _allBlocks = new List<Block> ();
+
+            _stopGame = false;
         }
 
-        public bool StopSystem()
+        public void AddBlock(Block block, bool isActive)
         {
-            return true;
-        }
-        public void AddBlock(Block block)
-        {
-            _allBlocks.Add(block);
+            if (isActive)
+            {
+                ActiveBlocks.Add(block);
+            }
+            else
+            {
+                _allBlocks.Add(block);
+            }
         }
 
         public Block GetBlock(string tag, Vector2 position)
         {
             var currentBlock = _creator.Pools[tag].Get(position);
-
-            ActiveBlocks.Add(currentBlock);
 
             return currentBlock;
         }
@@ -83,7 +87,6 @@ namespace winterStage
 
             block.StateMashine.SetState(new DisableState(block));
         }
-
 
         private void CheckSlash(Vector3 bladePos)
         {
@@ -142,6 +145,19 @@ namespace winterStage
                 CheckFallBlocks(ActiveBlocks);
 
                 CheckFallBlocks(SlashedBlocks);
+
+                if (_stopGame)
+                {
+                    FruitsIsEnd();
+                }
+            }
+        }
+
+        private void FruitsIsEnd()
+        {
+            if (ActiveBlocks.Count == 0 && SlashedBlocks.Count == 0)
+            {
+                GamePlayController.OnGameOver?.Invoke();
             }
         }
 #region(poolFunctions)

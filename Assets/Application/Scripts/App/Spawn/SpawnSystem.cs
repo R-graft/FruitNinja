@@ -9,13 +9,13 @@ namespace winterStage
     {
         [Header("Configuration")]
 
-        [Range(1, 5)] public int minBlockInPack;
-        [Range(3, 12)] public int maxBlockInPack;
+        [Range(1, 5)] public int minBlockInPack = 2;
+        [Range(3, 12)] public int maxBlockInPack = 4;
 
-        [Range(1, 5)] public float packTimeScale;
-        [Range(0.1f, 2)] public float spawnTimeScale;
+        [Range(1, 5)] public float packTimeScale = 2;
+        [Range(0.1f, 2)] public float spawnTimeScale = 0.2f;
 
-        [SerializeField] private bool isComplicateable;
+        [SerializeField] private bool isComplicateable = false;
 
         [Header("Fields")]
 
@@ -75,6 +75,8 @@ namespace winterStage
                     var newScaleValue = _transformer.GetRandomScaleValue();
 
                     newBock.StateMashine.SetState(new ActiveState(newBock, newDirection, newRotateValue, newScaleValue));
+
+                    _blocks.AddBlock(newBock, true);
                 }
 
                 yield return new WaitForSeconds(_packTime);

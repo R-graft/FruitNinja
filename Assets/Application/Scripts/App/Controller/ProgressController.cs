@@ -7,7 +7,7 @@ namespace winterStage
         private GameUI _gameUI;
         public int BestScore { get; private set; }
 
-        private int _currentScore;
+        public int _currentScore { get; private set; }
 
         private const string ProgressKey = "BestScore";
 
