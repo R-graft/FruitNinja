@@ -25,9 +25,39 @@ MonoBehaviour:
     spawnPercent: 25
     sprite: {fileID: 21300000, guid: 16cdb5f50d7c6044cb1d7db0812225c7, type: 3}
     slashView: {fileID: 4606295031993059165, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
-  - tag: bomb
-    blockType: {fileID: -2948584482492310084, guid: 103667b9dc5910b4aaf8d0440c77acee, type: 3}
+  - tag: grenade
+    blockType: {fileID: -9124026841316769850, guid: 11eea94aa466482479407d7cc6bf0d7c, type: 3}
     poolCount: 3
     spawnPercent: 25
-    sprite: {fileID: 21300000, guid: 017c6c719494b6546b06577b3b12faef, type: 3}
+    sprite: {fileID: 21300000, guid: 0290a6ba799d71a4f860208378fd7e91, type: 3}
+    slashView: {fileID: 4343790745215671004, guid: 661a17bbbe94dc24aaaea04e9ebabd87, type: 3}
+  - tag: watermellon
+    blockType: {fileID: -9124026841316769850, guid: 11eea94aa466482479407d7cc6bf0d7c, type: 3}
+    poolCount: 3
+    spawnPercent: 25
+    sprite: {fileID: 21300000, guid: ffa1b17720479674bab911b7e35982bf, type: 3}
+    slashView: {fileID: 4343790745215671004, guid: 661a17bbbe94dc24aaaea04e9ebabd87, type: 3}
+  - tag: plum
+    blockType: {fileID: -9124026841316769850, guid: 11eea94aa466482479407d7cc6bf0d7c, type: 3}
+    poolCount: 3
+    spawnPercent: 25
+    sprite: {fileID: 21300000, guid: ea58a8552218d30498c12d79ffb9b064, type: 3}
+    slashView: {fileID: 7566501568079120111, guid: 2e38194655d29b04083d9e1a72a4a0dd, type: 3}
+  - tag: pear
+    blockType: {fileID: -9124026841316769850, guid: 11eea94aa466482479407d7cc6bf0d7c, type: 3}
+    poolCount: 3
+    spawnPercent: 25
+    sprite: {fileID: 21300000, guid: 30d5305b1fc591a468965be5a3d28944, type: 3}
+    slashView: {fileID: 4606295031993059165, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
+  - tag: mango
+    blockType: {fileID: -9124026841316769850, guid: 11eea94aa466482479407d7cc6bf0d7c, type: 3}
+    poolCount: 3
+    spawnPercent: 25
+    sprite: {fileID: 21300000, guid: 5aceecd14f183c14daa5179b73fa162d, type: 3}
+    slashView: {fileID: 4606295031993059165, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
+  - tag: garlic
+    blockType: {fileID: -9124026841316769850, guid: 11eea94aa466482479407d7cc6bf0d7c, type: 3}
+    poolCount: 3
+    spawnPercent: 25
+    sprite: {fileID: 21300000, guid: 9c799f3836d809f4a93facfa3999ef7b, type: 3}
     slashView: {fileID: 4343790745215671004, guid: 661a17bbbe94dc24aaaea04e9ebabd87, type: 3}

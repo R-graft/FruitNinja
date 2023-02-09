@@ -7,10 +7,10 @@ namespace winterStage
     public class HeartCounter : MonoBehaviour
     {
         [Range(3, 25)]
-        public int startCount;
+        public int startCount = 3;
 
         [Range(3, 25)]
-        public int maxCount;
+        public int maxCount = 3;
 
         [SerializeField] private Transform _heartsPanel;
 
@@ -19,8 +19,6 @@ namespace winterStage
         private Queue<GameObject> _allHearts;
 
         private Queue<GameObject> _activeHearts;
-
-        private const int HeartsDefault = 3;
 
         public static Action OnFallFruit;
 
@@ -31,16 +29,6 @@ namespace winterStage
             _allHearts = new Queue<GameObject>();
 
             _activeHearts = new Queue<GameObject>();
-
-            if (maxCount == 0)
-            {
-                maxCount = HeartsDefault;
-            }
-
-            if (startCount == 0)
-            {
-                startCount = HeartsDefault;
-            }
 
             for (int i = 0; i < maxCount; i++)
             {
@@ -79,9 +67,10 @@ namespace winterStage
 
                 _allHearts.Enqueue(removedHeart);
             }
-            else
+
+            if (_activeHearts.Count == 0)
             {
-                GamePlayController.OnGameOver.Invoke();
+                GamePlayController.OnStopGame.Invoke();
             }
         }
 

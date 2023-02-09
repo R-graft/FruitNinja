@@ -5,13 +5,7 @@ namespace winterStage
     public class TransformHandler: MonoBehaviour
     {
         [Header("Move multiplier")]
-        public float _directionX;
-        public float _directionY;
-
-        public float maxForceMove = 1.8f;
-        public float minForceMove = 1.7f;
-
-        public float _forceModificator;
+        public float _forceModificator = 1;
 
         [Header("Rotate multiplier")]
         public  float maxForceRotate = 200;
@@ -21,20 +15,16 @@ namespace winterStage
         public  float minDirectMultiplier = -1;
 
         [Header("Scale multiplier")]
-        public  float minScale = 0.7f;
+        public  float minScale = 0.85f;
         public  float maxScale = 1.3f;
-
-        private readonly (int left, int right) scaleDirection = (-1, 2);
 
         public Vector2 GetParabolaMoveDirection(Vector2 currentPosition)
         {
-            _forceModificator = Random.Range(minForceMove, maxForceMove);
+            var directionX = -currentPosition.x * _forceModificator;
 
-            _directionX = -currentPosition.x * _forceModificator;
+            var directionY = -currentPosition.y * _forceModificator * 2;
 
-            _directionY = -currentPosition.y * _forceModificator * 2;
-
-            return new Vector2(_directionX, _directionY);
+            return new Vector2(directionX, directionY);
         }
 
         public float GetRandomRotateValue()
@@ -50,9 +40,9 @@ namespace winterStage
         {
             float startScaleValue = Random.Range(minScale, maxScale);
 
-            int direction = Random.Range(scaleDirection.left, scaleDirection.right);
+            float endDsaleValue = Random.Range(minScale, maxScale);
 
-            return new Vector3(startScaleValue, startScaleValue, direction);
+            return new Vector2(startScaleValue, endDsaleValue);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace winterStage
 
                     pool.Add(newObject);
 
-                    controller.AddBlock(newObject);
+                    controller.AddBlock(newObject, false);
                 }
 
                 Pools.Add(type.tag, pool);
