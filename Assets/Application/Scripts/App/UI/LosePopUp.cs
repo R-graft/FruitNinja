@@ -27,14 +27,11 @@ namespace winterStage
         {
             _gameOverPopUp.gameObject.SetActive(true);
 
-            DOTween.Sequence().Append(_gameOverPopUp.DOScaleY(1.2f, 0.2f)).Append(_gameOverPopUp.DOMoveY(1, 0.2f));
+            DOTween.Sequence().Append(_gameOverPopUp.DOScaleY(1.2f, 0.2f)).Append(_gameOverPopUp.DOScaleY(1, 0.2f));
 
-            if (ProgressController.Instance != null)
-            {
-                _bestScore.text = ProgressController.Instance.BestScore.ToString();
+            _bestScore.text = ProgressController.Instance.BestScore.ToString();
 
-                _currentScore.text = ProgressController.Instance._currentScore.ToString();
-            }
+            _currentScore.text = ProgressController.Instance._currentScore.ToString();
         }
         public void Restart()
         {

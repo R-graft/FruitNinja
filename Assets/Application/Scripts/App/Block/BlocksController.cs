@@ -1,4 +1,3 @@
-using Newtonsoft.Json.Converters;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +7,8 @@ namespace winterStage
     public class BlocksController : MonoBehaviour
     {
         [SerializeField] private ScreenSizeHandler screenSize;
+
+        [SerializeField] private Canvas _scoreParent;
 
         public BlocksData blocksData;
 
@@ -45,8 +46,6 @@ namespace winterStage
             _creator.CreateBlocks(blocksData, this);
 
             _deadPoint = screenSize.downScreenEdge - DeadZoneOffset;
-
-            StartCoroutine(CheckFall());
         }
 
         public void Restart()
@@ -58,6 +57,8 @@ namespace winterStage
             _allBlocks = new List<Block> ();
 
             _stopGame = false;
+
+            StartCoroutine(CheckFall());
         }
 
         public void AddBlock(Block block, bool isActive)
@@ -79,24 +80,30 @@ namespace winterStage
             return currentBlock;
         }
 
-        public void DeactivateBlock(Block block, HashSet<Block> chekingSet)
+        public void DeactivateBlock(Block block)
         {
-            chekingSet.Remove(block);
-
             _creator.Pools[block.blockTag].Disable(block);
 
             block.StateMashine.SetState(new DisableState(block));
         }
+        private void RemoveFromSet(Block block, HashSet<Block> chekingSet)
+        {
+            chekingSet.Remove(block);
 
-        private void CheckSlash(Vector3 bladePos)
+            DeactivateBlock(block);
+        }
+
+        private void CheckSlash(BladeInfo bladePos)
         {
             foreach (var block in ActiveBlocks)
             {
-                var currentDistance = (bladePos - block.transform.position).sqrMagnitude;
+                var currentDistance = (bladePos.currentPosition - block.transform.position).sqrMagnitude;
 
                 if (currentDistance <= SlashRadius)
                 {
-                    block.StateMashine.SetState(new CrushState(block));
+                    SeriesCounter.OnSlashFruit?.Invoke();
+
+                    block.StateMashine.SetState(new CrushState(block, bladePos.currentDirection));
 
                     ActiveBlocks.Remove(block);
 
@@ -124,10 +131,10 @@ namespace winterStage
                     {
                         if (block.StateMashine.CurrentState.GetType() == typeof(ActiveState))
                         {
-                            HeartCounter.OnFallFruit?.Invoke();
+                            HeartCounter.OnLoseHeart?.Invoke();
                         }
 
-                        DeactivateBlock(block, chekingSet);
+                        RemoveFromSet(block, chekingSet);
 
                         CheckFallBlocks(chekingSet);
 
@@ -158,6 +165,8 @@ namespace winterStage
             if (ActiveBlocks.Count == 0 && SlashedBlocks.Count == 0)
             {
                 GamePlayController.OnGameOver?.Invoke();
+
+                StopAllCoroutines();
             }
         }
 #region(poolFunctions)

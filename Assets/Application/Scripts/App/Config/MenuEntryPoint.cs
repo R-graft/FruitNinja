@@ -10,11 +10,16 @@ namespace winterStage
 
         [SerializeField] private ScenesManager _scenesManager;
 
-        private void Awake() 
+        private void Awake()
         {
-            _progressController.Init();
-
-            _scenesManager.Init();
+            if (ProgressController.Instance == null)
+            {
+                _progressController.Init();
+            }
+            if (ScenesManager.Instance == null)
+            {
+                _scenesManager.Init();
+            }
 
             _menuUI.Init();
         }

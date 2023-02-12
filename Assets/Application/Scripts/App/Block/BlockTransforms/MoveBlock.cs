@@ -6,7 +6,9 @@ namespace winterStage
     {
         private Vector3 _direction;
 
-        private const float GravityStep = 0.08f;
+        private const float GravityStep = 10f;
+
+        public float _forceModificator = 1f;
 
         public void SetStartDirection(Vector2 direction)
         {
@@ -32,9 +34,9 @@ namespace winterStage
 
         public void ParabolaMove(Transform transform)
         {
-            transform.position += _direction * Time.deltaTime;
+            transform.position += _direction * Time.deltaTime * _forceModificator;
 
-            _direction = new Vector2(_direction.x, _direction.y -= GravityStep);
+            _direction = new Vector2(_direction.x, _direction.y -= GravityStep * Time.deltaTime * _forceModificator);
         }
 
         public void MoveToTarget(Vector3 target, Transform transform)

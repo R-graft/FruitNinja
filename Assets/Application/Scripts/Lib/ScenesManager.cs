@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,7 +6,7 @@ namespace winterStage
 {
     public class ScenesManager : Singleton<ScenesManager>
     {
-        public GameObject loadPanelPrefab;
+        [SerializeField] private LoadPanel loadPanelPrefab;
 
         private AsyncOperation _loadingScene;
 
@@ -15,11 +14,13 @@ namespace winterStage
 
         private float _minLoadingTime;
 
-        public static Action<SCENELIST> OnLoadScene;
+        //public static Action<SCENELIST> OnLoadScene;
 
         public void Init()
         {
             SingleInit();
+
+            loadPanelPrefab.gameObject.SetActive(false);
         }
         public void LoadScene(SCENELIST targetScene)
         {
@@ -32,7 +33,9 @@ namespace winterStage
         {
             _minLoadingTime = 0.8f;
 
-            Instantiate(loadPanelPrefab);
+            loadPanelPrefab.gameObject.SetActive(true);
+
+            loadPanelPrefab.StartLoad();
 
             _loadingScene = SceneManager.LoadSceneAsync(targetScene.ToString());
 
@@ -47,7 +50,13 @@ namespace winterStage
 
             _loadingScene.allowSceneActivation = true;
 
-            OnLoadScene?.Invoke(currentScene);
+            while (!_loadingScene.isDone)
+            {
+                yield return null;
+            }
+
+            loadPanelPrefab.EndLoad();
+            //OnLoadScene?.Invoke(currentScene);
         }
     }
     public enum SCENELIST

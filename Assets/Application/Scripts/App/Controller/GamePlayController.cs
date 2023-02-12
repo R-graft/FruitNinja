@@ -14,6 +14,9 @@ namespace winterStage
         [SerializeField] private BladeHandler _bladeHandler;
         [SerializeField] private HeartCounter _heartCounter;
 
+        [SerializeField] private ProgressController _progressController;
+        [SerializeField] private ScenesManager _scenesManager;
+
         public static Action OnStopGame;
 
         public static Action OnGameOver;
@@ -22,6 +25,16 @@ namespace winterStage
 
         private void Awake()
         {
+            if (ProgressController.Instance == null)
+            {
+                _progressController.Init();
+            }
+
+            if (ScenesManager.Instance == null)
+            {
+                _scenesManager.Init();
+            }
+
             InitComponents();
         }
         private void InitComponents()
@@ -38,6 +51,8 @@ namespace winterStage
 
         private void RestartGame()
         {
+            ProgressController.Instance.RefreshCurrentScore();
+
             _blocksController.Restart();
 
             _spawnSystem.StartSystem();

@@ -162,6 +162,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockTag: 
+  _partsSprites:
+  - {fileID: 3684111029604982153}
+  - {fileID: 3684111028885520426}
+  - {fileID: 3684111029608906638}
+  - {fileID: 3684111028453037418}
+  _slashView: {fileID: 3562041384991507009, guid: 22b155dea637bae4d96eeda2d7c19e10, type: 3}
   halvesParent: {fileID: 1566972258571227670}
   _leftSide: {fileID: 3684111029636328531}
   _rightSide: {fileID: 3684111029887396892}
@@ -169,10 +175,6 @@ MonoBehaviour:
   _rightHalf: {fileID: 3684111029608906633}
   _leftShadow: {fileID: 3684111028885520437}
   _rightShadow: {fileID: 3684111028453037429}
-  _partsSprites:
-  - {fileID: 3684111029604982153}
-  - {fileID: 3684111028885520426}
-  - {fileID: 3684111029608906638}
-  - {fileID: 3684111028453037418}
-  _slashView: {fileID: 0}
   currentDirection: {x: 0, y: 0, z: 0}
+  currentScale: {x: 0, y: 0, z: 0}
+  currentRotation: 0

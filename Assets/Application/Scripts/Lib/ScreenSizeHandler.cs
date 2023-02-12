@@ -6,7 +6,8 @@ namespace winterStage
     {
         [SerializeField] private Camera m_Camera;
 
-        [HideInInspector] public float screenHeight;
+        public const float screenHeight = 5;
+
         [HideInInspector] public float screenWidth;
 
         [HideInInspector] public float leftScreenEdge;
@@ -16,16 +17,25 @@ namespace winterStage
 
         public void Init()
         {
-            Vector2 screenWorldSize = m_Camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+            float aspect = m_Camera.aspect;
 
-            screenHeight = screenWorldSize.y;
-            screenWidth = screenWorldSize.x;
+            screenWidth = aspect * screenHeight;
 
             leftScreenEdge = -screenWidth;
             rightScreenEdge = screenWidth;
 
-            upScreenEdge = screenHeight;
+            upScreenEdge = screenHeight; 
             downScreenEdge = -screenHeight;
+        }
+
+        public Vector2 GetPercentsFromPoint(Vector2 point)
+        {
+            return new Vector2(point.x / screenWidth, point.y / screenHeight);
+        }
+
+        public Vector2 GetPointFromPercents(Vector2 pointInPercents)
+        {
+            return new Vector2(pointInPercents.x * screenWidth, pointInPercents.y * screenHeight);
         }
     }
 }
