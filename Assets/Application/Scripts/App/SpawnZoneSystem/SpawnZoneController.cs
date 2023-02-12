@@ -8,31 +8,30 @@ namespace winterStage
     {
         [SerializeField] ScreenSizeHandler ScreenSize;
 
-        [SerializeField]
-        private List<Zone> _spawnZones;
+        [SerializeField] private List<Zone> _spawnZones;
 
         private Dictionary<string, float> _percentsList;
 
-        private Dictionary<string, (Vector2, Vector2)> _zonePoints;
+        private Dictionary<string, Zone> _zonePoints;
 
         public void Init()
         {
-            _zonePoints = new Dictionary<string, (Vector2, Vector2)>();
+            _zonePoints = new Dictionary<string, Zone>();
 
             _percentsList = new Dictionary<string, float>();
 
             foreach (var zone in _spawnZones)
             {
-                _zonePoints.Add(zone.zoneTag, (zone.pointOne, zone.pointTwo));
+                zone.pointOne = ScreenSize.GetPointFromPercents(zone.pointOneScreenPercent);
+                zone.pointTwo = ScreenSize.GetPointFromPercents(zone.pointTwoScreenPercent);
 
                 _percentsList.Add(zone.zoneTag, zone.spawnPecent);
 
-                zone.pointOne = new Vector2(zone.pointOneScreenPercent.x * ScreenSize.screenWidth, zone.pointOneScreenPercent.y * ScreenSize.screenHeight);
-                zone.pointTwo = new Vector2(zone.pointTwoScreenPercent.x * ScreenSize.screenWidth, zone.pointTwoScreenPercent.y * ScreenSize.screenHeight);
+                _zonePoints.Add(zone.zoneTag, zone);
             }
         }
 
-        public (Vector2 one, Vector2 two) GetCurrentZone()
+        public Zone GetCurrentZone()
         {
             float total = 0;
 
@@ -58,22 +57,20 @@ namespace winterStage
 
             return _zonePoints[_percentsList.Keys.Last()];
         }
-#if UNITY_EDITOR
-        
+ 
         private void OnDrawGizmosSelected()
         {
-
             ScreenSize.Init();
            
             foreach (var zone in _spawnZones)
             {
                 Gizmos.color = Color.red;
-
+               
                 zone.pointOne = new Vector2(zone.pointOneX, zone.pointOneY);
                 zone.pointTwo = new Vector2(zone.pointTwoX, zone.pointTwoY);
 
-                zone.pointOneScreenPercent = new Vector2(ScreenSize.screenWidth / zone.pointOneX, ScreenSize.screenHeight / zone.pointOneY);
-                zone.pointOneScreenPercent = new Vector2(ScreenSize.screenWidth / zone.pointTwoX, ScreenSize.screenHeight / zone.pointTwoY);
+                zone.pointOneScreenPercent = ScreenSize.GetPercentsFromPoint(zone.pointOne);
+                zone.pointTwoScreenPercent = ScreenSize.GetPercentsFromPoint(zone.pointTwo);
 
                 Gizmos.DrawSphere(zone.pointOne, 0.2f);
                 Gizmos.DrawSphere(zone.pointTwo, 0.2f);
@@ -84,7 +81,6 @@ namespace winterStage
             }
         }
     
-#endif
 
         [System.Serializable]
         public class Zone
@@ -101,8 +97,6 @@ namespace winterStage
 
             [HideInInspector] public Vector2 pointOneScreenPercent;
             [HideInInspector] public Vector2 pointTwoScreenPercent;
-
-            public Vector2 screenPercent;
 
             public float spawnPecent;
         }

@@ -23,7 +23,7 @@ namespace winterStage
         [Header("View")]
         public Sprite sprite;
 
-        public SlashView slashView;
+        public SplashView slashView;
     }
 }
 

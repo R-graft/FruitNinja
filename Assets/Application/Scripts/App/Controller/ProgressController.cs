@@ -42,6 +42,10 @@ namespace winterStage
             }
         }
 
+        public void RefreshCurrentScore()
+        {
+            _currentScore = 0;
+        }
         public void SetGameUI(GameUI ui)
         {
             _gameUI = ui;

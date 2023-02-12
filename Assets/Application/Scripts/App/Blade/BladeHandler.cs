@@ -5,19 +5,21 @@ namespace winterStage
 {
     public class BladeHandler : MonoBehaviour
     {
-        [SerializeField] private GameObject _trailPrefab;
+        [SerializeField] private TrailRenderer _trailPrefab;
 
-        [SerializeField]private Camera _camera;
+        [SerializeField] private Camera _camera;
 
-        private GameObject _currentTrail;
+        private TrailRenderer _currentTrail;
+
+        private BladeInfo _currentSlash = new BladeInfo();
 
         private Vector2 _previousPosition;
 
-        public const float MinSlashDistance = 0.002f;
+        public float MinSlashDistance = 0.002f;
 
         private bool _inputIsActive;
 
-        public static Action<Vector3> OnBladeCuting;
+        public static Action<BladeInfo> OnBladeCuting;
 
         public void Init()
         {
@@ -56,33 +58,51 @@ namespace winterStage
             if (_inputIsActive)
             {
                 InputController();
-            }   
+            }
         }
 
         private void StartCut()
         {
             _previousPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
 
-            _currentTrail.SetActive(true);
+            
         }
         private void StopCut()
         {
-            _currentTrail.SetActive(false);
+            _currentTrail.gameObject.SetActive(false);
         }
         private void Cutting()
         {
             Vector2 _currentPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
 
+#if PLATFORM_ANDROID
+            if (Input.touchCount > 1)
+            {
+                return;
+            }
+#endif
             transform.position = _currentPosition;
 
             float speedCutting = (_currentPosition - _previousPosition).magnitude * Time.deltaTime;
 
             if (speedCutting > MinSlashDistance)
             {
-                OnBladeCuting?.Invoke(_currentPosition);
+                _currentTrail.gameObject.SetActive(true);
+                _currentSlash.currentDirection = _previousPosition - _currentPosition;
+
+                _currentSlash.currentPosition = _currentPosition;
+
+                OnBladeCuting?.Invoke(_currentSlash);
             }
             _previousPosition = _currentPosition;
         }
+    }
+
+    public struct BladeInfo
+    {
+        public Vector3 currentPosition;
+
+        public Vector2 currentDirection;
     }
 }
 

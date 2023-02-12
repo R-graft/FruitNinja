@@ -9,6 +9,8 @@ namespace winterStage
         [SerializeField] private TextMeshProUGUI _bestScoreView;
         [SerializeField] private TextMeshProUGUI _currentScoreView;
 
+        [SerializeField] private GameObject _seriesCounter;
+
         [SerializeField] private LosePopUp _lose;
 
         private int _bestScoreValue;
@@ -32,6 +34,8 @@ namespace winterStage
             _lose.Init();
 
             _bestScoreView.text = _bestScoreValue.ToString();
+
+            Instantiate(_seriesCounter, transform);
         }
 
         public void SetGameOver()

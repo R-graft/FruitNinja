@@ -8,7 +8,7 @@ namespace winterStage
 
         public SpriteRenderer[] _partsSprites;
 
-        public SlashView _slashView;
+        public SplashView _slashView;
 
         public Transform halvesParent;
 

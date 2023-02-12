@@ -20,7 +20,7 @@ namespace winterStage
 
         private Queue<GameObject> _activeHearts;
 
-        public static Action OnFallFruit;
+        public static Action OnLoseHeart;
 
         public static Action OnBonusHeart;
 
@@ -76,14 +76,14 @@ namespace winterStage
 
         private void OnEnable()
         {
-            OnFallFruit += RemoveHeart;
+            OnLoseHeart += RemoveHeart;
 
             OnBonusHeart += AddHeart;
         }
 
         private void OnDisable()
         {
-            OnFallFruit -= RemoveHeart;
+            OnLoseHeart -= RemoveHeart;
 
             OnBonusHeart -= AddHeart;
         }

@@ -15,5 +15,10 @@ namespace winterStage
         {
             transform.Rotate(Vector3.forward * _rotateValue * Time.deltaTime);
         }
+
+        public void RotateToDirection(Transform transform, float direction)
+        {
+            transform.Rotate(Vector3.forward * direction * _rotateValue * Time.deltaTime);
+        }
     }
 }

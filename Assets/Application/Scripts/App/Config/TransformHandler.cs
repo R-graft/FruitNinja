@@ -4,9 +4,6 @@ namespace winterStage
 {
     public class TransformHandler: MonoBehaviour
     {
-        [Header("Move multiplier")]
-        public float _forceModificator = 1;
-
         [Header("Rotate multiplier")]
         public  float maxForceRotate = 200;
         public  float minForceRotate = 50;
@@ -20,9 +17,9 @@ namespace winterStage
 
         public Vector2 GetParabolaMoveDirection(Vector2 currentPosition)
         {
-            var directionX = -currentPosition.x * _forceModificator;
+            var directionX = -currentPosition.x;
 
-            var directionY = -currentPosition.y * _forceModificator * 2;
+            var directionY = -currentPosition.y * 2;
 
             return new Vector2(directionX, directionY);
         }
