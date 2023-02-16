@@ -17,6 +17,8 @@ namespace winterStage
 
         [SerializeField] private bool isComplicateable = false;
 
+        [Range(5, 25)] public float ComplicateTimeScale = 10;
+
         [Header("Fields")]
 
         [SerializeField] private SpawnZoneController _zones;
@@ -42,8 +44,6 @@ namespace winterStage
         private const int MaxBlocksLimit = 12;
         private const float PackTimeLimit = 1;
         private const float SpawnTimeLimit = 0.2f;
-
-        private const float ComplicateTimeScale = 15;
 #endregion
 
         public void Init()
@@ -87,42 +87,24 @@ namespace winterStage
         {
             while (true)
             {
-                GetCurrentPack();
+                _currentPack = GetCurrentPack();
 
                 while (_currentPack.Count > 0)
                 {
                     yield return new WaitForSeconds(_spawnTime);
 
-                    var newBock = _currentPack.Dequeue();
-
-                    var newDirection = _transformer.GetParabolaMoveDirection(newBock.transform.position);
-
-                    var newRotateValue = _transformer.GetRandomRotateValue();
-
-                    var newScaleValue = _transformer.GetRandomScaleValue();
-
-                    newBock.StateMashine.SetState(new ActiveState(newBock, newDirection, newRotateValue, newScaleValue));
-
-                    _blocks.AddBlock(newBock, true);
+                    LaunchBlock(_currentPack.Dequeue());
                 }
 
                 yield return new WaitForSeconds(_packTime);
             }
         }
 
-        private Vector2 GetSpawnPosition()
+        public Queue<Block> GetCurrentPack()
         {
-            var currentZone = _zones.GetCurrentZone();
-
-            var positionX = Random.Range(currentZone.pointOne.x, currentZone.pointTwo.x);
-
-            var positionY = Random.Range(currentZone.pointOne.y, currentZone.pointTwo.y);
-
-            return new Vector2(positionX, positionY);
-        }
-        private void GetCurrentPack()
-        { 
             var packCount = Random.Range(_minBlocks, _maxBlocks);
+
+            var currentPack = new Queue<Block>();
 
             for (int i = 0; i < packCount; i++)
             {
@@ -132,9 +114,35 @@ namespace winterStage
 
                 var block = _blocks.GetBlock(currentTag, newPos);
 
-                _currentPack.Enqueue(block);
+                currentPack.Enqueue(block);
             }
+
+            return currentPack;
         }
+
+        public void LaunchBlock(Block block)
+        {
+            var newDirection = _transformer.GetParabolaMoveDirection(block.transform.position);
+
+            var newRotateValue = _transformer.GetRandomRotateValue();
+
+            var newScaleValue = _transformer.GetRandomScaleValue();
+
+            block.StateMashine.SetState(new ActiveState(block, newDirection, newRotateValue, newScaleValue));
+
+            _blocks.AddBlock(block, true);
+        }
+        public Vector2 GetSpawnPosition()
+        {
+            var currentZone = _zones.GetCurrentZone();
+
+            var positionX = Random.Range(currentZone.pointOne.x, currentZone.pointTwo.x);
+
+            var positionY = Random.Range(currentZone.pointOne.y, currentZone.pointTwo.y);
+
+            return new Vector2(positionX, positionY);
+        }
+       
 
         private string GetCurrentBlockTag()
         {

@@ -8,17 +8,14 @@ namespace winterStage
     {
         [SerializeField] private ScreenSizeHandler screenSize;
 
-        [SerializeField] private Canvas _scoreParent;
-
         public BlocksData blocksData;
 
         private CreateSystem _creator;
 
         public HashSet<Block> ActiveBlocks { get; private set; }
-
         public HashSet<Block> SlashedBlocks { get; private set; }
 
-        private List<Block> _allBlocks = new List<Block>();
+        public List<Block> AllBlocks { get; private set; }
 
         private ProgressController _progress;
 
@@ -40,6 +37,7 @@ namespace winterStage
             else
                 _progress = ProgressController.Instance;
 
+            AllBlocks = new List<Block>();
 
             _creator = new CreateSystem();
 
@@ -54,8 +52,6 @@ namespace winterStage
 
             SlashedBlocks = new HashSet<Block>();
 
-            _allBlocks = new List<Block> ();
-
             _stopGame = false;
 
             StartCoroutine(CheckFall());
@@ -69,7 +65,7 @@ namespace winterStage
             }
             else
             {
-                _allBlocks.Add(block);
+                AllBlocks.Add(block);
             }
         }
 
@@ -86,7 +82,7 @@ namespace winterStage
 
             block.StateMashine.SetState(new DisableState(block));
         }
-        private void RemoveFromSet(Block block, HashSet<Block> chekingSet)
+        public void RemoveFromSet(Block block, HashSet<Block> chekingSet)
         {
             chekingSet.Remove(block);
 
@@ -101,7 +97,7 @@ namespace winterStage
 
                 if (currentDistance <= SlashRadius)
                 {
-                    SeriesCounter.OnSlashFruit?.Invoke();
+                    SeriesCounter.OnSlashFruit?.Invoke(block.transform.position);
 
                     block.StateMashine.SetState(new CrushState(block, bladePos.currentDirection));
 
@@ -109,7 +105,7 @@ namespace winterStage
 
                     SlashedBlocks.Add(block);
 
-                    if (_progress)
+                    if (_progress && !block.TryGetComponent(out IBonusBlock _))
                     {
                         _progress.AddScore(50);
                     }
@@ -121,7 +117,7 @@ namespace winterStage
             }
         }
 
-        private void CheckFallBlocks(HashSet<Block> chekingSet)
+        private void CheckFallBlocks(HashSet<Block> chekingSet, bool slashed)
         {
             if (chekingSet.Count > 0)
             {
@@ -129,14 +125,14 @@ namespace winterStage
                 {
                     if (block.transform.position.y < _deadPoint)
                     {
-                        if (block.StateMashine.CurrentState.GetType() == typeof(ActiveState))
+                        if (!block.TryGetComponent(out IBonusBlock _) && !slashed)
                         {
                             HeartCounter.OnLoseHeart?.Invoke();
                         }
 
                         RemoveFromSet(block, chekingSet);
 
-                        CheckFallBlocks(chekingSet);
+                        CheckFallBlocks(chekingSet, slashed);
 
                         break;
                     }
@@ -149,9 +145,9 @@ namespace winterStage
             {
                 yield return new WaitForSeconds(CheckFallTime);
 
-                CheckFallBlocks(ActiveBlocks);
+                CheckFallBlocks(ActiveBlocks, false);
 
-                CheckFallBlocks(SlashedBlocks);
+                CheckFallBlocks(SlashedBlocks, true);
 
                 if (_stopGame)
                 {

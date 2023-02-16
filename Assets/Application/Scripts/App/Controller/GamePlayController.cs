@@ -13,6 +13,7 @@ namespace winterStage
         [SerializeField] private GameUI _UI;
         [SerializeField] private BladeHandler _bladeHandler;
         [SerializeField] private HeartCounter _heartCounter;
+        [SerializeField] private BonusController _bonusController;
 
         [SerializeField] private ProgressController _progressController;
         [SerializeField] private ScenesManager _scenesManager;
@@ -62,6 +63,8 @@ namespace winterStage
             _UI.Restart();
 
             _heartCounter.Init();
+
+            _bonusController.Init();
         }
 
         private void StopGame()

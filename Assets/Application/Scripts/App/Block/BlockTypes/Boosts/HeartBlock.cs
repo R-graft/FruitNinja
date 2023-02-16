@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace winterStage
 {
-    public class HeartBlock : Block, IBonusBlock
+    public class HeartBlock : BoostBlock
     {
-        public void BonusEffect()
+        public override void BonusEffect()
         {
-            throw new System.NotImplementedException();
+            BonusController.OnHeartSlash.Invoke(transform.position);
         }
     }
 }

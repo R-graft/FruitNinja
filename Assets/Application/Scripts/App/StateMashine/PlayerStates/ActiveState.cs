@@ -35,7 +35,8 @@ namespace winterStage
         {
             _mover.ParabolaMove(_block.transform);
 
-            _rotator.Rotate(_block.halvesParent.transform);
+            _rotator.Rotate(_block.main.transform);
+            _rotator.Rotate(_block.shadow.transform);
 
             _scaler.RescaleBlock(_block.transform);
         }

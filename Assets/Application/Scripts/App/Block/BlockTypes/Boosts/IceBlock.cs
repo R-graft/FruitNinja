@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace winterStage
 {
-    public class IceBlock : Block, IBonusBlock
+    public class IceBlock : BoostBlock
     {
-        public void BonusEffect()
+        public override void BonusEffect()
         {
-            throw new System.NotImplementedException();
+            BonusController.OnIceSlash.Invoke();
         }
     }
 }

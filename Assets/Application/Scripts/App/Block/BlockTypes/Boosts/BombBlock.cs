@@ -1,14 +1,12 @@
-using System;
-using UnityEngine;
-
 namespace winterStage
 {
-    public class BombBlock : Block, IBonusBlock
+    public class BombBlock : BoostBlock
     {
-        public static Action<Vector2> OnBombBlow;
-        public void BonusEffect()
+        public override void BonusEffect()
         {
-            OnBombBlow?.Invoke(transform.position);
+            BonusController.OnBombSlash.Invoke(transform);
+
+            HeartCounter.OnLoseHeart.Invoke();
         }
     }
 }

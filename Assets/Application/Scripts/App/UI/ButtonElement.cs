@@ -15,9 +15,11 @@ namespace winterStage
 
         private bool _isActive;
 
+        private static bool PushBlock;
+
         public override void OnPointerDown(PointerEventData eventData)
         {
-            if (!_isActive || OnDownAction == null)
+            if (!_isActive || OnDownAction == null || PushBlock)
                 return;
 
             //AudioController.Instance.GetButtonClickSound();
@@ -43,10 +45,12 @@ namespace winterStage
             _isActive = false;
 
             Animaton();
+
+            PushBlock = true;
         }
         public virtual void Animaton()
         {
-            DOTween.Sequence().Append(transform.DOShakeRotation(animateDuration, 50)).AppendCallback(OnDownAction.Invoke);
+            DOTween.Sequence().Append(transform.DOShakeRotation(animateDuration, 50)).OnComplete(OnDownAction.Invoke).AppendInterval(0.5f).AppendCallback(()=> PushBlock = false);
         }
 
         protected override void OnEnable()
