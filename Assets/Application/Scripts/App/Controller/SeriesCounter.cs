@@ -24,14 +24,12 @@ public class SeriesCounter : MonoBehaviour
 
     private const float _timeScale = 0.1f;
 
-    public static Action OnSlashFruit;
+    public static Action<Vector2> OnSlashFruit;
 
-    private void Update()
+    private void SlashFruit(Vector2 pos)
     {
-        
-    }
-    private void SlashFruit()
-    {
+        _bannerCurrentPosition = pos;
+
         _currentCount++;
 
         if (!_isCounting)

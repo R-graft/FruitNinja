@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,10 @@ namespace winterStage
 {
     public class HeartCounter : MonoBehaviour
     {
-        [Range(3, 25)]
+        [Range(1, 25)]
         public int startCount = 3;
 
-        [Range(3, 25)]
+        [Range(1, 25)]
         public int maxCount = 3;
 
         [SerializeField] private Transform _heartsPanel;
@@ -18,7 +19,7 @@ namespace winterStage
 
         private Queue<GameObject> _allHearts;
 
-        private Queue<GameObject> _activeHearts;
+        private Stack<GameObject> _activeHearts;
 
         public static Action OnLoseHeart;
 
@@ -28,7 +29,7 @@ namespace winterStage
         {
             _allHearts = new Queue<GameObject>();
 
-            _activeHearts = new Queue<GameObject>();
+            _activeHearts = new Stack<GameObject>();
 
             for (int i = 0; i < maxCount; i++)
             {
@@ -51,9 +52,11 @@ namespace winterStage
             {
                 var newHeart = _allHearts.Dequeue();
 
-                _activeHearts.Enqueue(newHeart);
+                _activeHearts.Push(newHeart);
 
                 newHeart.SetActive(true);
+
+                newHeart.transform.DOScale(new Vector2(1.1f, 1), 0.6f);
             }
         }
 
@@ -61,9 +64,9 @@ namespace winterStage
         {
             if (_activeHearts.Count != 0)
             {
-                var removedHeart = _activeHearts.Dequeue();
+                var removedHeart = _activeHearts.Pop();
 
-                removedHeart.SetActive(false);
+                removedHeart.transform.DOScale(Vector3.zero, 0.4f).OnComplete(()=> removedHeart.SetActive(false));
 
                 _allHearts.Enqueue(removedHeart);
             }

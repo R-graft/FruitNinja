@@ -20,9 +20,9 @@ namespace winterStage
 
             creatingBlock.blockTag = type.tag;
 
-            creatingBlock._slashView = Object.Instantiate(type.slashView, creatingBlock.transform);
+            creatingBlock.slashView = Object.Instantiate(type.slashView, creatingBlock.transform);
 
-            foreach (var renderer in creatingBlock._partsSprites)
+            foreach (var renderer in creatingBlock.partsRenderers)
             {
                 renderer.sprite = type.sprite;
             }

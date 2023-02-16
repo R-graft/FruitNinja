@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &578969643143818156
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3129494014458048082, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129494014458048082, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129494014458048082, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129494014458048082, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129494014458048082, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129494014458048082, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129494014458048082, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129494014458048082, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129494014458048082, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129494014458048082, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129494014458048082, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129494014458048083, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+      propertyPath: m_Name
+      value: Magnete
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+--- !u!1 &2550968041737930239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3129494014458048083, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+  m_PrefabInstance: {fileID: 578969643143818156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2550968042305696819 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3129494013884981151, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+  m_PrefabInstance: {fileID: 578969643143818156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &3970725775746612424 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4544751996247168868, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+  m_PrefabInstance: {fileID: 578969643143818156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2550968041451697276 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3129494014203027408, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+  m_PrefabInstance: {fileID: 578969643143818156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6632931070942654753 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6053979708262079117, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
+  m_PrefabInstance: {fileID: 578969643143818156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5297537784695833282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2550968041737930239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cad98081090fa74b823ac256bd0e5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockTag: 
+  partsRenderers:
+  - {fileID: 3970725775746612424}
+  - {fileID: 6632931070942654753}
+  main: {fileID: 2550968042305696819}
+  shadow: {fileID: 2550968041451697276}
+  slashView: {fileID: 0}
+  currentDirection: {x: 0, y: 0, z: 0}
+  currentScale: {x: 0, y: 0, z: 0}
+  currentRotation: 0

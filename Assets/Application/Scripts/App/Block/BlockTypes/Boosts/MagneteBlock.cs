@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace winterStage
 {
-    public class MagneteBlock : Block, IBonusBlock
+    public class MagneteBlock : BoostBlock
     {
-        public void BonusEffect()
+        public override void BonusEffect()
         {
-            throw new System.NotImplementedException();
+            BonusController.OnMagnetSlash(transform);
         }
     }
 }
