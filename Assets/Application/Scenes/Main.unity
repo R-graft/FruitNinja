@@ -6882,7 +6882,7 @@ MonoBehaviour:
   maxBlockInPack: 12
   packTimeScale: 1
   spawnTimeScale: 0.3
-  isComplicateable: 0
+  isComplicateable: 1
   ComplicateTimeScale: 10
   minBlockMuliplier: 15
   maxBlockMuliplier: 15
