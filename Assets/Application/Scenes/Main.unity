@@ -5346,8 +5346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003c319aa4334aa4e99768a891a43872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCount: 3
-  maxCount: 5
+  startCount: 25
+  maxCount: 25
   _heartsPanel: {fileID: 7981350710626695829}
   _heartPrefab: {fileID: 5305759418621432377, guid: ba152a4ac09ef174a94fe7f1657a13f3, type: 3}
 --- !u!114 &228044329
@@ -5895,8 +5895,8 @@ MonoBehaviour:
   bombForce: 10
   magneteTime: 5
   heartsPoolCount: 7
-  firstDirection: {x: 0, y: 5}
-  secondDirection: {x: 5, y: 5}
+  firstDirection: {x: 0, y: 7}
+  secondDirection: {x: 5, y: 7}
   samuraiTime: 7
   _blocks: {fileID: 2100822730}
   _spawner: {fileID: 1768749608}
