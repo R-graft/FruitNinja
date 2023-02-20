@@ -1,32 +1,33 @@
-using System;
 using UnityEngine;
 
 namespace winterStage
 {
     public class BladeHandler : MonoBehaviour
     {
+        [Header("Config")]
+        public float minSlashSpeed = 25;
+
+        [Header("Components")]
         [SerializeField] private TrailRenderer _trailPrefab;
 
         [SerializeField] private Camera _camera;
 
-        private TrailRenderer _currentTrail;
+        private TrailRenderer _firstTrail;
 
-        private BladeInfo _currentSlash = new BladeInfo();
+        private CutHandler _firstCutter;
 
-        private Vector2 _previousPosition;
-
-        public float MinSlashDistance = 0.002f;
+        private CutHandler _secondCutter;
 
         private bool _inputIsActive;
-
-        public static Action<BladeInfo> OnBladeCuting;
-
         public void Init()
         {
-            _currentTrail = Instantiate(_trailPrefab, transform);
+            _firstTrail = Instantiate(_trailPrefab, transform);
+
+            _firstCutter = new CutHandler(_firstTrail, _camera, minSlashSpeed);
 
             EnableBlade();
         }
+
         public void EnableBlade()
         {
             _inputIsActive = true;
@@ -34,75 +35,56 @@ namespace winterStage
         public void DisableBlade()
         {
             _inputIsActive = false;
+
+            _firstTrail.gameObject.SetActive(false);
         }
 
-        private void InputController()
+        
+        private void GetInputs()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                StartCut();
+                if (Input.touchCount > 1)
+                {
+                    var firstTouch = Input.GetTouch(0);
+
+                    _firstCutter.StartCut(firstTouch.position);
+                }
+
+                else
+                {
+                    _firstCutter.StartCut(Input.mousePosition);
+                }
             }
 
             if (Input.GetMouseButton(0))
             {
-                Cutting();
+                if (Input.touchCount > 1)
+                {
+                    var firstTouch = Input.GetTouch(0);
+
+                    _firstCutter.Cutting(firstTouch.position);
+                }
+                else
+                {
+                   _firstCutter.Cutting(Input.mousePosition);
+                }
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-                StopCut();
+                _firstCutter.StopCut();
             }
         }
+
         void Update()
         {
             if (_inputIsActive)
             {
-                InputController();
+                GetInputs();
             }
         }
 
-        private void StartCut()
-        {
-            _previousPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-
-            
-        }
-        private void StopCut()
-        {
-            _currentTrail.gameObject.SetActive(false);
-        }
-        private void Cutting()
-        {
-            Vector2 _currentPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-
-#if PLATFORM_ANDROID
-            if (Input.touchCount > 1)
-            {
-                return;
-            }
-#endif
-            transform.position = _currentPosition;
-
-            float speedCutting = (_currentPosition - _previousPosition).magnitude * Time.deltaTime;
-
-            if (speedCutting > MinSlashDistance)
-            {
-                _currentTrail.gameObject.SetActive(true);
-                _currentSlash.currentDirection = _previousPosition - _currentPosition;
-
-                _currentSlash.currentPosition = _currentPosition;
-
-                OnBladeCuting?.Invoke(_currentSlash);
-            }
-            _previousPosition = _currentPosition;
-        }
-    }
-
-    public struct BladeInfo
-    {
-        public Vector3 currentPosition;
-
-        public Vector2 currentDirection;
-    }
+    }    
 }
 

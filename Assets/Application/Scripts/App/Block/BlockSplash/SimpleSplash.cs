@@ -15,15 +15,19 @@ namespace winterStage
         {
             base.ActivateSplash();
 
-            _blot.gameObject.SetActive(true);
-            _score.SetActive(true);
+            if (foolMode)
+            {
+                _score.SetActive(true);
 
-            var _scoreSequence = DOTween.Sequence().Append(_score.transform.DOScale(new Vector2(0.002f, 0.002f), 0.1f)).
-               AppendInterval(0.3f).Append(_score.transform.DOScale(Vector2.zero, 0.1f));
+                var _scoreSequence = DOTween.Sequence().Append(_score.transform.DOScale(new Vector2(0.002f, 0.002f), 0.1f)).
+                   AppendInterval(0.3f).Append(_score.transform.DOScale(Vector2.zero, 0.1f));
 
-            var _blotSequence = DOTween.Sequence();
-            _blotSequence.Append(_blot.DOLocalMoveY(-2, 2)).Insert(0, _blotSprite.DOFade(0, 2f)).
-                Insert(0, _blot.DOScaleY(2, 2)).OnComplete(() => DeactiveSplash());
+                _blot.gameObject.SetActive(true);
+
+                var _blotSequence = DOTween.Sequence();
+                _blotSequence.Append(_blot.DOLocalMoveY(-2, 2)).Insert(0, _blotSprite.DOFade(0, 2f)).
+                    Insert(0, _blot.DOScaleY(2, 2)).OnComplete(() => DeactiveSplash());
+            }
         }
 
         private void DeactiveSplash()

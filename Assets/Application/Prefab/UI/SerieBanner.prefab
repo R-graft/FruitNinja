@@ -353,7 +353,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &529771659315936173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +386,7 @@ MonoBehaviour:
   _serieFruit: {fileID: 6989989500938178178}
   _serieMeltiplicator: {fileID: 4938454060188550910}
   _transform: {fileID: 3098502422681746614}
+  enabled: 0
 --- !u!1 &8588740744199897813
 GameObject:
   m_ObjectHideFlags: 0

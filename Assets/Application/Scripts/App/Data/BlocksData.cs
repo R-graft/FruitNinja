@@ -20,6 +20,8 @@ namespace winterStage
 
         public float spawnPercent;
 
+        public bool isBoost;
+
         [Header("View")]
         public Sprite sprite;
 
