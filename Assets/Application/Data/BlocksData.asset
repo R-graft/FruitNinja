@@ -86,28 +86,28 @@ MonoBehaviour:
   - tag: magnete
     blockType: {fileID: 5297537784695833282, guid: de996752ebb7d914d9b3d9837935296e, type: 3}
     poolCount: 5
-    spawnPercent: 5
+    spawnPercent: 3
     isBoost: 1
     sprite: {fileID: 21300000, guid: f76f519b2fd69704fa04a0cc76521256, type: 3}
     slashView: {fileID: 436769225473271006, guid: 766d4248261fce542b6f76d111af5e2c, type: 3}
   - tag: heart
     blockType: {fileID: 2602777314129162164, guid: 94a37ffc66cd4ef4690c122e5707faf3, type: 3}
     poolCount: 5
-    spawnPercent: 5
+    spawnPercent: 3
     isBoost: 1
     sprite: {fileID: 21300000, guid: ebbefc117916c674f9f7ceecb98fe9bf, type: 3}
     slashView: {fileID: 745022934144468626, guid: 9044255d9cc81b84cbcc82b86d916619, type: 3}
   - tag: basket
     blockType: {fileID: 8077461544134591549, guid: aed94c41563db274cae84cbe184765dc, type: 3}
     poolCount: 5
-    spawnPercent: 5
+    spawnPercent: 3
     isBoost: 1
     sprite: {fileID: 21300000, guid: f0fd12253b83b554a95fe23dd6f39a0f, type: 3}
     slashView: {fileID: 436769225473271006, guid: 6a39003c88b31e7448753c07c96d471d, type: 3}
   - tag: samurai
     blockType: {fileID: 1150264324575577011, guid: 41ef33b001b3bfe4bbf125a971d8561b, type: 3}
     poolCount: 5
-    spawnPercent: 5
+    spawnPercent: 3
     isBoost: 1
     sprite: {fileID: 21300000, guid: 4737510cd38ae8a489615a1084ad6cb0, type: 3}
     slashView: {fileID: 436769225473271006, guid: e4876954790f7d84496710b960e53288, type: 3}
