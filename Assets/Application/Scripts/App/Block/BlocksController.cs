@@ -8,6 +8,8 @@ namespace winterStage
     {
         [SerializeField] private ScreenSizeHandler screenSize;
 
+        [SerializeField] private BonusController _bonus;
+
         public BlocksData blocksData;
 
         private CreateSystem _creator;
@@ -43,7 +45,7 @@ namespace winterStage
 
             _creator = new CreateSystem();
 
-            _creator.CreateBlocks(blocksData, this);
+            _creator.CreateBlocks(blocksData, this, _bonus);
 
             _deadPoint = screenSize.downScreenEdge - DeadZoneOffset;
         }

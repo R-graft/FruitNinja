@@ -48,13 +48,13 @@ namespace winterStage
         [HideInInspector] public bool _isIce;
         [HideInInspector] public bool isSamurai;
 
-        public static Action<Transform> OnBombSlash;
-        public static Action<Transform> OnMagnetSlash;
-        public static Action<Vector3> OnHeartSlash;
-        public static Action OnIceSlash;
-        public static Action<Vector3> OnBasketSlash;
-        public static Action OnSamuraiSlash;
-        public static Action OnBrickSlash;
+        public  Action<Transform> OnBombSlash;
+        public Action<Transform> OnMagnetSlash;
+        public Action<Vector3> OnHeartSlash;
+        public Action OnIceSlash;
+        public Action<Vector3> OnBasketSlash;
+        public Action OnSamuraiSlash;
+        public Action OnBrickSlash;
 
         private BombBonus _bomb;
         private IceBonus _ice;

@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace winterStage
 {
     public class BoostBlock : Block, IBoostBlock
     {
+        public BonusController BonusController { get;set ; }
+
         public override void SlashInBehaviour()
         {
             BonusEffect();
@@ -25,6 +28,7 @@ namespace winterStage
 
         public virtual void BonusEffect()
         {
+
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace winterStage
@@ -65,6 +66,8 @@ namespace winterStage
 
     public interface IBoostBlock
     {
+        public BonusController BonusController { get; set; }
+
         public void BonusEffect();
     }
 }
