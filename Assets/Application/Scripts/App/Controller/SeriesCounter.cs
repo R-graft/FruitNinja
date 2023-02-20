@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using winterStage;
 
 public class SeriesCounter : MonoBehaviour
 {
@@ -26,15 +27,24 @@ public class SeriesCounter : MonoBehaviour
 
     public static Action<Vector2> OnSlashFruit;
 
+    public static Action OnSlash;
+
+    public bool enable = true;
+
     private void SlashFruit(Vector2 pos)
     {
-        _bannerCurrentPosition = pos;
+        OnSlash?.Invoke();
 
-        _currentCount++;
-
-        if (!_isCounting)
+        if (enable)
         {
-            StartCoroutine(Counter());
+            _bannerCurrentPosition = pos;
+
+            _currentCount++;
+
+            if (!_isCounting)
+            {
+                StartCoroutine(Counter());
+            }
         }
     }
     private IEnumerator Counter()

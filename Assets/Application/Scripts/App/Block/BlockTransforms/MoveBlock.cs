@@ -8,7 +8,7 @@ namespace winterStage
 
         private const float GravityStep = 10f;
 
-        public static float _forceModificator = 1f;
+        public float _forceModificator = 1f;
 
         public void SetDirection(Vector2 direction)
         {
@@ -29,7 +29,7 @@ namespace winterStage
 
             else
             {
-                _direction = direction;
+                _direction = new Vector2(direction.x/2, direction.y);
             }
         }
 
@@ -50,7 +50,7 @@ namespace winterStage
             transform.position = Vector3.MoveTowards(transform.position, target, force * Time.deltaTime);
         }
 
-        public static void SetForce(float force)
+        public  void SetForce(float force)
         {
             _forceModificator = force;
         }

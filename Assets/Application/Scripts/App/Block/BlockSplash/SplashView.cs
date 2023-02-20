@@ -11,6 +11,8 @@ namespace winterStage
 
         public TrailRenderer flyingTrail;
 
+        public static bool foolMode = true;
+
         public virtual void ActivateSplash()
         {
             _particleEmiter.Play();

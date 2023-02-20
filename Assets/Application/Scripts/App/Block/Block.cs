@@ -27,6 +27,7 @@ namespace winterStage
         protected readonly Vector2 DefaultPos = Vector3.zero;
         protected readonly Quaternion DefaultRot = Quaternion.identity;
 
+        public bool isBonus;
         public StateMashine StateMashine { get; set; }
 
         public void Init()
@@ -62,7 +63,7 @@ namespace winterStage
         }
     }
 
-    public interface IBonusBlock
+    public interface IBoostBlock
     {
         public void BonusEffect();
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace winterStage
 {
-    public class BoostBlock : Block, IBonusBlock
+    public class BoostBlock : Block, IBoostBlock
     {
         public override void SlashInBehaviour()
         {

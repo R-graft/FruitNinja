@@ -22,6 +22,8 @@ namespace winterStage
 
             creatingBlock.slashView = Object.Instantiate(type.slashView, creatingBlock.transform);
 
+            creatingBlock.isBonus = type.isBoost;
+
             foreach (var renderer in creatingBlock.partsRenderers)
             {
                 renderer.sprite = type.sprite;

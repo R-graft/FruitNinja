@@ -15,9 +15,17 @@ namespace winterStage
         [Range(1, 3)] public float packTimeScale = 2;
         [Range(0.3f, 1)] public float spawnTimeScale = 0.3f;
 
-        [SerializeField] private bool isComplicateable = false;
+        [SerializeField] public bool isComplicateable = false;
 
         [Range(5, 25)] public float ComplicateTimeScale = 10;
+
+        [Header("HellMode config")]
+
+        [Range(5, 15)] public int minBlockMuliplier = 7;
+        [Range(5, 15)] public int maxBlockMuliplier = 5;
+
+        [Range(5, 10)] public float packTimeMultiplier = 5;
+        [Range(5, 10)] public float spawnTimeMultiplier = 5;
 
         [Header("Fields")]
 
@@ -29,12 +37,18 @@ namespace winterStage
 
         private Queue<Block> _currentPack = new Queue<Block>();
 
-        public int _minBlocks;
-        public int _maxBlocks;
-        public float _packTime;
-        public float _spawnTime;
+        private int _minBlocks;
+        private int _maxBlocks;
+        private float _packTime;
+        private float _spawnTime;
 
-#region(complicateable params)
+        private bool _isComplicate = false;
+
+        private bool _onlySimple;
+
+        private bool _hellMode;
+
+        #region(complicateable params)
         private const int MinBlocks = 2;
         private const int MaxBlocks = 4;
         private const float PackTime = 2;
@@ -44,14 +58,35 @@ namespace winterStage
         private const int MaxBlocksLimit = 12;
         private const float PackTimeLimit = 1;
         private const float SpawnTimeLimit = 0.2f;
-#endregion
+        #endregion
 
         public void Init()
         {
             SetBlocksPercents();
+
+            SetComplicaleable();
         }
         public void StartSystem()
         {
+            StartCoroutine(SpawnBlocks());
+        }
+
+        public void StopSystem()
+        {
+            StopAllCoroutines();
+
+            while (_currentPack.Count > 0)
+            {
+                _blocks.DeactivateBlock(_currentPack.Dequeue());
+
+            }
+        }
+    
+
+        private void SetComplicaleable()
+        {
+            _isComplicate = isComplicateable;
+
             if (isComplicateable)
             {
                 _minBlocks = MinBlocks;
@@ -68,26 +103,13 @@ namespace winterStage
                 _packTime = packTimeScale;
                 _spawnTime = spawnTimeScale;
             }
-
-            StartCoroutine(SpawnBlocks());
         }
-        public void StopSystem()
-        {
-            StopAllCoroutines();
-
-            if (_currentPack.Count != 0)
-            {
-                for (int i = 0; i < _currentPack.Count; i++)
-                {
-                    _blocks.DeactivateBlock(_currentPack.Dequeue());
-                }
-            }
-        }
+        
         private IEnumerator SpawnBlocks()
         {
             while (true)
             {
-                _currentPack = GetCurrentPack();
+                _currentPack = GetCurrentPack(_currentPack, _onlySimple);
 
                 while (_currentPack.Count > 0)
                 {
@@ -100,11 +122,11 @@ namespace winterStage
             }
         }
 
-        public Queue<Block> GetCurrentPack()
+        public Queue<Block> GetCurrentPack(Queue<Block> currentPack, bool onlySimle)
         {
             var packCount = Random.Range(_minBlocks, _maxBlocks);
 
-            var currentPack = new Queue<Block>();
+            bool containsBonus = false;
 
             for (int i = 0; i < packCount; i++)
             {
@@ -114,7 +136,27 @@ namespace winterStage
 
                 var block = _blocks.GetBlock(currentTag, newPos);
 
-                currentPack.Enqueue(block);
+                if (block.isBonus)
+                {
+                    if (containsBonus || onlySimle)
+                    {
+                        _blocks.DeactivateBlock(block);
+
+                        i--;
+                    }
+                    else
+                    {
+                        containsBonus = true;
+
+                        currentPack.Enqueue(block);
+
+                        continue;
+                    }
+                }
+                else
+                {
+                    currentPack.Enqueue(block);
+                }
             }
 
             return currentPack;
@@ -142,7 +184,6 @@ namespace winterStage
 
             return new Vector2(positionX, positionY);
         }
-       
 
         private string GetCurrentBlockTag()
         {
@@ -206,6 +247,38 @@ namespace winterStage
                     yield break;
                 }
             }
+        }
+
+        public void SetHellMode(bool hell)
+        {
+            _hellMode = hell;
+
+            if (!_hellMode)
+            {
+                _onlySimple = false;
+
+                _minBlocks /= minBlockMuliplier;
+                _maxBlocks /= maxBlockMuliplier;
+                _packTime *= packTimeMultiplier;
+                _spawnTime *= spawnTimeMultiplier;
+
+                if (_isComplicate)
+                {
+                    StartCoroutine(IncrementComlicate());
+                }
+            }
+
+            if (_hellMode)
+            {
+                _onlySimple = true;
+
+                _minBlocks *= minBlockMuliplier;
+                _maxBlocks *= maxBlockMuliplier;
+                _packTime /= packTimeMultiplier;
+                _spawnTime /= spawnTimeMultiplier;
+            }
+
+            StartSystem();
         }
     }
 }

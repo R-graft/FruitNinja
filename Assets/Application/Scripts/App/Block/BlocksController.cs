@@ -29,6 +29,8 @@ namespace winterStage
 
         [HideInInspector] public bool _stopGame;
 
+        private bool _isHellMode;
+
         public void Init()
         {
             if (!ProgressController.Instance)
@@ -105,7 +107,7 @@ namespace winterStage
 
                     SlashedBlocks.Add(block);
 
-                    if (_progress && !block.TryGetComponent(out IBonusBlock _))
+                    if (_progress && !block.isBonus)
                     {
                         _progress.AddScore(50);
                     }
@@ -125,7 +127,7 @@ namespace winterStage
                 {
                     if (block.transform.position.y < _deadPoint)
                     {
-                        if (!block.TryGetComponent(out IBonusBlock _) && !slashed)
+                        if (!_isHellMode && !block.isBonus && !slashed)
                         {
                             HeartCounter.OnLoseHeart?.Invoke();
                         }
@@ -165,6 +167,12 @@ namespace winterStage
                 StopAllCoroutines();
             }
         }
+
+        public void SetHellMode(bool isHell)
+        {
+            _isHellMode = isHell;
+
+        }
 #region(poolFunctions)
         public void PoolOnGet(Block block, Vector3 newPosition)
         {
@@ -186,12 +194,12 @@ namespace winterStage
 
         private void OnEnable()
         {
-            BladeHandler.OnBladeCuting += CheckSlash;
+            CutHandler.OnBladeCuting += CheckSlash;
         }
 
         private void OnDisable()
         {
-            BladeHandler.OnBladeCuting -= CheckSlash;
+            CutHandler.OnBladeCuting -= CheckSlash;
         }
     }
 }
