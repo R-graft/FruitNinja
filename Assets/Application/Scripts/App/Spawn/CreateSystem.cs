@@ -11,7 +11,7 @@ namespace winterStage
 
         public Dictionary<string, BlockModel> Types_ { get; private set; }
 
-        public void CreateBlocks(BlocksData _blocksList, BlocksController controller)
+        public void CreateBlocks(BlocksData _blocksList, BlocksController controller, BonusController bonus)
         {
             Pools = new Dictionary<string, ObjectPool<Block>>();
 
@@ -23,7 +23,7 @@ namespace winterStage
             {
                 Types_.Add(type.tag, type);
 
-                FactoryBlock<Block> factory = new FactoryBlock<Block>(type.blockType, controller.transform);
+                FactoryBlock<Block> factory = new FactoryBlock<Block>(type.blockType, controller, bonus);
 
                 Factories.Add(type.tag, factory);
 
@@ -34,8 +34,6 @@ namespace winterStage
                     var newObject = factory.CreateBlock(type);
 
                     pool.Add(newObject);
-
-                    controller.AddBlock(newObject, false);
                 }
 
                 Pools.Add(type.tag, pool);

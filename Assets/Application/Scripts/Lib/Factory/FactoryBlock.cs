@@ -6,23 +6,35 @@ namespace winterStage
     {
         private T _creatingObject;
 
-        private Transform _creatingTransform;
-        public FactoryBlock(T currentBlockType, Transform transform)
+        private BlocksController _controller;
+
+        private BonusController _bonus;
+        public FactoryBlock(T currentBlockType, BlocksController controller, BonusController bonus)
         {
             _creatingObject = currentBlockType;
 
-            _creatingTransform = transform;
+            _controller = controller;
+
+            _bonus = bonus;
         }
 
         public T CreateBlock(BlockModel type)
         {
-            var creatingBlock = Object.Instantiate(_creatingObject, _creatingTransform);
+            var creatingBlock = Object.Instantiate(_creatingObject, _controller.transform);
 
             creatingBlock.blockTag = type.tag;
 
             creatingBlock.slashView = Object.Instantiate(type.slashView, creatingBlock.transform);
 
             creatingBlock.isBonus = type.isBoost;
+
+            if (type.isBoost)
+            {
+                if (creatingBlock.TryGetComponent(out IBoostBlock boost))
+                {
+                    boost.BonusController = _bonus;
+                }
+            }
 
             foreach (var renderer in creatingBlock.partsRenderers)
             {
@@ -32,6 +44,8 @@ namespace winterStage
             creatingBlock.Init();
 
             creatingBlock.StateMashine.Init(new DisableState(creatingBlock));
+
+            _controller.AddBlock(creatingBlock, false);
 
             return creatingBlock;
         }

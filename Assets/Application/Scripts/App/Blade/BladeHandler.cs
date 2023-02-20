@@ -16,8 +16,6 @@ namespace winterStage
 
         private CutHandler _firstCutter;
 
-        private CutHandler _secondCutter;
-
         private bool _inputIsActive;
         public void Init()
         {
