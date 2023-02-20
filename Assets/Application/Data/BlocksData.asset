@@ -109,7 +109,7 @@ MonoBehaviour:
     poolCount: 5
     spawnPercent: 5
     isBoost: 1
-    sprite: {fileID: 21300000, guid: b9ad99168b6c24e40bce0e539b98ea92, type: 3}
+    sprite: {fileID: 21300000, guid: 4737510cd38ae8a489615a1084ad6cb0, type: 3}
     slashView: {fileID: 436769225473271006, guid: e4876954790f7d84496710b960e53288, type: 3}
   - tag: brick
     blockType: {fileID: 3671031297111425234, guid: fd9252816df95ae4aa7207a70a82dd4a, type: 3}
