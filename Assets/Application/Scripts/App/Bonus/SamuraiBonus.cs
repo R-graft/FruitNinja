@@ -14,8 +14,6 @@ namespace winterStage
 
         private SpawnSystem _spawner;
 
-        private GameUI _ui;
-
         private int _samuraiTime;
 
         private int slashedCount;
@@ -26,11 +24,10 @@ namespace winterStage
         private int _endHold = 2;
         private float _endTimescale = 0.02f;
 
-        public SamuraiBonus(TextMeshProUGUI _smauraiEffect, SpawnSystem spawner, GameUI ui, BlocksController blocks, BonusController controller, int samuraiTime)
+        public SamuraiBonus(TextMeshProUGUI _smauraiEffect, SpawnSystem spawner, BlocksController blocks, BonusController controller, int samuraiTime)
         {
             _samuraiEffect = _smauraiEffect;
             _spawner = spawner;
-            _ui = ui;
             _blocks = blocks;
             _controller = controller;
             _samuraiTime = samuraiTime;
@@ -44,6 +41,8 @@ namespace winterStage
 
             DisableScore(false);
 
+            _blocks.SetHellMode(true);
+
             int countdown = _startCountdown;
 
             while (countdown != 0)
@@ -56,9 +55,6 @@ namespace winterStage
             }
             _samuraiEffect.gameObject.SetActive(false);
 
-            _ui.EnableSeriesCounter(false);
-
-            _blocks.SetHellMode(true);
             _spawner.SetHellMode(true);
 
             slashedCount = 0;
@@ -89,11 +85,8 @@ namespace winterStage
 
             _samuraiEffect.gameObject.SetActive(false);
 
-
             _blocks.SetHellMode(false);
             _spawner.SetHellMode(false);
-
-            _ui.EnableSeriesCounter(true);
 
             SeriesCounter.OnSlash -= IncremetnSlashed;
 

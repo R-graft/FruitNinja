@@ -8,15 +8,21 @@ namespace winterStage
     {
         private GameObject _heartEffect;
 
-        private Transform _heartCounter;
+        private HeartCounter _heartCounter;
 
         private Transform _controllerTransform;
 
         private Queue<GameObject> _hearts = new Queue<GameObject>();
 
+        private float _rightScreenEdge;
+
+        private float _upScreenEdge = 3.8f;
+
+        private float _offset;
+
         private int _heartsPoolCount = 7;
 
-        public HeartBonus(GameObject heartEffect, Transform heartCounter, Transform controller, int heartsPoolCount)
+        public HeartBonus(GameObject heartEffect, HeartCounter heartCounter, Transform controller, int heartsPoolCount)
         {
             _heartEffect = heartEffect;
             _heartCounter = heartCounter;
@@ -24,6 +30,10 @@ namespace winterStage
             _controllerTransform = controller;
 
             HeartsInit();
+
+            _rightScreenEdge = ScreenSizeHandler.rightScreenEdge;
+
+            _offset = _rightScreenEdge * 2 / 15;
         }
         private void HeartsInit()
         {
@@ -52,8 +62,10 @@ namespace winterStage
             var currentHeart = GetHeart();
 
             currentHeart.transform.position = heartPos;
+            Debug.Log(_rightScreenEdge);
+            Vector2 targetPosition = new Vector2(_rightScreenEdge - (_heartCounter.CurrentHeart +1) * _offset, _upScreenEdge);
 
-            DOTween.Sequence().Append(currentHeart.transform.DOMove(_heartCounter.position, 1)).
+            DOTween.Sequence().Append(currentHeart.transform.DOMove(targetPosition, 1)).
                 AppendCallback(() => EndHeart(currentHeart));
         }
 

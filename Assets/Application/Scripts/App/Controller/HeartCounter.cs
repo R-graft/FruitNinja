@@ -7,19 +7,19 @@ namespace winterStage
 {
     public class HeartCounter : MonoBehaviour
     {
-        [Range(1, 25)]
+        [Range(1, 8)]
         public int startCount = 3;
 
-        [Range(1, 25)]
+        [Range(1, 8)]
         public int maxCount = 3;
 
         [SerializeField] private Transform _heartsPanel;
 
         [SerializeField] private GameObject _heartPrefab;
 
-        private Queue<GameObject> _allHearts;
+        private List<GameObject> _hearts;
 
-        private Stack<GameObject> _activeHearts;
+        public int CurrentHeart { get; private set; }
 
         public static Action OnLoseHeart;
 
@@ -27,9 +27,7 @@ namespace winterStage
 
         public void Init()
         {
-            _allHearts = new Queue<GameObject>();
-
-            _activeHearts = new Stack<GameObject>();
+            _hearts = new List<GameObject>();
 
             for (int i = 0; i < maxCount; i++)
             {
@@ -37,7 +35,7 @@ namespace winterStage
 
                 newHeart.SetActive(false);
 
-                _allHearts.Enqueue(newHeart);
+                _hearts.Add(newHeart);
             }
 
             for (int i = 0; i < startCount; i++)
@@ -48,30 +46,30 @@ namespace winterStage
 
         public void AddHeart()
         {
-            if (_allHearts.Count > 0)
+            if (CurrentHeart < maxCount)
             {
-                var newHeart = _allHearts.Dequeue();
-
-                _activeHearts.Push(newHeart);
+                var newHeart = _hearts[CurrentHeart];
 
                 newHeart.SetActive(true);
 
                 newHeart.transform.DOScale(new Vector2(1.1f, 1), 0.6f);
+
+                CurrentHeart++;
             }
         }
 
         public void RemoveHeart()
         {
-            if (_activeHearts.Count != 0)
+            if (CurrentHeart > 0)
             {
-                var removedHeart = _activeHearts.Pop();
+                var removedHeart = _hearts[CurrentHeart - 1];
 
                 removedHeart.transform.DOScale(Vector3.zero, 0.4f).OnComplete(()=> removedHeart.SetActive(false));
 
-                _allHearts.Enqueue(removedHeart);
+                CurrentHeart--;
             }
 
-            if (_activeHearts.Count == 0)
+            if (CurrentHeart == 0)
             {
                 GamePlayController.OnStopGame.Invoke();
             }

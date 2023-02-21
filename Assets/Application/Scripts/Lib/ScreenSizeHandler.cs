@@ -8,12 +8,12 @@ namespace winterStage
 
         public const float screenHeight = 5;
 
-        [HideInInspector] public float screenWidth;
+        [HideInInspector] public static float screenWidth;
 
-        [HideInInspector] public float leftScreenEdge;
-        [HideInInspector] public float rightScreenEdge;
-        [HideInInspector] public float upScreenEdge;
-        [HideInInspector] public float downScreenEdge;
+        [HideInInspector] public static float leftScreenEdge;
+        [HideInInspector] public static float rightScreenEdge;
+        [HideInInspector] public static float upScreenEdge;
+        [HideInInspector] public static float downScreenEdge;
 
         public void Init()
         {
@@ -23,7 +23,6 @@ namespace winterStage
 
             leftScreenEdge = -screenWidth;
             rightScreenEdge = screenWidth;
-
             upScreenEdge = screenHeight; 
             downScreenEdge = -screenHeight;
         }

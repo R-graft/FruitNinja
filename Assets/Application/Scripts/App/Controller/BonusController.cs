@@ -32,9 +32,7 @@ namespace winterStage
 
         [SerializeField] private SpawnSystem _spawner;
 
-        [SerializeField] private Transform _heartCounter;
-
-        [SerializeField] private GameUI _ui;
+        [SerializeField] private HeartCounter _heartCounter;
 
         [Header("Effects")]
         [SerializeField] private GameObject _iceEffect;
@@ -71,7 +69,7 @@ namespace winterStage
             _heart = new HeartBonus(_heartEffect, _heartCounter, transform, heartsPoolCount);
             _magnet = new MagnetBonus(_magnetEffect, _blocks.ActiveBlocks, this, magneteTime);
             _basket = new BasketBonus(_blocks, _spawner, firstDirection, secondDirection);
-            _samurai = new SamuraiBonus(_samuraiEffect, _spawner, _ui, _blocks, this, samuraiTime);
+            _samurai = new SamuraiBonus(_samuraiEffect, _spawner, _blocks, this, samuraiTime);
             _brick = new BrickBonus(_blade);
         }
 
