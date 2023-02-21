@@ -27,6 +27,8 @@ public class SeriesCounter : MonoBehaviour
 
     public static Action OnSlash;
 
+    private bool _isShow;
+
     public bool enable = true;
 
     private void SlashFruit(Vector2 pos)
@@ -90,21 +92,24 @@ public class SeriesCounter : MonoBehaviour
 
         _serieMeltiplicator.text = "x" + count.ToString();
 
-        ShowBanner();
+        if (!_isShow)
+        {
+            ShowBanner();
+        }
     }
     private void ShowBanner()
     {
+        _isShow = true;
+
         if (_bannerStartPosition.magnitude > 4)
         {
             _bannerStartPosition = new Vector2(_bannerStartPosition.x * 0.3f, _bannerStartPosition.y * 0.5f);
         }
         _transform.position = _bannerStartPosition;
 
-        print(_transform.position.magnitude);
-
         DOTween.Sequence().Append(_transform.DOScale(_bannerCurrentScale, 0.3f)).
-            AppendInterval(0.6f).Append(_transform.DOScale(new Vector2(0.005f, 0.005f), 0.3f)).
-            Append(_transform.DOScale(Vector3.zero, 0.3f));
+            AppendInterval(0.3f).Append(_transform.DOScale(new Vector2(0.005f, 0.005f), 0.3f)).
+            Append(_transform.DOScale(Vector3.zero, 0.3f)).AppendCallback(() => _isShow = false); ;
     }
 
     private void OnEnable()

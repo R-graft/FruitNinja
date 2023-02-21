@@ -29,6 +29,8 @@ namespace winterStage
 
         private const float CheckFallTime = 0.5f;
 
+        private int _scoreFruit = 50;
+
         [HideInInspector] public bool _stopGame;
 
         private bool _isHellMode;
@@ -47,7 +49,7 @@ namespace winterStage
 
             _creator.CreateBlocks(blocksData, this, _bonus);
 
-            _deadPoint = screenSize.downScreenEdge - DeadZoneOffset;
+            _deadPoint = ScreenSizeHandler.downScreenEdge - DeadZoneOffset;
         }
 
         public void Restart()
@@ -111,7 +113,7 @@ namespace winterStage
 
                     if (_progress && !block.isBonus)
                     {
-                        _progress.AddScore(50);
+                        _progress.AddScore(_scoreFruit);
                     }
 
                     CheckSlash(bladePos);

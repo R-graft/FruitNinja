@@ -1,12 +1,16 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace winterStage
 {
     public class LosePopUp : MonoBehaviour
     {
-        [SerializeField] private RectTransform _gameOverPopUp;
+        [SerializeField] private GameObject _gameOverPanel;
+
+        [SerializeField] private Image _bg;
+        [SerializeField] private RectTransform _content;
 
         [SerializeField] private ButtonElement _restart;
         [SerializeField] private ButtonElement _menu;
@@ -25,9 +29,9 @@ namespace winterStage
 
         public void GameOver()
         {
-            _gameOverPopUp.gameObject.SetActive(true);
+            _gameOverPanel.SetActive(true);
 
-            DOTween.Sequence().Append(_gameOverPopUp.DOScaleY(1.2f, 0.2f)).Append(_gameOverPopUp.DOScaleY(1, 0.2f));
+            DOTween.Sequence().Append(_bg.DOFade(0.9f, 1)).Append(_content.DOScaleY(1.2f, 0.2f)).Append(_content.DOScaleY(1, 0.2f));
 
             _bestScore.text = ProgressController.Instance.BestScore.ToString();
 
@@ -35,9 +39,7 @@ namespace winterStage
         }
         public void Restart()
         {
-            _gameOverPopUp.gameObject.SetActive(false);
-
-            _gameOverPopUp.localScale = Vector3.right;
+            DOTween.Sequence().Append(_content.DOScaleY(0f, 0.2f)).Append(_bg.DOFade(0, 0.5f)).AppendCallback(() => _gameOverPanel.SetActive(false)); 
         }
     }
 }

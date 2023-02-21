@@ -20,7 +20,7 @@ MonoBehaviour:
   unscaledTimeScale: 1
   useSmoothDeltaTime: 0
   maxSmoothUnscaledTime: 0.15
-  rewindCallbackMode: 0
+  rewindCallbackMode: 2
   showUnityEditorReport: 0
   logBehaviour: 0
   drawGizmos: 1
