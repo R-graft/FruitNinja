@@ -12,109 +12,160 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217e4cf570f2c7748871a4cfee9ed0dc, type: 3}
   m_Name: BlocksData
   m_EditorClassIdentifier: 
-  blocksModels:
-  - tag: coconut
-    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
-    poolCount: 10
-    spawnPercent: 10
-    isBoost: 0
-    sprite: {fileID: 21300000, guid: f6e91af4376384848bf8d7346deb22c3, type: 3}
-    slashView: {fileID: 1289830431325244085, guid: 22b155dea637bae4d96eeda2d7c19e10, type: 3}
-  - tag: lemon
-    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
-    poolCount: 10
-    spawnPercent: 10
-    isBoost: 0
-    sprite: {fileID: 21300000, guid: 16cdb5f50d7c6044cb1d7db0812225c7, type: 3}
-    slashView: {fileID: 4053772664170157843, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
-  - tag: grenade
-    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
-    poolCount: 10
-    spawnPercent: 10
-    isBoost: 0
-    sprite: {fileID: 21300000, guid: 0290a6ba799d71a4f860208378fd7e91, type: 3}
-    slashView: {fileID: 4315858586341165714, guid: 661a17bbbe94dc24aaaea04e9ebabd87, type: 3}
-  - tag: watermellon
-    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
-    poolCount: 10
-    spawnPercent: 10
-    isBoost: 0
-    sprite: {fileID: 21300000, guid: ffa1b17720479674bab911b7e35982bf, type: 3}
-    slashView: {fileID: 4315858586341165714, guid: 661a17bbbe94dc24aaaea04e9ebabd87, type: 3}
-  - tag: plum
-    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
-    poolCount: 10
-    spawnPercent: 10
-    isBoost: 0
-    sprite: {fileID: 21300000, guid: ea58a8552218d30498c12d79ffb9b064, type: 3}
-    slashView: {fileID: 7974926309661873825, guid: 2e38194655d29b04083d9e1a72a4a0dd, type: 3}
-  - tag: pear
-    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
-    poolCount: 10
-    spawnPercent: 10
-    isBoost: 0
-    sprite: {fileID: 21300000, guid: 30d5305b1fc591a468965be5a3d28944, type: 3}
-    slashView: {fileID: 4053772664170157843, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
-  - tag: mango
-    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
-    poolCount: 10
-    spawnPercent: 10
-    isBoost: 0
-    sprite: {fileID: 21300000, guid: 5aceecd14f183c14daa5179b73fa162d, type: 3}
-    slashView: {fileID: 4053772664170157843, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
-  - tag: garlic
-    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
-    poolCount: 10
-    spawnPercent: 10
-    isBoost: 0
-    sprite: {fileID: 21300000, guid: 9c799f3836d809f4a93facfa3999ef7b, type: 3}
-    slashView: {fileID: 1383673553719631410, guid: a496b153487980a43951caadba30139c, type: 3}
-  - tag: bomb
-    blockType: {fileID: 2557293260677922846, guid: 193e20f66a3353b46b3a1deb62a72252, type: 3}
-    poolCount: 10
-    spawnPercent: 5
-    isBoost: 1
-    sprite: {fileID: 21300000, guid: 017c6c719494b6546b06577b3b12faef, type: 3}
-    slashView: {fileID: 1328254054586530658, guid: ce16821eeb92a334a92f55cad0d826f7, type: 3}
-  - tag: ice
-    blockType: {fileID: 9085991851214443287, guid: 1a5684aaa21a181448239718ab6fdc03, type: 3}
-    poolCount: 10
-    spawnPercent: 5
-    isBoost: 1
-    sprite: {fileID: 21300000, guid: a1fd6b5adccc70c49981e1676196439c, type: 3}
-    slashView: {fileID: 745022934144468626, guid: 2e7ec0e0a1c60a2429b22a67a743fd56, type: 3}
-  - tag: magnete
-    blockType: {fileID: 5297537784695833282, guid: de996752ebb7d914d9b3d9837935296e, type: 3}
-    poolCount: 10
-    spawnPercent: 5
-    isBoost: 1
-    sprite: {fileID: 21300000, guid: f76f519b2fd69704fa04a0cc76521256, type: 3}
-    slashView: {fileID: 436769225473271006, guid: 766d4248261fce542b6f76d111af5e2c, type: 3}
-  - tag: heart
-    blockType: {fileID: 2602777314129162164, guid: 94a37ffc66cd4ef4690c122e5707faf3, type: 3}
-    poolCount: 10
-    spawnPercent: 5
-    isBoost: 1
-    sprite: {fileID: 21300000, guid: ebbefc117916c674f9f7ceecb98fe9bf, type: 3}
-    slashView: {fileID: 745022934144468626, guid: 9044255d9cc81b84cbcc82b86d916619, type: 3}
+  boostModels:
   - tag: basket
     blockType: {fileID: 8077461544134591549, guid: aed94c41563db274cae84cbe184765dc, type: 3}
-    poolCount: 10
+    poolCount: 5
     spawnPercent: 5
     isBoost: 1
     sprite: {fileID: 21300000, guid: f0fd12253b83b554a95fe23dd6f39a0f, type: 3}
     slashView: {fileID: 436769225473271006, guid: 6a39003c88b31e7448753c07c96d471d, type: 3}
-  - tag: samurai
-    blockType: {fileID: 1150264324575577011, guid: 41ef33b001b3bfe4bbf125a971d8561b, type: 3}
-    poolCount: 10
+  - tag: bomb
+    blockType: {fileID: 2557293260677922846, guid: 193e20f66a3353b46b3a1deb62a72252, type: 3}
+    poolCount: 5
     spawnPercent: 5
     isBoost: 1
-    sprite: {fileID: 21300000, guid: 4737510cd38ae8a489615a1084ad6cb0, type: 3}
-    slashView: {fileID: 436769225473271006, guid: e4876954790f7d84496710b960e53288, type: 3}
+    sprite: {fileID: 21300000, guid: 017c6c719494b6546b06577b3b12faef, type: 3}
+    slashView: {fileID: 1328254054586530658, guid: ce16821eeb92a334a92f55cad0d826f7, type: 3}
   - tag: brick
     blockType: {fileID: 3671031297111425234, guid: fd9252816df95ae4aa7207a70a82dd4a, type: 3}
-    poolCount: 10
+    poolCount: 5
     spawnPercent: 5
     isBoost: 1
     sprite: {fileID: 21300000, guid: 2ac492bdcf8244c47a5581fb9707d7ab, type: 3}
     slashView: {fileID: 1328254054586530658, guid: 1f26fb96cdc669c419848b899b87bb77, type: 3}
+  - tag: heart
+    blockType: {fileID: 2602777314129162164, guid: 94a37ffc66cd4ef4690c122e5707faf3, type: 3}
+    poolCount: 5
+    spawnPercent: 5
+    isBoost: 1
+    sprite: {fileID: 21300000, guid: ebbefc117916c674f9f7ceecb98fe9bf, type: 3}
+    slashView: {fileID: 745022934144468626, guid: 9044255d9cc81b84cbcc82b86d916619, type: 3}
+  - tag: ice
+    blockType: {fileID: 9085991851214443287, guid: 1a5684aaa21a181448239718ab6fdc03, type: 3}
+    poolCount: 5
+    spawnPercent: 5
+    isBoost: 1
+    sprite: {fileID: 21300000, guid: a1fd6b5adccc70c49981e1676196439c, type: 3}
+    slashView: {fileID: 745022934144468626, guid: 2e7ec0e0a1c60a2429b22a67a743fd56, type: 3}
+  - tag: magnet
+    blockType: {fileID: 5297537784695833282, guid: de996752ebb7d914d9b3d9837935296e, type: 3}
+    poolCount: 5
+    spawnPercent: 5
+    isBoost: 1
+    sprite: {fileID: 21300000, guid: f76f519b2fd69704fa04a0cc76521256, type: 3}
+    slashView: {fileID: 436769225473271006, guid: 766d4248261fce542b6f76d111af5e2c, type: 3}
+  - tag: samurai
+    blockType: {fileID: 1150264324575577011, guid: 41ef33b001b3bfe4bbf125a971d8561b, type: 3}
+    poolCount: 5
+    spawnPercent: 5
+    isBoost: 1
+    sprite: {fileID: 21300000, guid: 4737510cd38ae8a489615a1084ad6cb0, type: 3}
+    slashView: {fileID: 436769225473271006, guid: e4876954790f7d84496710b960e53288, type: 3}
+  blocks2dModels:
+  - tag: coconut
+    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 21300000, guid: f6e91af4376384848bf8d7346deb22c3, type: 3}
+    slashView: {fileID: 1289830431325244085, guid: 22b155dea637bae4d96eeda2d7c19e10, type: 3}
+  - tag: garlic
+    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 21300000, guid: 9c799f3836d809f4a93facfa3999ef7b, type: 3}
+    slashView: {fileID: 4315858586341165714, guid: 661a17bbbe94dc24aaaea04e9ebabd87, type: 3}
+  - tag: lemon
+    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 21300000, guid: 16cdb5f50d7c6044cb1d7db0812225c7, type: 3}
+    slashView: {fileID: 4053772664170157843, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
+  - tag: mango
+    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 21300000, guid: 5aceecd14f183c14daa5179b73fa162d, type: 3}
+    slashView: {fileID: 4053772664170157843, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
+  - tag: pear
+    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 21300000, guid: 30d5305b1fc591a468965be5a3d28944, type: 3}
+    slashView: {fileID: 4053772664170157843, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
+  - tag: plum
+    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 21300000, guid: ea58a8552218d30498c12d79ffb9b064, type: 3}
+    slashView: {fileID: 1383673553719631410, guid: a496b153487980a43951caadba30139c, type: 3}
+  - tag: pomergrenade
+    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 21300000, guid: 0290a6ba799d71a4f860208378fd7e91, type: 3}
+    slashView: {fileID: 4315858586341165714, guid: 661a17bbbe94dc24aaaea04e9ebabd87, type: 3}
+  - tag: watermelon
+    blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 21300000, guid: ffa1b17720479674bab911b7e35982bf, type: 3}
+    slashView: {fileID: 4315858586341165714, guid: 661a17bbbe94dc24aaaea04e9ebabd87, type: 3}
+  blocks3DModels:
+  - tag: coconut
+    blockType: {fileID: 6680483073179762776, guid: 20088f40e5caded4ab5ba7806625207e, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 0}
+    slashView: {fileID: 1289830431325244085, guid: 22b155dea637bae4d96eeda2d7c19e10, type: 3}
+  - tag: mango
+    blockType: {fileID: 900158046856343881, guid: 7401bb603e2bdf04ebdf632e8ee316dd, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 0}
+    slashView: {fileID: 4053772664170157843, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
+  - tag: lemon
+    blockType: {fileID: 7800575718962510820, guid: 6b0faf3fceeb62f48aaebf9b273ceecb, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 0}
+    slashView: {fileID: 4053772664170157843, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
+  - tag: pear
+    blockType: {fileID: 4230485121061479884, guid: f630ac9df580add43878cff46794a3a8, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 0}
+    slashView: {fileID: 4053772664170157843, guid: e33292123d5bcae4ea0be595e9080ac0, type: 3}
+  - tag: plum
+    blockType: {fileID: 1064199997104115990, guid: cb8240bdabc427a47bf026a69f66adce, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 0}
+    slashView: {fileID: 1383673553719631410, guid: a496b153487980a43951caadba30139c, type: 3}
+  - tag: pomergrenade
+    blockType: {fileID: 8301016598198289792, guid: 9bfdc912896dada4ebb6a356e1eeb2e6, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 0}
+    slashView: {fileID: 4315858586341165714, guid: 661a17bbbe94dc24aaaea04e9ebabd87, type: 3}
+  - tag: watermellon
+    blockType: {fileID: 6321745046976870858, guid: 636aaa20789667b4cab4eba6b1084240, type: 3}
+    poolCount: 5
+    spawnPercent: 10
+    isBoost: 0
+    sprite: {fileID: 0}
+    slashView: {fileID: 4315858586341165714, guid: 661a17bbbe94dc24aaaea04e9ebabd87, type: 3}

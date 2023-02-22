@@ -6,8 +6,6 @@ namespace winterStage
 {
     public class BlocksController : MonoBehaviour
     {
-        [SerializeField] private ScreenSizeHandler screenSize;
-
         [SerializeField] private BonusController _bonus;
 
         public BlocksData blocksData;
@@ -99,7 +97,9 @@ namespace winterStage
         {
             foreach (var block in ActiveBlocks)
             {
-                var currentDistance = (bladePos.currentPosition - block.transform.position).sqrMagnitude;
+                Vector2 currentBlockPosition = block.transform.position;
+
+                var currentDistance = (bladePos.currentPosition - currentBlockPosition).sqrMagnitude;
 
                 if (currentDistance <= SlashRadius)
                 {
@@ -180,7 +180,7 @@ namespace winterStage
 #region(poolFunctions)
         public void PoolOnGet(Block block, Vector3 newPosition)
         {
-            block.transform.position = newPosition;
+            block.transform.position = new Vector3(newPosition.x, newPosition.y, block.transform.position.z);
 
             block.gameObject.SetActive(true);
         }

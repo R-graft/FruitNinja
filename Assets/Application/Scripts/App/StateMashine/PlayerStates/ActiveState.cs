@@ -17,7 +17,7 @@ namespace winterStage
             _block = block;
             _mover = block.mover;
             _rotator = block.rotator;
-            _scaler= block.scaler;
+            _scaler = block.scaler;
 
             _block.currentDirection = moveDirection;
             _block.currentRotation = rotateValue;
@@ -35,8 +35,7 @@ namespace winterStage
         {
             _mover.ParabolaMove(_block.transform);
 
-            _rotator.Rotate(_block.main.transform);
-            _rotator.Rotate(_block.shadow.transform);
+            _block.ActiveUpdateBehaviour();
 
             _scaler.RescaleBlock(_block.transform);
         }

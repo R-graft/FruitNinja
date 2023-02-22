@@ -210,9 +210,24 @@ namespace winterStage
         {
             _percentsList = new Dictionary<string, float>();
 
-            foreach (var type in _blocks.blocksData.blocksModels)
+            foreach (var type in _blocks.blocksData.boostModels)
             {
                 _percentsList.Add(type.tag, type.spawnPercent);
+            }
+
+            if (ProgressController.Instance.mode == BlocksMode.SIMPLE)
+            {
+                foreach (var type in _blocks.blocksData.blocks2dModels)
+                {
+                    _percentsList.Add(type.tag, type.spawnPercent);
+                }
+            }
+            else
+            {
+                foreach (var type in _blocks.blocksData.blocks3DModels)
+                {
+                    _percentsList.Add(type.tag, type.spawnPercent);
+                }
             }
         }
 

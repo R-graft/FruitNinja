@@ -10,6 +10,11 @@ namespace winterStage
         public Transform shadowLeft;
         public Transform shadowRight;
 
+        public override void ActiveUpdateBehaviour()
+        {
+            rotator.SimpleRotate(main.transform);
+            rotator.SimpleRotate(shadow.transform);
+        }
         public override void SetDefaultTransform()
         {
             base.SetDefaultTransform();

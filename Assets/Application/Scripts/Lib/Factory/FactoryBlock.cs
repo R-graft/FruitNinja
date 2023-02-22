@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace winterStage
 {
-    public class FactoryBlock<T> : AbstractFactory<T> where T : Block
+    public class FactoryBlock<T> where T : Block
     {
         private T _creatingObject;
 
@@ -36,9 +36,12 @@ namespace winterStage
                 }
             }
 
-            foreach (var renderer in creatingBlock.partsRenderers)
+            if (!creatingBlock.is3d)
             {
-                renderer.sprite = type.sprite;
+                foreach (var renderer in creatingBlock.partsRenderers)
+                {
+                    renderer.sprite = type.sprite;
+                }
             }
 
             creatingBlock.Init();

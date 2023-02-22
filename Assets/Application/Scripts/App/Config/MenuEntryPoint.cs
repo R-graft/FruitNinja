@@ -24,4 +24,10 @@ namespace winterStage
             _menuUI.Init();
         }
     }
+
+    public enum BlocksMode
+    {
+        SIMPLE,
+        FULL
+    }
 }

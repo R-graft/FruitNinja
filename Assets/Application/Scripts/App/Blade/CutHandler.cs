@@ -59,7 +59,7 @@ namespace winterStage
 
     public struct BladeInfo
     {
-        public Vector3 currentPosition;
+        public Vector2 currentPosition;
 
         public Vector2 currentDirection;
     }

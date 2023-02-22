@@ -5,7 +5,11 @@ namespace winterStage
     [CreateAssetMenu(fileName = "BlocksData", menuName = "Data/newBlocksData")]
     public class BlocksData : ScriptableObject
     {
-        public BlockModel[] blocksModels;
+        public BlockModel[] boostModels;
+
+        public BlockModel[] blocks2dModels;
+
+        public BlockModel[] blocks3DModels;
     }
 
     [System.Serializable]

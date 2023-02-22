@@ -62,7 +62,7 @@ namespace winterStage
             var currentHeart = GetHeart();
 
             currentHeart.transform.position = heartPos;
-            Debug.Log(_rightScreenEdge);
+
             Vector2 targetPosition = new Vector2(_rightScreenEdge - (_heartCounter.CurrentHeart +1) * _offset, _upScreenEdge);
 
             DOTween.Sequence().Append(currentHeart.transform.DOMove(targetPosition, 1)).

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ namespace winterStage
 
         protected const float animateDuration = 0.2f;
 
-        private bool _isActive;
+        private bool _isActive = true;
 
         private static bool PushBlock;
 
@@ -22,8 +23,6 @@ namespace winterStage
             if (!_isActive || OnDownAction == null || PushBlock)
                 return;
 
-            //AudioController.Instance.GetButtonClickSound();
-
             DownAction();
         }
 
@@ -31,7 +30,6 @@ namespace winterStage
         {
             if (OnUpAction == null)
                 return;
-            //AudioController.Instance.GetButtonClickSound();
 
             OnUpAction.Invoke();
         }
@@ -42,20 +40,17 @@ namespace winterStage
 
         private void DownAction()
         {
-            _isActive = false;
-
             Animaton();
-
-            PushBlock = true;
         }
         public virtual void Animaton()
         {
-            DOTween.Sequence().Append(transform.DOShakeRotation(animateDuration, 50)).OnComplete(OnDownAction.Invoke).AppendInterval(0.5f).AppendCallback(()=> PushBlock = false);
-        }
-
-        protected override void OnEnable()
-        {
-            _isActive = true;
+            DOTween.Sequence().Append(transform.DOScale(new Vector2(0.8f, 0.8f),0.1f)).Append(transform.DOScale(Vector2.one, 0.1f))
+                .InsertCallback(1, OnDownAction.Invoke).
+                InsertCallback(0, ()=> _isActive = false).
+                InsertCallback(0, ()=> PushBlock = true)
+                .AppendInterval(0.5f).
+                OnComplete(()=> _isActive = true).
+                AppendCallback(()=> PushBlock = false);
         }
     }
 }

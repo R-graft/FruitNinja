@@ -11,6 +11,7 @@ namespace winterStage
 
         private const string ProgressKey = "BestScore";
 
+        public BlocksMode mode = BlocksMode.SIMPLE;
         public void Init()
         {
             SingleInit();
