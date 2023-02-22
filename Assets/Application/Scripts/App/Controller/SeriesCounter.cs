@@ -103,9 +103,9 @@ public class SeriesCounter : MonoBehaviour
 
         if (_bannerStartPosition.magnitude > 4)
         {
-            _bannerStartPosition = new Vector2(_bannerStartPosition.x * 0.3f, _bannerStartPosition.y * 0.5f);
+            _bannerStartPosition = new Vector3(_bannerStartPosition.x * 0.3f, _bannerStartPosition.y * 0.5f, -10);
         }
-        _transform.position = _bannerStartPosition;
+        _transform.position = new Vector3(_bannerStartPosition.x, _bannerStartPosition.y, -10);
 
         DOTween.Sequence().Append(_transform.DOScale(_bannerCurrentScale, 0.3f)).
             AppendInterval(0.3f).Append(_transform.DOScale(new Vector2(0.005f, 0.005f), 0.3f)).

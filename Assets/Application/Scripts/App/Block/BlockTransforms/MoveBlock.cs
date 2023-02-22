@@ -47,7 +47,7 @@ namespace winterStage
 
         public void MoveToTarget(Transform transform, Vector3 target, float force)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target, force * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.x, target.y, transform.position.z), force * Time.deltaTime);
         }
 
         public  void SetForce(float force)

@@ -30,7 +30,7 @@ namespace winterStage
             {
                 var block = newBasket.Dequeue();
 
-                block.transform.position = new Vector3(basketPos.x, basketPos.y + 2);
+                block.transform.position = new Vector3(basketPos.x, basketPos.y + 2, block.transform.position.z);
 
                 float directionX = Random.Range(_firstDirection.x, _secondDirection.x);
                 float directionY = Random.Range(_firstDirection.y, _secondDirection.y);

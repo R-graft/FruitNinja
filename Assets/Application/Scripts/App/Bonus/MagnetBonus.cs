@@ -26,7 +26,7 @@ namespace winterStage
         {
             magneteTime = _bonusTime;
 
-            Vector3 magnetArea = currentPos.position;
+            Vector2 magnetArea = currentPos.position;
 
             _magnetEffect.transform.position = magnetArea;
 

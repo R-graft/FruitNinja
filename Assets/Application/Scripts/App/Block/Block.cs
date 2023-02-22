@@ -24,14 +24,16 @@ namespace winterStage
 
         private readonly Vector3 ShadowOffset = new Vector3(0.4f, -0.4f, 0);
 
-        protected readonly Vector3 DefaultScale = Vector3.one;
-        protected readonly Vector2 DefaultPos = Vector3.zero;
-        protected readonly Quaternion DefaultRot = Quaternion.identity;
+        protected Vector3 DefaultScale = Vector3.one;
+        protected Vector3 DefaultPos = Vector3.zero;
+        protected Quaternion DefaultRot = Quaternion.identity;
 
         public bool isBonus;
+
+        public bool is3d;
         public StateMashine StateMashine { get; set; }
 
-        public void Init()
+        public virtual void Init()
         {
             mover = new MoveBlock();
             rotator = new RotateBlock();
@@ -49,6 +51,9 @@ namespace winterStage
         {
         }
         public virtual void SlashInBehaviour()
+        {
+        }
+        public virtual void ActiveUpdateBehaviour()
         {
         }
         public virtual void SetDefaultTransform()
