@@ -5637,7 +5637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d717ceefde690949b1ba0794a1578bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSlashSpeed: 25
+  minSlashSpeed: 20
   _trailPrefab: {fileID: 7578370914109890880, guid: 5ce3179d3c5fc284eb761d78fd6e4c9a, type: 3}
   _camera: {fileID: 519420031}
 --- !u!4 &426868447

@@ -71,6 +71,10 @@ namespace winterStage
             StartCoroutine(SpawnBlocks());
         }
 
+        public void Restart()
+        {
+            SetComplicaleable();
+        }
         public void StopSystem()
         {
             StopAllCoroutines();
@@ -81,7 +85,6 @@ namespace winterStage
 
             }
         }
-    
 
         private void SetComplicaleable()
         {

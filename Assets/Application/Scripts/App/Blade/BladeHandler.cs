@@ -5,7 +5,7 @@ namespace winterStage
     public class BladeHandler : MonoBehaviour
     {
         [Header("Config")]
-        public float minSlashSpeed = 25;
+        public float minSlashSpeed = 20;
 
         [Header("Components")]
         [SerializeField] private TrailRenderer _trailPrefab;
@@ -24,6 +24,11 @@ namespace winterStage
             _firstCutter = new CutHandler(_firstTrail, _camera, minSlashSpeed);
 
             EnableBlade();
+
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                minSlashSpeed = 15;
+            }
         }
 
         public void EnableBlade()

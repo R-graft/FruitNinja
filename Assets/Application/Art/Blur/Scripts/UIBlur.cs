@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class UIBlur : MonoBehaviour
 {

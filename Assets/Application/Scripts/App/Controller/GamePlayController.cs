@@ -56,6 +56,8 @@ namespace winterStage
 
             _blocksController.Restart();
 
+            _spawnSystem.Restart();
+
             _spawnSystem.StartSystem();
 
             _bladeHandler.EnableBlade();
