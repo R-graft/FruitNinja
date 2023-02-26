@@ -61,15 +61,8 @@ Shader "Blur"
                         float2 screenPos = i.screenPos.xy / i.screenPos.w;
                         float depth = _Intensity * _Multiplier / 200;
 
-                        if (_FlipX)
-                            screenPos.x = 1 - (screenPos.x + 1) * 0.5;
-                        else
-                            screenPos.x = (screenPos.x + 1) * 0.5;
-
-                        if (_FlipY)
-                            screenPos.y = (screenPos.y + 1) * 0.5;
-                        else
-                            screenPos.y = 1 - (screenPos.y + 1) * 0.5;
+                        screenPos.x = (screenPos.x + 1) * 0.5;
+                        screenPos.y = 1 - (screenPos.y + 1) * 0.5;
 
                         half4 sum = half4(0.0h, 0.0h, 0.0h, 0.0h);
 

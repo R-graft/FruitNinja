@@ -24,7 +24,9 @@ namespace winterStage
         {
             var newBasket = new Queue<Block>();
 
-            newBasket = _spawner.GetCurrentPack(newBasket, true);
+            var basketCount = Random.Range(3, 6);
+
+            newBasket = _spawner.GetCurrentPack(newBasket, true, basketCount);
 
             while (newBasket.Count > 0)
             {

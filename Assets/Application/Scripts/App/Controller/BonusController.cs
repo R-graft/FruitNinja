@@ -46,13 +46,14 @@ namespace winterStage
         [HideInInspector] public bool _isIce;
         [HideInInspector] public bool isSamurai;
 
-        public  Action<Transform> OnBombSlash;
+        public Action<Transform> OnBombSlash;
         public Action<Transform> OnMagnetSlash;
         public Action<Vector3> OnHeartSlash;
         public Action OnIceSlash;
         public Action<Vector3> OnBasketSlash;
         public Action OnSamuraiSlash;
         public Action OnBrickSlash;
+        public Action<MimicBlock> OnMimicActive;
 
         private BombBonus _bomb;
         private IceBonus _ice;
@@ -61,13 +62,14 @@ namespace winterStage
         private BasketBonus _basket;
         private SamuraiBonus _samurai;
         private BrickBonus _brick;
+        private MimicBonus _mimic;
 
         public void Init()
         {
             _ice = new IceBonus(_iceEffect, this, _blocks.AllBlocks, iceTime);
             _bomb = new BombBonus(_bombEffect, _blocks.ActiveBlocks, maxBombDistance, bombForce);
             _heart = new HeartBonus(_heartEffect, _heartCounter, transform, heartsPoolCount);
-            _magnet = new MagnetBonus(_magnetEffect, _blocks.ActiveBlocks, this, magneteTime);
+            _magnet = new MagnetBonus(_magnetEffect, _blocks, this, magneteTime);
             _basket = new BasketBonus(_blocks, _spawner, firstDirection, secondDirection);
             _samurai = new SamuraiBonus(_samuraiEffect, _spawner, _blocks, this, samuraiTime);
             _brick = new BrickBonus(_blade);
@@ -125,6 +127,15 @@ namespace winterStage
             }
         }
 
+        private void MimicBonus(MimicBlock block)
+        {
+            _mimic = new MimicBonus(_spawner, _blocks);
+
+            StartCoroutine(_mimic.MimicAction(block));
+
+            StartCoroutine(_mimic.MimicMove(block));
+        }
+
         private void BrickBonus()
         {
             StartCoroutine(_brick.BrickAction());
@@ -139,6 +150,7 @@ namespace winterStage
             OnBasketSlash += BasketBonus;
             OnSamuraiSlash += SamuraiBonus;
             OnBrickSlash += BrickBonus;
+            OnMimicActive += MimicBonus;
         }
 
         private void OnDisable()
@@ -150,6 +162,7 @@ namespace winterStage
             OnBasketSlash -= BasketBonus;
             OnSamuraiSlash -= SamuraiBonus;
             OnBrickSlash -= BrickBonus;
+            OnMimicActive -= MimicBonus;
         }
     }
 }

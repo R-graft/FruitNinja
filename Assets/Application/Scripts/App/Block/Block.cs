@@ -30,6 +30,8 @@ namespace winterStage
 
         public bool isBonus;
 
+        public bool magneteable;
+
         public bool is3d;
         public StateMashine StateMashine { get; set; }
 
@@ -53,6 +55,9 @@ namespace winterStage
         public virtual void SlashInBehaviour()
         {
         }
+        public virtual void ActiveInBehaviour()
+        {
+        }
         public virtual void ActiveUpdateBehaviour()
         {
         }
@@ -71,7 +76,7 @@ namespace winterStage
 
     public interface IBoostBlock
     {
-        public BonusController BonusController { get; set; }
+        public BonusController BonusHandler { get; set; }
 
         public void BonusEffect();
     }

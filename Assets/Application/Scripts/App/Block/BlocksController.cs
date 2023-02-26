@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace winterStage
 {
@@ -12,8 +13,8 @@ namespace winterStage
 
         private CreateSystem _creator;
 
-        public HashSet<Block> ActiveBlocks { get; private set; }
-        public HashSet<Block> SlashedBlocks { get; private set; }
+        public List<Block> ActiveBlocks { get; private set; }
+        public List<Block> SlashedBlocks { get; private set; }
 
         public List<Block> AllBlocks { get; private set; }
 
@@ -52,9 +53,9 @@ namespace winterStage
 
         public void Restart()
         {
-            ActiveBlocks = new HashSet<Block>();
+            ActiveBlocks = new List<Block>();
 
-            SlashedBlocks = new HashSet<Block>();
+            SlashedBlocks = new List<Block>();
 
             _stopGame = false;
 
@@ -86,7 +87,7 @@ namespace winterStage
 
             block.StateMashine.SetState(new DisableState(block));
         }
-        public void RemoveFromSet(Block block, HashSet<Block> chekingSet)
+        public void RemoveFromSet(Block block, List<Block> chekingSet)
         {
             chekingSet.Remove(block);
 
@@ -123,7 +124,7 @@ namespace winterStage
             }
         }
 
-        private void CheckFallBlocks(HashSet<Block> chekingSet, bool slashed)
+        private void CheckFallBlocks(List<Block> chekingSet, bool slashed)
         {
             if (chekingSet.Count > 0)
             {

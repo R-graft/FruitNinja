@@ -4,7 +4,7 @@ namespace winterStage
     {
         public override void BonusEffect()
         {
-            BonusController.OnMagnetSlash(transform);
+            BonusHandler.OnMagnetSlash(transform);
         }
     }
 }

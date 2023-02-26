@@ -5,7 +5,7 @@ namespace winterStage
 {
     public class BoostBlock : Block, IBoostBlock
     {
-        public BonusController BonusController { get;set ; }
+        public BonusController BonusHandler { get;set ; }
 
         public override void SlashInBehaviour()
         {
