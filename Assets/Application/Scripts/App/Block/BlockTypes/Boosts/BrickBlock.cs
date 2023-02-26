@@ -4,7 +4,7 @@ namespace winterStage
     {
         public override void BonusEffect()
         {
-            BonusController.OnBrickSlash();
+            BonusHandler.OnBrickSlash();
         }
         public override void SlashInBehaviour()
         {

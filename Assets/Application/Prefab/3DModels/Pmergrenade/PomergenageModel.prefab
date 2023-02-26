@@ -55,6 +55,7 @@ MonoBehaviour:
   currentScale: {x: 0, y: 0, z: 0}
   currentRotation: 0
   isBonus: 0
+  magneteable: 1
   is3d: 1
   mainLeft: {fileID: 1169953008517481912}
   mainRight: {fileID: 5634277186442635206}

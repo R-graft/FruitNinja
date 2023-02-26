@@ -32,7 +32,7 @@ namespace winterStage
             {
                 if (creatingBlock.TryGetComponent(out IBoostBlock boost))
                 {
-                    boost.BonusController = _bonus;
+                    boost.BonusHandler = _bonus;
                 }
             }
 

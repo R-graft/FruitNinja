@@ -4,7 +4,7 @@ namespace winterStage
     {
         public override void BonusEffect()
         {
-            BonusController.OnBasketSlash.Invoke(transform.position);
+            BonusHandler.OnBasketSlash.Invoke(transform.position);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace winterStage
     {
         public override void BonusEffect()
         {
-            BonusController.OnBombSlash.Invoke(transform);
+            BonusHandler.OnBombSlash.Invoke(transform);
 
             HeartCounter.OnLoseHeart.Invoke();
         }

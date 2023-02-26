@@ -8,12 +8,12 @@ namespace winterStage
     {
         private Transform _bombEffect;
 
-        private HashSet<Block> _activeBlocks;
+        private List<Block> _activeBlocks;
 
         private float _maxBombDistance = 30;
         private float _bombForce = 5;
 
-        public BombBonus(Transform bobmEffect, HashSet<Block> activeBlocks, float maxBombDistance, float bombForce)
+        public BombBonus(Transform bobmEffect, List<Block> activeBlocks, float maxBombDistance, float bombForce)
         {
             _bombEffect= bobmEffect;
 

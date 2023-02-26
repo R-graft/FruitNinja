@@ -62,6 +62,13 @@ MonoBehaviour:
     isBoost: 1
     sprite: {fileID: 21300000, guid: 4737510cd38ae8a489615a1084ad6cb0, type: 3}
     slashView: {fileID: 436769225473271006, guid: e4876954790f7d84496710b960e53288, type: 3}
+  - tag: mimic
+    blockType: {fileID: 8713208931705445057, guid: 77fe0e35695159348b32d60611c67431, type: 3}
+    poolCount: 5
+    spawnPercent: 5
+    isBoost: 1
+    sprite: {fileID: 0}
+    slashView: {fileID: 436769225473271006, guid: 9969d3bb97dcffe458da0f076aeaca0b, type: 3}
   blocks2dModels:
   - tag: coconut
     blockType: {fileID: 7727766576853363769, guid: 62483bf75629be046896f2e79fb344b1, type: 3}

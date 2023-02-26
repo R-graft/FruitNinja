@@ -44,11 +44,12 @@ namespace winterStage
         }
         public virtual void Animaton()
         {
-            DOTween.Sequence().Append(transform.DOScale(new Vector2(0.8f, 0.8f),0.1f)).Append(transform.DOScale(Vector2.one, 0.1f))
-                .InsertCallback(1, OnDownAction.Invoke).
+            DOTween.Sequence().Append(transform.DOScale(new Vector2(0.8f, 0.8f),0.1f)).
+                Append(transform.DOScale(Vector2.one, 0.1f)).
                 InsertCallback(0, ()=> _isActive = false).
-                InsertCallback(0, ()=> PushBlock = true)
-                .AppendInterval(0.5f).
+                InsertCallback(0, ()=> PushBlock = true).
+                AppendInterval(0.1f).
+                AppendCallback(OnDownAction.Invoke).
                 OnComplete(()=> _isActive = true).
                 AppendCallback(()=> PushBlock = false);
         }

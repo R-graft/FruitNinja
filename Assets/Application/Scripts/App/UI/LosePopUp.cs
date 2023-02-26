@@ -37,7 +37,7 @@ namespace winterStage
 
             DOTween.Sequence().Append(_bg.DOFade(0.9f, 1)).Append(_content.DOScaleY(1.2f, 0.2f)).Append(_content.DOScaleY(1, 0.2f));
 
-            _bestScore.text = ProgressController.Instance.BestScore.ToString();
+            _bestScore.text =  "Лучший: " + ProgressController.Instance.BestScore.ToString();
 
             _currentScore.text = ProgressController.Instance._currentScore.ToString();
         }

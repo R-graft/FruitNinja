@@ -26,6 +26,7 @@ namespace winterStage
         }
         public override void Enter()
         {
+            _block.ActiveInBehaviour();
             _mover.SetStartDirection(_block.currentDirection);
             _rotator.SetRotateValue(_block.currentRotation);
             _scaler.SetStartScale(_block.transform, _block.currentScale);

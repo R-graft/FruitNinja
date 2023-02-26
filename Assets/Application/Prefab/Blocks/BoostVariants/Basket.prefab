@@ -55,6 +55,9 @@ MonoBehaviour:
   currentDirection: {x: 0, y: 0, z: 0}
   currentScale: {x: 0, y: 0, z: 0}
   currentRotation: 0
+  isBonus: 0
+  magneteable: 1
+  is3d: 0
 --- !u!1 &7820535410523788157
 GameObject:
   m_ObjectHideFlags: 0

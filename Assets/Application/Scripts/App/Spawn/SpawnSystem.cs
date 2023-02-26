@@ -71,6 +71,10 @@ namespace winterStage
             StartCoroutine(SpawnBlocks());
         }
 
+        public void Restart()
+        {
+            SetComplicaleable();
+        }
         public void StopSystem()
         {
             StopAllCoroutines();
@@ -78,10 +82,8 @@ namespace winterStage
             while (_currentPack.Count > 0)
             {
                 _blocks.DeactivateBlock(_currentPack.Dequeue());
-
             }
         }
-    
 
         private void SetComplicaleable()
         {
@@ -109,7 +111,9 @@ namespace winterStage
         {
             while (true)
             {
-                _currentPack = GetCurrentPack(_currentPack, _onlySimple);
+                var packCount = Random.Range(_minBlocks, _maxBlocks);
+
+                _currentPack = GetCurrentPack(_currentPack, _onlySimple, packCount);
 
                 while (_currentPack.Count > 0)
                 {
@@ -122,13 +126,11 @@ namespace winterStage
             }
         }
 
-        public Queue<Block> GetCurrentPack(Queue<Block> currentPack, bool onlySimle)
+        public Queue<Block> GetCurrentPack(Queue<Block> currentPack, bool onlySimle, int packSize)
         {
-            var packCount = Random.Range(_minBlocks, _maxBlocks);
-
             bool containsBonus = false;
 
-            for (int i = 0; i < packCount; i++)
+            for (int i = 0; i < packSize; i++)
             {
                 string currentTag = GetCurrentBlockTag();
 

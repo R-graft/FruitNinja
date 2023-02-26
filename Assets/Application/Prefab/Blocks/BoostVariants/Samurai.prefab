@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: b9ad99168b6c24e40bce0e539b98ea92, type: 3}
     - target: {fileID: 4544751996247168868, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6053979708262079117, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
       propertyPath: m_Size.x
@@ -85,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: b9ad99168b6c24e40bce0e539b98ea92, type: 3}
     - target: {fileID: 6053979708262079117, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 502bc8016a532694fa5087e0a041ac74, type: 3}
@@ -137,3 +137,5 @@ MonoBehaviour:
   currentScale: {x: 0, y: 0, z: 0}
   currentRotation: 0
   isBonus: 0
+  magneteable: 1
+  is3d: 0

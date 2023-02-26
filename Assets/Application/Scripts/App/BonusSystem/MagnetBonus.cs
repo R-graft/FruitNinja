@@ -8,17 +8,17 @@ namespace winterStage
     {
         private GameObject _magnetEffect;
 
-        private HashSet<Block> _activeBlocks;
+        private BlocksController _blocks;
 
         private BonusController _controller;
 
         private float _bonusTime;
         public  float magneteTime;
 
-        public MagnetBonus(GameObject magnetEffect, HashSet<Block> activeBlocks, BonusController controller, float bonusTime)
+        public MagnetBonus(GameObject magnetEffect, BlocksController blocks, BonusController controller, float bonusTime)
         {
             _magnetEffect = magnetEffect;
-            _activeBlocks = activeBlocks;
+            _blocks = blocks;
             _controller = controller;
             _bonusTime = bonusTime;
         }
@@ -34,11 +34,11 @@ namespace winterStage
 
             while (magneteTime > 0)
             {
-                foreach (var block in _activeBlocks)
+                foreach (var block in _blocks.ActiveBlocks)
                 {
                     if (block.StateMashine.CurrentState.GetType() != typeof(MagnetState))
                     {
-                        if (!block.TryGetComponent(out BombBlock _) && block.gameObject != currentPos.gameObject)
+                        if (block.magneteable && block.gameObject != currentPos.gameObject)
                         {
                             block.StateMashine.SetState(new MagnetState(block, magnetArea));
                         }
@@ -50,9 +50,12 @@ namespace winterStage
                 yield return null;
             }
 
-            foreach (var block in _activeBlocks)
+            foreach (var block in _blocks.AllBlocks)
             {
-                block.StateMashine.SetState(new ActiveState(block, block.currentDirection, block.currentRotation, block.currentScale));
+                if (block.StateMashine.CurrentState is MagnetState)
+                {
+                    block.StateMashine.SetState(new ActiveState(block, block.currentDirection, block.currentRotation, block.currentScale));
+                }
             }
 
             _controller._isMagnete = false;
