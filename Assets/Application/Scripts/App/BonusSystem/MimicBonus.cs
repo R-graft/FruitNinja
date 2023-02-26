@@ -18,7 +18,7 @@ namespace winterStage
 
         private Block _nextType;
 
-        private float _mimicTime = 2;
+        private float _mimicTime = 1;
 
         private int _mimicPackSize = 5;
 
@@ -111,9 +111,19 @@ namespace winterStage
 
                 if (_currentType != null)
                 {
+                    if (_currentType.TryGetComponent(out BoostSplash trail))
+                    {
+                        trail.flyingTrail.enabled = true;
+                    }
+
                     _controller.DeactivateBlock(_currentType);
 
                     _controller.ActiveBlocks.Remove(_currentType);
+                }
+
+                if (_nextType.TryGetComponent(out BoostSplash boost))
+                {
+                    boost.flyingTrail.enabled = false;
                 }
 
                 _mimicType.magneteable = _nextType.magneteable;

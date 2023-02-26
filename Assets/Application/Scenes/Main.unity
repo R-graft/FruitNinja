@@ -5414,7 +5414,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 588.0176}
+  m_SizeDelta: {x: 0, y: 564.789}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &243887788
 MonoBehaviour:
@@ -5559,7 +5559,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 311.9807, y: 0}
+  m_SizeDelta: {x: 245.69495, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &331726468
 MonoBehaviour:
@@ -6908,8 +6908,8 @@ MonoBehaviour:
     pointTwoY: 2
     pointOne: {x: -12, y: 3.5}
     pointTwo: {x: -12, y: 2}
-    pointOneScreenPercent: {x: -1.6470034, y: 0.7}
-    pointTwoScreenPercent: {x: -1.6470034, y: 0.4}
+    pointOneScreenPercent: {x: -1.5819412, y: 0.7}
+    pointTwoScreenPercent: {x: -1.5819412, y: 0.4}
     spawnPecent: 0
   - zoneTag: leftDown
     pointOneX: -12
@@ -6918,8 +6918,8 @@ MonoBehaviour:
     pointTwoY: -6
     pointOne: {x: -12, y: -2}
     pointTwo: {x: -12, y: -6}
-    pointOneScreenPercent: {x: -1.6470034, y: -0.4}
-    pointTwoScreenPercent: {x: -1.6470034, y: -1.2}
+    pointOneScreenPercent: {x: -1.5819412, y: -0.4}
+    pointTwoScreenPercent: {x: -1.5819412, y: -1.2}
     spawnPecent: 0
   - zoneTag: rightUp
     pointOneX: 12
@@ -6928,8 +6928,8 @@ MonoBehaviour:
     pointTwoY: 2
     pointOne: {x: 12, y: 3.5}
     pointTwo: {x: 12, y: 2}
-    pointOneScreenPercent: {x: 1.6470034, y: 0.7}
-    pointTwoScreenPercent: {x: 1.6470034, y: 0.4}
+    pointOneScreenPercent: {x: 1.5819412, y: 0.7}
+    pointTwoScreenPercent: {x: 1.5819412, y: 0.4}
     spawnPecent: 0
   - zoneTag: rightDown
     pointOneX: 12
@@ -6938,8 +6938,8 @@ MonoBehaviour:
     pointTwoY: -6
     pointOne: {x: 12, y: -2}
     pointTwo: {x: 12, y: -6}
-    pointOneScreenPercent: {x: 1.6470034, y: -0.4}
-    pointTwoScreenPercent: {x: 1.6470034, y: -1.2}
+    pointOneScreenPercent: {x: 1.5819412, y: -0.4}
+    pointTwoScreenPercent: {x: 1.5819412, y: -1.2}
     spawnPecent: 0
   - zoneTag: down
     pointOneX: -12
@@ -6948,8 +6948,8 @@ MonoBehaviour:
     pointTwoY: -7.5
     pointOne: {x: -12, y: -7.5}
     pointTwo: {x: 12, y: -7.5}
-    pointOneScreenPercent: {x: -1.6470034, y: -1.5}
-    pointTwoScreenPercent: {x: 1.6470034, y: -1.5}
+    pointOneScreenPercent: {x: -1.5819412, y: -1.5}
+    pointTwoScreenPercent: {x: 1.5819412, y: -1.5}
     spawnPecent: 70
 --- !u!4 &1892481884 stripped
 Transform:

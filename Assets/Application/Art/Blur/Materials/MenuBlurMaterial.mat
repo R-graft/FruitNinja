@@ -26,8 +26,9 @@ Material:
     m_Floats:
     - _FlipX: 0
     - _FlipY: 0
-    - _Intensity: 0.59
-    - _Multiplier: 0.56
+    - _Intensity: 1
+    - _Multiplier: 0.15
+    - _Radius: 6
     - _Width: 8
     - _blurSizeXY: 1
     - _intensity: 0
