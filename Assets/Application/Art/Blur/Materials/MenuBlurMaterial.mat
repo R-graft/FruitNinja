@@ -20,14 +20,14 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 970435fd3c3969f47bde6b84949b193c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _FlipX: 0
     - _FlipY: 0
     - _Intensity: 1
-    - _Multiplier: 0.15
+    - _Multiplier: 0.2
     - _Radius: 6
     - _Width: 8
     - _blurSizeXY: 1
